@@ -7,9 +7,20 @@ body {
 	background-color: #eef6f1;
 }
 
-.header { grid-area: header; }
-.main { grid-area: main; }
-.footer { grid-area: footer; }
+.header { 
+	grid-area: header; 
+	background-color: #999999;
+	display: flex;
+	justify-content: space-between;
+}
+.main { 
+	grid-area: main; 
+	/*background-color: #52aca2;*/
+}
+.footer { 
+	grid-area: footer;
+	background-color: #999999;
+}
 
 .grid-container {
 	display: grid;
@@ -18,6 +29,14 @@ body {
 	'main main main main main main'
 	'footer footer footer footer footer footer';
 	grid-gap: 5px;
+}
+
+.menu-navbar {
+	display: none;
+}
+
+.menu-navbar li {
+	display: inline-block;
 }
 
 .menu-btn {
