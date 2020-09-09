@@ -13,7 +13,7 @@
     		    <div class="menu-btn__burger"></div>
     		</div>
     		<div class="logo-wrapper">
-    			<span class="logo">YouAndMe</span>
+    			<a href=""><span class="logo">YouAndMe</span></a>
     		</div>
     		<div class="menu-navbar">
     			<ul>

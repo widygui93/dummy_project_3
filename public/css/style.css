@@ -1,3 +1,10 @@
+@font-face {
+    font-family: 'kaushan_scriptregular';
+    src: url('../font-face/kaushanscript-regular-webfont.woff2') format('woff2'),
+         url('../font-face/kaushanscript-regular-webfont.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 * {
 	padding: 0;
 	margin: 0;
@@ -9,9 +16,10 @@ body {
 
 .header { 
 	grid-area: header; 
-	background-color: #999999;
+	background-color: #52aca2;
 	display: flex;
 	justify-content: space-between;
+	padding: 25px;
 }
 .main { 
 	grid-area: main; 
@@ -37,6 +45,32 @@ body {
 
 .menu-navbar li {
 	display: inline-block;
+}
+
+.logo-wrapper {
+	font-size: 2rem;
+    line-height: 0.3;
+    font-family: "kaushan_scriptregular", arial;
+    font-variant: small-caps;
+}
+
+.logo-wrapper a {
+	text-decoration: none;
+	color: #f2f2f2;
+}
+
+.logo-wrapper a:hover {
+	text-shadow: 2px 2px 5px #000;
+}
+
+.login-signup-wrapper a {
+	text-decoration: none;
+	color: #f2f2f2;
+	
+}
+
+.login-signup-wrapper a:hover {
+	text-shadow: 2px 2px 5px #000;
 }
 
 .menu-btn {
