@@ -15,15 +15,25 @@ body {
 }
 
 .header { 
-	grid-area: header; 
+	grid-area: header;
 	background-color: #52aca2;
 	display: flex;
 	justify-content: space-between;
-	padding: 25px;
+	padding: 10px;
+	position: fixed;
+	z-index: 1;
+	width: 100%;
+	height: 60px;
+	transition: height .5s ease-in-out;
 }
+
+.header.open {
+	height: 100%;
+}
+
 .main { 
 	grid-area: main; 
-	/*background-color: #52aca2;*/
+	margin-top: 80px;
 }
 .footer { 
 	grid-area: footer;
@@ -47,20 +57,8 @@ body {
 	display: inline-block;
 }
 
-.logo-wrapper {
-	font-size: 2rem;
-    line-height: 0.3;
-    font-family: "kaushan_scriptregular", arial;
-    font-variant: small-caps;
-}
-
-.logo-wrapper a {
-	text-decoration: none;
-	color: #f2f2f2;
-}
-
-.logo-wrapper a:hover {
-	text-shadow: 2px 2px 5px #000;
+.login-signup-wrapper {
+	display: none;
 }
 
 .login-signup-wrapper a {
@@ -82,7 +80,8 @@ body {
   height: 20px;
   cursor: pointer;
   transition: all .5s ease-in-out;
-  left: 10px;
+  left: -30px;
+  top: 20px;
 }
 
 .menu-btn__burger {
@@ -116,17 +115,16 @@ body {
 
 /* ANIMATION */
 .menu-btn.open .menu-btn__burger {
-  transform: translateX(-50px);
   background: transparent;
   box-shadow: none;
 }
 
 .menu-btn.open .menu-btn__burger::before {
-  transform: rotate(45deg) translate(35px, -35px);
+	transform: rotate(45deg);
 }
 
 .menu-btn.open .menu-btn__burger::after {
-  transform: rotate(-45deg) translate(35px, 35px);
+	transform: rotate(-45deg);
 }
 
 .aktif {

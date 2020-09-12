@@ -9,6 +9,7 @@ $(function(){
 			$(".menu-admin").addClass('aktif');
 		} 
 		$(".menu-btn").toggleClass("open");
+		$(".header").toggleClass("open");
 	});
 
 });
