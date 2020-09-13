@@ -1,7 +1,6 @@
 @font-face {
-    font-family: 'kaushan_scriptregular';
-    src: url('../font-face/kaushanscript-regular-webfont.woff2') format('woff2'),
-         url('../font-face/kaushanscript-regular-webfont.woff') format('woff');
+    font-family: 'Montserrat-Regular';
+    src: url('../font-face/Montserrat-Regular.ttf') format('ttf');       
     font-weight: normal;
     font-style: normal;
 }
@@ -14,12 +13,90 @@ body {
 	background-color: #eef6f1;
 }
 
+.logo-wrapper {
+	grid-area: logo-wrapper;
+	/*border: 1px solid black;*/
+}
+
+.menu-navbar {
+	grid-area: menu-navbar;
+	display: none;
+	font-size: 2.5em;
+	font-family: "Montserrat-Regular", arial;
+	text-align: center;
+	/*border: 1px solid black;*/
+}
+
+.menu-navbar a {
+	text-decoration: none;
+	color: #eef6f1;
+	border-bottom: 0px solid #e5d80e;
+	transition: border-bottom 0.3s, color 0.5s;
+}
+
+.menu-navbar a:hover {
+	border-bottom: 5px solid #e5d80e;
+	color: #1c997c;
+}
+
+.menu-navbar ul {
+	list-style-type: none;
+	/*border: 10px solid purple;*/
+	height: 100%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+}
+
+.menu-navbar.open {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+}
+
+.login-signup-wrapper {
+	grid-area: login-signup-wrapper;
+	display: none;
+	/*border: 1px solid black;*/
+}
+
+.login-signup-wrapper.open {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.menu-btn {
+	grid-area: menu-btn;
+	position: relative;
+	display: flex;
+	justify-content: center;
+    align-items: center;
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    transition: all .5s ease-in-out;
+    /*left: -10px;*/
+    top: 20px;
+    /*border: 1px solid black;*/
+}
+
+.header-wrapper {
+	display: grid;
+	grid-template-areas: 
+	'logo-wrapper logo-wrapper logo-wrapper menu-btn menu-btn menu-btn'
+	'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
+	'login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper';
+	/*grid-gap: 5px;*/
+	height: 100%;
+}
+
 .header { 
 	grid-area: header;
 	background-color: #52aca2;
-	display: flex;
-	justify-content: space-between;
-	padding: 10px;
+	/*display: flex;*/
+	/*justify-content: space-between;*/
+	/*padding: 10px;*/
 	position: fixed;
 	z-index: 1;
 	width: 100%;
@@ -49,17 +126,17 @@ body {
 	grid-gap: 5px;
 }
 
-.menu-navbar {
+/*.menu-navbar {
 	display: none;
-}
+}*/
 
 .menu-navbar li {
-	display: inline-block;
+	/*display: inline-block;*/
 }
 
-.login-signup-wrapper {
+/*.login-signup-wrapper {
 	display: none;
-}
+}*/
 
 .login-signup-wrapper a {
 	text-decoration: none;
@@ -71,7 +148,11 @@ body {
 	text-shadow: 2px 2px 5px #000;
 }
 
-.menu-btn {
+/*.logo-wrapper {
+	border: 1px solid black;
+}*/
+
+/*.menu-btn {
   position: relative;
   display: flex;
   justify-content: center;
@@ -82,7 +163,11 @@ body {
   transition: all .5s ease-in-out;
   left: -30px;
   top: 20px;
-}
+}*/
+
+/*.menu-btn {
+	border: 1px solid black;
+}*/
 
 .menu-btn__burger {
   width: 15px;
@@ -127,7 +212,7 @@ body {
 	transform: rotate(-45deg);
 }
 
-.aktif {
+/*.aktif {
 	position: absolute;
 	display: block;
 	background: #fff;
@@ -161,4 +246,4 @@ body {
 @keyframes menu-admin-animation-close {
 	from { left: 0; }
 	to { left: -400px; }
-}
+}*/
