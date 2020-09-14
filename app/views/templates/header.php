@@ -24,8 +24,12 @@
 	    			</ul>
 	    		</div>
 	    		<div class="login-signup-wrapper">
-	    			<a href="#">Log in</a>
-	    			<a href="#">Sign Up</a>
+	    			<div class="login-wrapper">
+	    				<a href="#">Log in</a>
+	    			</div>
+	    			<div class="signup-wrapper">
+	    				<a href="#">Sign Up</a>
+	    			</div>
 	    		</div>
 	    		<div class="menu-btn">
 	    		    <div class="menu-btn__burger"></div>
