@@ -205,7 +205,9 @@ body {
 		display: flex !important;
 		flex-direction: row;
 		align-items: center;
-		justify-content: space-around;
+		/*justify-content: space-around;*/
+		justify-content: flex-end;
+		margin-right: 1em;
 	}
 
 	.login-signup-wrapper a {
