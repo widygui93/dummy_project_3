@@ -214,6 +214,14 @@ body {
 		font-size: 1em !important;
 	}
 
+	.login-signup-wrapper div {
+		margin: 0 3px;
+	}
+
+	.login-signup-wrapper.open {
+		justify-content: flex-end !important;
+	}
+
 	.logo-wrapper {
 		justify-content: flex-start !important;
 		display: inline !important;
