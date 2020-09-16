@@ -1,9 +1,11 @@
 
 <main class="main">
 	<div class="call-to-action">
-		<h1>Welcome to YouAndMe</h1>
-		<span>Learing Platform</span>
-		<button>Register</button>
+		<div class="cta-content">
+			<h1>Welcome to Unemi</h1>
+			<h3>Your Learing Platform</h3>
+			<div><a href="#">Sign Up</a></div>
+		</div>
 	</div>
 	<div class="latest-article">
 		<h3>Latest Article</h3>

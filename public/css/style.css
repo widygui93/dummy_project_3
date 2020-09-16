@@ -127,7 +127,8 @@ body {
 
 .main { 
 	grid-area: main; 
-	margin-top: 80px;
+	/* margin-top: 80px; */
+	margin-top: 54px;
 }
 .footer { 
 	grid-area: footer;
@@ -184,6 +185,44 @@ body {
 
 .menu-btn.open .menu-btn__burger::after {
 	transform: rotate(-45deg);
+}
+
+.call-to-action {
+	background-image: url("../img/patrick-tomasso-IDN8NVELy0E-unsplash.jpg");
+	height: 500px;
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	color: #eef6f1;
+	font-family: "Montserrat-Regular", arial;
+}
+
+.cta-content {
+	position: relative;
+	top: 10em;
+	height: 100px;
+	margin-left: 10%;
+}
+
+.cta-content div {
+	background-color: #1c997c;
+	width: 100px;
+	height: 50px;
+	margin-top: 10px;
+	border-radius: 5px;
+	text-align: center;
+	line-height: 1.8;
+}
+
+.cta-content a {
+	text-decoration: none;
+	color: #eef6f1;
+	font-size: 25px;
+	/* font-style: italic; */
+}
+
+.cta-content a:hover {
+	color: #e5d80e;
 }
 
 @media screen and (min-width: 748px) {
