@@ -17,9 +17,9 @@
 	    		</div>
 	    		<div class="menu-navbar">
 	    			<ul>
-	    				<li><a href="">Article</a></li>
+	    				<li><a href="">Tutorial</a></li>
 	    				<li><a href="">About</a></li>
-	    				<li><a href="">Contact</a></li>
+	    				<li><a href="">FAQ</a></li>
 	    				<!-- <li><a href="">My Dashboard</a></li> -->
 	    			</ul>
 	    		</div>
