@@ -11,6 +11,7 @@
 
 body {
 	background-color: #eef6f1;
+	font-family: "Montserrat-Regular", arial;
 }
 
 .logo-wrapper {
@@ -23,7 +24,6 @@ body {
 	grid-area: menu-navbar;
 	display: none;
 	font-size: 2.5em;
-	font-family: "Montserrat-Regular", arial;
 	text-align: center;
 }
 
@@ -80,7 +80,6 @@ body {
 .login-signup-wrapper a {
 	text-decoration: none;
 	font-size: 1.5em;
-	font-family: "Montserrat-Regular", arial;
 	color: #eef6f1;
 	
 }
@@ -194,7 +193,6 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: #eef6f1;
-	font-family: "Montserrat-Regular", arial;
 }
 
 .cta-content {
@@ -218,7 +216,6 @@ body {
 	text-decoration: none;
 	color: #eef6f1;
 	font-size: 25px;
-	/* font-style: italic; */
 }
 
 .cta-content a:hover {
