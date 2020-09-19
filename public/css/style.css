@@ -225,6 +225,24 @@ body {
 	color: #e5d80e;
 }
 
+.tutorial-wrap {
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: center;
+}
+
+.latest-tutorial h3 {
+	text-align: center;
+}
+
+.tutorial {
+	margin: 10px;
+}
+
+video {
+	width: 100%;
+}
+
 @media screen and (min-width: 748px) {
 	.menu-btn {
 		display: none !important;

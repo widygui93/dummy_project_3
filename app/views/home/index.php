@@ -7,39 +7,50 @@
 			<div><a href="#">Sign Up</a></div>
 		</div>
 	</div>
-	<div class="latest-article">
-		<h3>Latest Article</h3>
-		<div class="article">
-			<div class="article-head">
-				<img src="" alt="article-img">
+	<div class="latest-tutorial">
+		<h3>Latest Tutorial</h3>
+		<div class="tutorial-wrap">
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<h5 class="tutorial-title">Title 1</h5>
+					<span class="tutorial-author">By Author 1</span>
+					<small class="tutorial-like">LIKE 23K</small>
+					<small class="tutorial-purchase">PURCHASE 45K</small>
+				</div>
 			</div>
-			<div class="article-main">
-				<h5 class="article-title">Title 1</h5>
-				<span class="article-author">By Author</span>
-				<small class="article-like">23K</small>
-				<small class="article-purchase">45K</small>
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<h5 class="tutorial-title">Title 1</h5>
+					<span class="tutorial-author">By Author 1</span>
+					<small class="tutorial-like">LIKE 23K</small>
+					<small class="tutorial-purchase">PURCHASE 45K</small>
+				</div>
 			</div>
-		</div>
-		<div class="article">
-			<div class="article-head">
-				<img src="" alt="article-img">
-			</div>
-			<div class="article-main">
-				<h5 class="article-title">Title 2</h5>
-				<span class="article-author">By Author</span>
-				<small class="article-like">23K</small>
-				<small class="article-purchase">45K</small>
-			</div>
-		</div>
-		<div class="article">
-			<div class="article-head">
-				<img src="" alt="article-img">
-			</div>
-			<div class="article-main">
-				<h5 class="article-title">Title 3</h5>
-				<span class="article-author">By Author</span>
-				<small class="article-like">23K</small>
-				<small class="article-purchase">45K</small>
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<h5 class="tutorial-title">Title 1</h5>
+					<span class="tutorial-author">By Author 1</span>
+					<small class="tutorial-like">LIKE 23K</small>
+					<small class="tutorial-purchase">PURCHASE 45K</small>
+				</div>
 			</div>
 		</div>
 	</div>
