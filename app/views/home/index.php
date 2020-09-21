@@ -18,13 +18,13 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<h5 class="tutorial-title">Title 1</h5>
-					<span class="tutorial-author">By Author 1</span>
+					<span class="tutorial-title">Learing X for Beginner</span>
+					<span class="tutorial-author">By John Doe</span>
 					<small class="tutorial-like">LIKE 23K</small>
 					<small class="tutorial-purchase">PURCHASE 45K</small>
 				</div>
 			</div>
-			<div class="tutorial">
+			<!-- <div class="tutorial">
 				<div class="tutorial-video">
 					<video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
@@ -37,8 +37,8 @@
 					<small class="tutorial-like">LIKE 23K</small>
 					<small class="tutorial-purchase">PURCHASE 45K</small>
 				</div>
-			</div>
-			<div class="tutorial">
+			</div> -->
+			<!-- <div class="tutorial">
 				<div class="tutorial-video">
 					<video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
@@ -51,7 +51,7 @@
 					<small class="tutorial-like">LIKE 23K</small>
 					<small class="tutorial-purchase">PURCHASE 45K</small>
 				</div>
-			</div>
+			</div> -->
 		</div>
 	</div>
 	<div class="student-testi">
