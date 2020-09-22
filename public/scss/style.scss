@@ -1,17 +1,12 @@
+@import "variables";
+@import "mixins";
+
 @font-face {
     font-family: 'Montserrat-Regular';
     src: url('../font-face/Montserrat-Regular.ttf') format('ttf');       
     font-weight: normal;
     font-style: normal;
 }
-
-// variables
-$font-fam: "Montserrat-Regular", arial;
-$light-grey: #eef6f1;
-$dark-primary-col: #1c997c;
-$light-primary-col: #52aca2;
-$secondary-col: #e5d80e;
-
 
 * {
 	padding: 0;
@@ -248,14 +243,33 @@ body {
 	border: 1px solid gray;
 	border-radius: 5px;
 	overflow: hidden;
+	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
 .tutorial-title {
+	@include jarak-margin-title-author;
 	font-weight: bold;
+	a{
+		text-decoration: none;
+	}
 }
 
 .tutorial-author {
+	@include jarak-margin-title-author;
 	display: block;
+	border-bottom: 1px solid $light-primary-col;
+}
+
+.tutorial-like,
+.tutorial-purchase {
+	float: right;
+	margin-right: 5px;
+	margin-bottom: 5px;
+	margin-top: 5px;
+	img{
+		width: 15px;
+		height: 15px;
+	}
 }
 
 video {
