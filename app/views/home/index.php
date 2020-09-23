@@ -31,7 +31,7 @@
 					</span>
 				</div>
 			</div>
-			<!-- <div class="tutorial">
+			<div class="tutorial">
 				<div class="tutorial-video">
 					<video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
@@ -39,13 +39,20 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<h5 class="tutorial-title">Title 1</h5>
-					<span class="tutorial-author">By Author 1</span>
-					<small class="tutorial-like">LIKE 23K</small>
-					<small class="tutorial-purchase">PURCHASE 45K</small>
+					<span class="tutorial-title"><a href="#">Learing X for Beginner</a></span>
+					<span class="tutorial-author">By John Doe</span>
+					<!-- <a href="">Purchase</a> -->
+					<span class="tutorial-like">
+						<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+						<span>23K</span>
+					</span>
+					<span class="tutorial-purchase">
+						<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="purchase">
+						<span>45K</span>
+					</span>
 				</div>
-			</div> -->
-			<!-- <div class="tutorial">
+			</div>
+			<div class="tutorial">
 				<div class="tutorial-video">
 					<video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
@@ -53,12 +60,19 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<h5 class="tutorial-title">Title 1</h5>
-					<span class="tutorial-author">By Author 1</span>
-					<small class="tutorial-like">LIKE 23K</small>
-					<small class="tutorial-purchase">PURCHASE 45K</small>
+					<span class="tutorial-title"><a href="#">Learing X for Beginner</a></span>
+					<span class="tutorial-author">By John Doe</span>
+					<!-- <a href="">Purchase</a> -->
+					<span class="tutorial-like">
+						<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+						<span>23K</span>
+					</span>
+					<span class="tutorial-purchase">
+						<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="purchase">
+						<span>45K</span>
+					</span>
 				</div>
-			</div> -->
+			</div>
 		</div>
 	</div>
 	<div class="student-testi">
