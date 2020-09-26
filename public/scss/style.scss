@@ -227,94 +227,79 @@ body {
 	}
 }
 
-.tutorial-wrap {
-	display: flex;
-	flex-wrap: wrap;
-	justify-content: center;
-}
-
-.latest-tutorial h3 {
-	text-align: center;
-	margin-top: 10px;
-}
-// perbaiki class lain di dalam tutorial jadi nesting
-.tutorial {
-	margin: 10px;
-	border: 1px solid rgba(170, 163, 170, 0.5);
-	border-radius: 5px;
-	overflow: hidden;
-	transition: 0.5s;
-	&:hover{
-		box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
-			   -2px -2px 5px rgba(116,116,106,.75);
-		transform: scale(1.05);
+.latest-tutorial {
+	h3{
+		text-align: center;
+		margin-top: 10px;
 	}
-}
-
-.tutorial-info{
-	padding: 1em 0px;
-}
-
-.tutorial-title {
-	@include jarak-margin-title-author;
-	font-weight: bold;
-	a{
-		text-decoration: none;
-	}
-}
-
-.tutorial-author {
-	@include jarak-margin-title-author;
-	display: block;
-	// border-bottom: 1px solid $light-primary-col;
-}
-
-.tutorial-purchase {
-	border-top: 1px solid $light-primary-col;
-	display: flex;
-	justify-content: space-between;
-	div{
-		margin: 1em;
-	}
-	.purchase-button{
-		background-color: $light-primary-col;
-		border-radius: 5px;
-		line-height: 1.8;
-		padding: .5em;
-		a{
-			text-decoration: none;
-			color: black;
-		}
-		&:hover{
-			background-color: $dark-primary-col;
-		}
-	}
-	.purchase-info {
-		line-height: 2.8;
-		.tutorial-like,
-		.tutorial-cost{
-			img{
-				width: 15px;
-				height: 15px;
+	.tutorial-wrap {
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: center;
+		.tutorial {
+			margin: 10px;
+			border: 1px solid rgba(170, 163, 170, 0.5);
+			border-radius: 5px;
+			overflow: hidden;
+			transition: 0.5s;
+			&:hover{
+				box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
+					   -2px -2px 5px rgba(116,116,106,.75);
+				transform: scale(1.05);
+			}
+			.tutorial-video{
+				video {
+					width: 100%;
+				}
+			}
+			.tutorial-info{
+				padding: 1em 0px;
+				.tutorial-title {
+					@include jarak-margin-title-author;
+					font-weight: bold;
+					a{
+						text-decoration: none;
+					}
+				}
+				.tutorial-author {
+					@include jarak-margin-title-author;
+					display: block;
+				}
+			}
+			.tutorial-purchase {
+				border-top: 1px solid $light-primary-col;
+				display: flex;
+				justify-content: space-between;
+				div{
+					margin: 1em;
+				}
+				.purchase-button{
+					background-color: $light-primary-col;
+					border-radius: 5px;
+					line-height: 1.8;
+					padding: .5em;
+					a{
+						text-decoration: none;
+						color: black;
+					}
+					&:hover{
+						background-color: $dark-primary-col;
+					}
+				}
+				.purchase-info {
+					line-height: 2.8;
+					.tutorial-like,
+					.tutorial-cost{
+						img{
+							width: 15px;
+							height: 15px;
+						}
+					}
+				}
 			}
 		}
 	}
-}
-
-.tutorial-like,
-.tutorial-cost {
-	// float: right;
-	// margin-right: 5px;
-	// margin-bottom: 5px;
-	// margin-top: 5px;
-	img{
-		// width: 15px;
-		// height: 15px;
-	}
-}
-
-video {
-	width: 100%;
+	
 }
 
 @media screen and (min-width: 748px) {
