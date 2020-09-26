@@ -254,16 +254,28 @@ body {
 			}
 			.tutorial-info{
 				padding: 1em 0px;
-				.tutorial-title {
-					@include jarak-margin-title-author;
-					font-weight: bold;
-					a{
-						text-decoration: none;
+				display: flex;
+				justify-content: space-between;
+				.side-info-1{
+					.tutorial-title {
+						@include jarak-margin-title-author;
+						font-weight: bold;
+						a{
+							text-decoration: none;
+						}
+					}
+					.tutorial-author {
+						@include jarak-margin-title-author;
+						display: block;
 					}
 				}
-				.tutorial-author {
-					@include jarak-margin-title-author;
-					display: block;
+				.side-info-2{
+					margin: .7em .7em 0 0;
+					.tutorial-date{
+						img{
+							@include icon-size;
+						}
+					}
 				}
 			}
 			.tutorial-purchase {
@@ -291,8 +303,7 @@ body {
 					.tutorial-like,
 					.tutorial-cost{
 						img{
-							width: 15px;
-							height: 15px;
+							@include icon-size;
 						}
 					}
 				}
