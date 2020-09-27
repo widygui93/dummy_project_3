@@ -238,7 +238,6 @@ body {
 		justify-content: center;
 		.tutorial {
 			width: 18em;
-			// height: 150px;
 			margin: 10px;
 			border: 1px solid rgba(170, 163, 170, 0.5);
 			border-radius: 5px;
@@ -256,37 +255,27 @@ body {
 				}
 			}
 			.tutorial-info{
-				padding: 1em 0px;
-				display: flex;
-				justify-content: space-between;
-				.side-info-1{
-					margin-left: 10px;
-					.tutorial-title {
-						// @include jarak-margin-title-author;
-						font-weight: bold;
-						a{
-							text-decoration: none;
+				.info-1{
+					margin: 1em 0 1em 1em;
+					font-weight: bold;
+					a{
+						text-decoration: none;
+						color: #000;
+						&:hover{
+							color: $dark-primary-col;
 						}
 					}
-					.tutorial-author {
-						// @include jarak-margin-title-author;
-						display: block;
-					}
 				}
-				.side-info-2{
-					margin: .7em .7em 0 0;
-					// .tutorial-date{
-					// 	img{
-					// 		@include icon-size;
-					// 	}
-					// }
+				.info-2{
+					display: flex;
+					justify-content: space-between;
+					margin: 0 1em 1em;
 				}
 			}
 			.tutorial-purchase {
 				border-top: 1px solid $light-primary-col;
 				display: flex;
 				justify-content: space-between;
-				// height: 5em;
 				div{
 					margin: 1em;
 				}

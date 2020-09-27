@@ -18,16 +18,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -44,7 +40,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -55,16 +50,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -81,7 +72,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -92,16 +82,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -118,7 +104,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -129,16 +114,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -155,7 +136,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -166,16 +146,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -192,7 +168,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -203,16 +178,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -229,7 +200,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -240,16 +210,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -266,7 +232,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 			<div class="tutorial">
@@ -277,16 +242,12 @@
 					</video>
 				</div>
 				<div class="tutorial-info">
-					<div class="side-info-1">
+					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tutorial-author">By John Doe</span>
 					</div>
-					<div class="side-info-2">
-						<!-- <span class="tutorial-date"> -->
-							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
-							<!-- <span>25/09/2020</span> -->
-							<small class="tutorial-date">September 25,2020</small>
-						<!-- </span> -->
+					<div class="info-2">
+						<span class="tutorial-author">By John D.J.A</span>
+						<small class="tutorial-date">September 25,2020</small>
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -303,7 +264,6 @@
 							<span>45K</span>
 						</span>
 					</div>
-					
 				</div>
 			</div>
 		</div>
