@@ -23,10 +23,48 @@
 						<span class="tutorial-author">By John Doe</span>
 					</div>
 					<div class="side-info-2">
-						<span class="tutorial-date">
-							<img src="<?= BASEURL; ?>/svg/calender.svg" alt="calendar">
-							<span>25/09/2020</span>
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
+					</div>
+				</div>
+				<div class="tutorial-purchase">
+					<div class="purchase-button">
+						<a href="#">Purchase</a>
+					</div>
+					<div class="purchase-info">
+						<span class="tutorial-like">
+							<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+							<span>23K</span>
 						</span>
+						<span class="tutorial-cost">
+							<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
+							<span>45K</span>
+						</span>
+					</div>
+					
+				</div>
+			</div>
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/flower.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<div class="side-info-1">
+						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tutorial-author">By John Doe</span>
+					</div>
+					<div class="side-info-2">
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -59,10 +97,11 @@
 						<span class="tutorial-author">By John Doe</span>
 					</div>
 					<div class="side-info-2">
-						<span class="tutorial-date">
-							<img src="<?= BASEURL; ?>/svg/calender.svg" alt="calendar">
-							<span>25/09/2020</span>
-						</span>
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -95,10 +134,11 @@
 						<span class="tutorial-author">By John Doe</span>
 					</div>
 					<div class="side-info-2">
-						<span class="tutorial-date">
-							<img src="<?= BASEURL; ?>/svg/calender.svg" alt="calendar">
-							<span>25/09/2020</span>
-						</span>
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -131,10 +171,11 @@
 						<span class="tutorial-author">By John Doe</span>
 					</div>
 					<div class="side-info-2">
-						<span class="tutorial-date">
-							<img src="<?= BASEURL; ?>/svg/calender.svg" alt="calendar">
-							<span>25/09/2020</span>
-						</span>
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="tutorial-purchase">
@@ -167,10 +208,85 @@
 						<span class="tutorial-author">By John Doe</span>
 					</div>
 					<div class="side-info-2">
-						<span class="tutorial-date">
-							<img src="<?= BASEURL; ?>/svg/calender.svg" alt="calendar">
-							<span>25/09/2020</span>
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
+					</div>
+				</div>
+				<div class="tutorial-purchase">
+					<div class="purchase-button">
+						<a href="#">Purchase</a>
+					</div>
+					<div class="purchase-info">
+						<span class="tutorial-like">
+							<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+							<span>23K</span>
 						</span>
+						<span class="tutorial-cost">
+							<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
+							<span>45K</span>
+						</span>
+					</div>
+					
+				</div>
+			</div>
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<div class="side-info-1">
+						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tutorial-author">By John Doe</span>
+					</div>
+					<div class="side-info-2">
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
+					</div>
+				</div>
+				<div class="tutorial-purchase">
+					<div class="purchase-button">
+						<a href="#">Purchase</a>
+					</div>
+					<div class="purchase-info">
+						<span class="tutorial-like">
+							<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+							<span>23K</span>
+						</span>
+						<span class="tutorial-cost">
+							<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
+							<span>45K</span>
+						</span>
+					</div>
+					
+				</div>
+			</div>
+			<div class="tutorial">
+				<div class="tutorial-video">
+					<video>
+						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
+						Your Browser is not supported.
+					</video>
+				</div>
+				<div class="tutorial-info">
+					<div class="side-info-1">
+						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tutorial-author">By John Doe</span>
+					</div>
+					<div class="side-info-2">
+						<!-- <span class="tutorial-date"> -->
+							<!-- <img src="/svg/calender.svg" alt="calendar"> -->
+							<!-- <span>25/09/2020</span> -->
+							<small class="tutorial-date">September 25,2020</small>
+						<!-- </span> -->
 					</div>
 				</div>
 				<div class="tutorial-purchase">
