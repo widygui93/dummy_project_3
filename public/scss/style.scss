@@ -282,11 +282,11 @@ body {
 				.purchase-button{
 					background-color: $light-primary-col;
 					border-radius: 5px;
-					line-height: 1.8;
-					padding: .5em;
+					line-height: 2.7;
 					a{
 						text-decoration: none;
 						color: black;
+						padding: 12px 10px 12px 12px;
 					}
 					&:hover{
 						background-color: $dark-primary-col;
