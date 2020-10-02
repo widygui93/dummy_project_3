@@ -12,14 +12,16 @@
 		<div class="tutorial-wrap">
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
-						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
-						Your Browser is not supported.
-					</video>
+					<!-- <video> -->
+						<!-- <source src="../app/core/videos/cat-herd.webm" type="video/webm" /> -->
+						<!-- Your Browser is not supported. -->
+					<!-- </video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -44,14 +46,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/flower.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -76,14 +80,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -108,14 +114,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -140,14 +148,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -172,14 +182,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -204,14 +216,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>
@@ -236,14 +250,16 @@
 			</div>
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<video>
+					<!-- <video>
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
-					</video>
+					</video> -->
+					<img src="http://placehold.it/288x150" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
 						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
+						<span class="tooltiptext">Click for details</span>
 					</div>
 					<div class="info-2">
 						<span class="tutorial-author">By John D.J.A</span>

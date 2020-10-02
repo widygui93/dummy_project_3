@@ -258,11 +258,28 @@ body {
 				.info-1{
 					margin: 1em 0 1em 1em;
 					font-weight: bold;
+					position: relative;
 					a{
 						text-decoration: none;
 						color: #000;
 						&:hover{
 							color: $dark-primary-col;
+						}
+					}
+					.tooltiptext{
+						font-size: .7em;
+						visibility: hidden;
+						background-color: black;
+						color: $light-grey;
+						border-radius: 6px;
+						padding: 5px 0;
+						text-align: center;
+						position: absolute;
+						z-index: 1;
+					}
+					&:hover {
+						.tooltiptext{
+							visibility: visible;
 						}
 					}
 				}
