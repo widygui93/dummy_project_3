@@ -12,11 +12,11 @@
 		<div class="tutorial-wrap">
 			<div class="tutorial">
 				<div class="tutorial-video">
-					<!-- <video> -->
+					<!-- <video poster="../app/core/videos/cover-img/sample.png" controls> -->
 						<!-- <source src="../app/core/videos/cat-herd.webm" type="video/webm" /> -->
 						<!-- Your Browser is not supported. -->
 					<!-- </video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -50,7 +50,7 @@
 						<source src="../app/core/videos/flower.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -84,7 +84,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -118,7 +118,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -152,7 +152,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -186,7 +186,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -220,7 +220,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -254,7 +254,7 @@
 						<source src="../app/core/videos/cat-herd.webm" type="video/webm" />
 						Your Browser is not supported.
 					</video> -->
-					<img src="http://placehold.it/288x150" alt="video-poster">
+					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
 				<div class="tutorial-info">
 					<div class="info-1">
@@ -298,7 +298,7 @@
 		<h3>Student Testimony</h3>
 		<div class="testi">
 			<div class="testi-head">
-				<img src="" alt="testi-img">
+				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
 				<span class="student-name">John</span>
