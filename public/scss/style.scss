@@ -326,16 +326,18 @@ body {
 			}
 		}
 	}
-	ul{
-		display: flex;
-		justify-content: center;
-		li{
-			display: inline-block;
-			margin-right: 5px;
-		}
-		a{
-			text-decoration: none;
-			color: black;
+	.tutorial-page{
+		ul{
+			display: flex;
+			justify-content: center;
+			li{
+				display: inline-block;
+				margin-right: 5px;
+			}
+			a{
+				text-decoration: none;
+				color: black;
+			}
 		}
 	}
 }
