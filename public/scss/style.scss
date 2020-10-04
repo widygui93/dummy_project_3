@@ -229,8 +229,7 @@ body {
 
 .latest-tutorial {
 	h3{
-		text-align: center;
-		margin-top: 10px;
+		@include section-header;
 	}
 	.tutorial-wrap {
 		display: flex;
@@ -339,6 +338,78 @@ body {
 				color: black;
 			}
 		}
+	}
+}
+.student-testi{
+	position: relative;
+	h3{
+		@include section-header;
+	}
+	.testi{
+		padding-top: 10px;
+		display: none;
+		position: relative;
+		.numbertext{
+			color: #000;
+  			font-size: 12px;
+			position: absolute;
+			left: 1em;
+		}
+		.testi-head{
+			display: flex;
+			justify-content: center;
+		}
+		.testi-main{
+			color: #000;
+			font-size: 15px;
+			text-align: center;
+			.student-name{
+				font-weight: bold;
+				color: $dark-primary-col;
+			}
+			.testi-text{
+				margin-top: 3px;
+			}
+		}
+	}
+	/* Fading animation */
+	.fade {
+		-webkit-animation-name: fade;
+		-webkit-animation-duration: 1.5s;
+		animation-name: fade;
+		animation-duration: 1.5s;
+	}
+	@-webkit-keyframes fade {
+		from {opacity: .4} 
+		to {opacity: 1}
+	}
+	@keyframes fade {
+		from {opacity: .4} 
+		to {opacity: 1}
+	}
+	/* Next & previous buttons */
+	.prev, .next {
+		cursor: pointer;
+		position: absolute;
+		top: 50%;
+		width: auto;
+		padding: 16px;
+		margin-top: -22px;
+		color: $secondary-col;
+		font-weight: bold;
+		font-size: 18px;
+		transition: 0.6s ease;
+		border-radius: 0 3px 3px 0;
+		user-select: none;
+	}
+	/* Position the "next button" to the right */
+	.next {
+		right: 0;
+		border-radius: 3px 0 0 3px;
+	}
+	/* On hover, add a black background color with a little bit see-through */
+	.prev:hover, .next:hover {
+		background-color: $dark-primary-col;
 	}
 }
 

@@ -298,51 +298,58 @@
 	</div>
 	<div class="student-testi">
 		<h3>Student Testimony</h3>
-		<div class="testi">
+		<div class="testi fade">
+			<div class="numbertext">1 / 5</div>
 			<div class="testi-head">
 				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
-				<span class="student-name">John</span>
-				<p class="testi-text">In YouAndMe, I want to learn whenever I can. If it's still unclear, the article can also be re-read "</p>
+				<span class="student-name">John McCarty</span>
+				<p class="testi-text">In Unemi, I want to learn whenever I can. If it's still unclear, the video can also be replay</p>
 			</div>
 		</div>
-		<div class="testi">
+		<div class="testi fade">
+			<div class="numbertext">2 / 5</div>
 			<div class="testi-head">
-				<img src="" alt="testi-img">
+				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
-				<span class="student-name">John</span>
-				<p class="testi-text">In YouAndMe, I want to learn whenever I can. If it's still unclear, the article can also be re-read "</p>
+				<span class="student-name">Caleb Santos</span>
+				<p class="testi-text">In Unemi, I want to learn whenever I can. If it's still unclear, the video can also be replay</p>
 			</div>
 		</div>
-		<div class="testi">
+		<div class="testi fade">
+			<div class="numbertext">3 / 5</div>
 			<div class="testi-head">
-				<img src="" alt="testi-img">
+				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
-				<span class="student-name">John</span>
-				<p class="testi-text">In YouAndMe, I want to learn whenever I can. If it's still unclear, the article can also be re-read "</p>
+				<span class="student-name">Mary Anne</span>
+				<p class="testi-text">In Unemi, I want to learn whenever I can. If it's still unclear, the video can also be replay</p>
 			</div>
 		</div>
-		<div class="testi">
+		<div class="testi fade">
+			<div class="numbertext">4 / 5</div>
 			<div class="testi-head">
-				<img src="" alt="testi-img">
+				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
-				<span class="student-name">John</span>
-				<p class="testi-text">In YouAndMe, I want to learn whenever I can. If it's still unclear, the article can also be re-read "</p>
+				<span class="student-name">Jack Doe</span>
+				<p class="testi-text">In Unemi, I want to learn whenever I can. If it's still unclear, the video can also be replay</p>
 			</div>
 		</div>
-		<div class="testi">
+		<div class="testi fade">
+			<div class="numbertext">5 / 5</div>
 			<div class="testi-head">
-				<img src="" alt="testi-img">
+				<img src="http://placehold.it/150x150" alt="testi-img">
 			</div>
 			<div class="testi-main">
-				<span class="student-name">John</span>
-				<p class="testi-text">In YouAndMe, I want to learn whenever I can. If it's still unclear, the article can also be re-read "</p>
+				<span class="student-name">Kelly Sims</span>
+				<p class="testi-text">In Unemi, I want to learn whenever I can. If it's still unclear, the video can also be replay</p>
 			</div>
 		</div>
+		<a class="prev">&#10094;</a>
+		<a class="next">&#10095;</a>
 	</div>
 	<div class="list-teacher">
 		<h3>Teacher List</h3>

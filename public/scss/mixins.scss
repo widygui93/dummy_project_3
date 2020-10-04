@@ -1,7 +1,7 @@
-// @mixin jarak-margin-title-author {
-// 	margin-left: 10px;
-// 	margin-top: 5px;
-// }
+@mixin section-header {
+	text-align: center;
+	margin-top: 10px;
+}
 
 @mixin icon-size {
 	width: 15px;
