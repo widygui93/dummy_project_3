@@ -297,8 +297,8 @@
 		</div>
 	</div>
 	<div class="student-testi">
+		<h3>Student Testimony</h3>
 		<div class="student-testi-wrap">
-			<h3>Student Testimony</h3>
 			<div class="testi fade">
 				<div class="numbertext">1 / 5</div>
 				<div class="testi-head">

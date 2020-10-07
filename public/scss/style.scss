@@ -343,13 +343,13 @@ body {
 .student-testi{
 	background-image: linear-gradient(to bottom right, $light-grey, $dark-primary-col);
 	padding: .3em 0 1em;
+	h3{
+		@include section-header;
+	}
 	.student-testi-wrap{
 		width: 300px;
 		margin: 0 auto;
 		position: relative;
-		h3{
-			@include section-header;
-		}
 		.testi{
 			padding-top: 10px;
 			display: none;
@@ -370,7 +370,6 @@ body {
 				text-align: center;
 				.student-name{
 					font-weight: bold;
-					// color: $dark-primary-col;
 					color: $light-grey;
 				}
 				.testi-text{
@@ -401,7 +400,6 @@ body {
 			width: auto;
 			padding: 16px;
 			margin-top: -22px;
-			// color: $secondary-col;
 			color: $light-grey;
 			font-weight: bold;
 			font-size: 18px;
@@ -416,7 +414,6 @@ body {
 		}
 		/* On hover, add a black background color with a little bit see-through */
 		.prev:hover, .next:hover {
-			// background-color: $dark-primary-col;
 			background-color: $secondary-col;
 		}
 	}
@@ -473,5 +470,21 @@ body {
 		height: auto !important;
 	}
 
+	.student-testi{
+		.student-testi-wrap{
+			position: static !important;
+			width: auto !important;
+			display: grid;
+			grid-gap: 1em;
+			grid-template-columns: auto auto auto;
+			.testi{
+				display: block !important;
+				position: static !important;
+			}
+			.numbertext, .prev, .next{
+				display: none !important;
+			}
+		}
+	}
 
 }
