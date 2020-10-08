@@ -340,17 +340,19 @@ body {
 		}
 	}
 }
-.student-testi{
+.student-testi {
 	background-image: linear-gradient(to bottom right, $dark-primary-col, $light-primary-col);
 	padding: .3em 0 1em;
+}
+.student-testi , .list-teacher{
 	h3{
 		@include section-header;
 	}
-	.student-testi-wrap{
+	.student-testi-wrap , .list-teacher-wrap{
 		width: 300px;
 		margin: 0 auto;
 		position: relative;
-		.testi{
+		.testi , .teacher{
 			padding-top: 10px;
 			display: none;
 			position: relative;
@@ -360,20 +362,28 @@ body {
 				position: absolute;
 				left: 1em;
 			}
-			.testi-head{
+			.testi-head , .teacher-head{
 				display: flex;
 				justify-content: center;
 			}
-			.testi-main{
+			.testi-main , .teacher-main{
 				color: #000;
 				font-size: 15px;
 				text-align: center;
-				.student-name{
+				.student-name , .teacher-name{
 					font-weight: bold;
+				}
+				.student-name{
 					color: $light-grey;
+				}
+				.teacher-name{
+					color: $dark-primary-col;
 				}
 				.testi-text{
 					margin-top: 3px;
+				}
+				.teacher-specialist{
+					display: block;
 				}
 			}
 		}
@@ -393,27 +403,32 @@ body {
 			to {opacity: 1}
 		}
 		/* Next & previous buttons */
-		.prev, .next {
+		.prev, .next , .prev-teacher, .next-teacher {
 			cursor: pointer;
 			position: absolute;
 			top: 50%;
 			width: auto;
 			padding: 16px;
 			margin-top: -22px;
-			color: $light-grey;
 			font-weight: bold;
 			font-size: 18px;
 			transition: 0.6s ease;
 			border-radius: 0 3px 3px 0;
 			user-select: none;
 		}
+		.prev , .next {
+			color: $light-grey;
+		}
+		.prev-teacher, .next-teacher {
+			color: $dark-primary-col;
+		}
 		/* Position the "next button" to the right */
-		.next {
+		.next , .next-teacher {
 			right: 0;
 			border-radius: 3px 0 0 3px;
 		}
 		/* On hover, add a black background color with a little bit see-through */
-		.prev:hover, .next:hover {
+		.prev:hover, .next:hover , .prev-teacher:hover, .next-teacher:hover {
 			background-color: $secondary-col;
 		}
 	}

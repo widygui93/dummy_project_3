@@ -355,32 +355,39 @@
 	</div>
 	<div class="list-teacher">
 		<h3>Teacher List</h3>
-		<div class="teacher">
-			<div class="teacher-head">
-				<img src="" alt="teacher-img">
+		<div class="list-teacher-wrap">
+			<div class="teacher fade">
+				<div class="numbertext">1 / 3</div>
+				<div class="teacher-head">
+					<img src="http://placehold.it/150x150" alt="teacher-img">
+				</div>
+				<div class="teacher-main">
+					<span class="teacher-name">John</span>
+					<span class="teacher-specialist">Economy Lecturer</span>
+				</div>
 			</div>
-			<div class="teacher-main">
-				<span class="teacher-name">John</span>
-				<span class="teacher-specialist">Economy</span>
+			<div class="teacher fade">
+				<div class="numbertext">2 / 3</div>
+				<div class="teacher-head">
+					<img src="http://placehold.it/150x150" alt="teacher-img">
+				</div>
+				<div class="teacher-main">
+					<span class="teacher-name">Erik</span>
+					<span class="teacher-specialist">Sosiology Expert</span>
+				</div>
 			</div>
-		</div>
-		<div class="teacher">
-			<div class="teacher-head">
-				<img src="" alt="teacher-img">
+			<div class="teacher fade">
+				<div class="numbertext">3 / 3</div>
+				<div class="teacher-head">
+					<img src="http://placehold.it/150x150" alt="teacher-img">
+				</div>
+				<div class="teacher-main">
+					<span class="teacher-name">Kane</span>
+					<span class="teacher-specialist">Prof of Math</span>
+				</div>
 			</div>
-			<div class="teacher-main">
-				<span class="teacher-name">Erik</span>
-				<span class="teacher-specialist">Sosiology</span>
-			</div>
-		</div>
-		<div class="teacher">
-			<div class="teacher-head">
-				<img src="" alt="teacher-img">
-			</div>
-			<div class="teacher-main">
-				<span class="teacher-name">Kane</span>
-				<span class="teacher-specialist">Math</span>
-			</div>
+			<a class="prev-teacher">&#10094;</a>
+			<a class="next-teacher">&#10095;</a>
 		</div>
 	</div>
 	<div class="comparison">
