@@ -18,178 +18,7 @@ body {
 	font-family: $font-fam;
 }
 
-.logo-wrapper {
-	grid-area: logo-wrapper;
-	display: flex;
-	justify-content: flex-end;
-}
 
-.menu-navbar {
-	grid-area: menu-navbar;
-	display: none;
-	font-size: 2.5em;
-	text-align: center;
-
-	a {
-		text-decoration: none;
-		color: $light-grey;
-		border-bottom: 0px solid $secondary-col;
-		transition: border-bottom 0.3s, color 0.5s;
-	}
-
-	a:hover {
-		border-bottom: 5px solid $secondary-col;
-		color: $dark-primary-col;
-	}
-
-	ul {
-		list-style-type: none;
-		height: 100%;
-		display: flex;
-		flex-direction: column;
-		justify-content: space-around;
-	}
-	
-}
-
-.menu-navbar.open {
-	display: flex;
-	flex-direction: column;
-	justify-content: center;
-}
-
-.login-signup-wrapper {
-	grid-area: login-signup-wrapper;
-	display: none;
-
-	a {
-		text-decoration: none;
-		font-size: 1.5em;
-		color: $light-grey;
-		
-	}
-	
-	a:hover {
-		color: $secondary-col;
-	}
-}
-
-.login-signup-wrapper.open {
-	display: flex;
-	align-items: center;
-	justify-content: space-around;
-}
-
-.login-wrapper , .signup-wrapper {
-	padding: 10px;
-	border-radius: 5px;
-}
-
-.login-wrapper {
-	border: 1px solid $dark-primary-col;
-}
-
-.signup-wrapper {
-	background-color: $dark-primary-col;
-}
-
-.menu-btn {
-	grid-area: menu-btn;
-	position: relative;
-	display: flex;
-	justify-content: center;
-    align-items: center;
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    transition: all .5s ease-in-out;
-    left: 10px;
-    top: 20px;
-}
-
-.header-wrapper {
-	display: grid;
-	grid-template-areas: 
-	'menu-btn menu-btn menu-btn logo-wrapper logo-wrapper logo-wrapper'
-	'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
-	'login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper';
-	/*grid-gap: 5px;*/
-	height: 100%;
-}
-
-.header { 
-	grid-area: header;
-	background-color: $light-primary-col;
-	position: fixed;
-	z-index: 1;
-	width: 100%;
-}
-
-.header.open {
-	height: 100%;
-}
-
-.main { 
-	grid-area: main; 
-	/* margin-top: 80px; */
-	margin-top: 54px;
-}
-.footer { 
-	grid-area: footer;
-	background-color: #999999;
-}
-
-.grid-container {
-	display: grid;
-	grid-template-areas: 
-	'header header header header header header'
-	'main main main main main main'
-	'footer footer footer footer footer footer';
-	grid-gap: 5px;
-}
-
-.menu-btn__burger {
-  width: 15px;
-  height: 2px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(255,101,47,.2);
-  transition: all .5s ease-in-out;
-}
-
-.menu-btn__burger::before,
-.menu-btn__burger::after {
-  content: '';
-  position: absolute;
-  width: 15px;
-  height: 2px;
-  background: #fff;
-  border-radius: 5px;
-  box-shadow: 0 2px 5px rgba(255,101,47,.2);
-  transition: all .5s ease-in-out;
-}
-
-.menu-btn__burger::before {
-  transform: translateY(-6px);
-}
-
-.menu-btn__burger::after {
-  transform: translateY(6px);
-}
-
-/* ANIMATION */
-.menu-btn.open .menu-btn__burger {
-  background: transparent;
-  box-shadow: none;
-}
-
-.menu-btn.open .menu-btn__burger::before {
-	transform: rotate(45deg);
-}
-
-.menu-btn.open .menu-btn__burger::after {
-	transform: rotate(-45deg);
-}
 
 .call-to-action {
 	background-image: url("../img/patrick-tomasso-IDN8NVELy0E-unsplash.jpg");
@@ -387,7 +216,6 @@ body {
 				}
 			}
 		}
-		/* Fading animation */
 		.fade {
 			-webkit-animation-name: fade;
 			-webkit-animation-duration: 1.5s;
@@ -402,7 +230,6 @@ body {
 			from {opacity: .4} 
 			to {opacity: 1}
 		}
-		/* Next & previous buttons */
 		.prev, .next , .prev-teacher, .next-teacher {
 			cursor: pointer;
 			position: absolute;
@@ -413,7 +240,6 @@ body {
 			font-weight: bold;
 			font-size: 18px;
 			transition: 0.6s ease;
-			border-radius: 0 3px 3px 0;
 			user-select: none;
 		}
 		.prev , .next {
@@ -422,12 +248,13 @@ body {
 		.prev-teacher, .next-teacher {
 			color: $dark-primary-col;
 		}
-		/* Position the "next button" to the right */
 		.next , .next-teacher {
 			right: 0;
+			border-radius: 0 3px 3px 0;
+		}
+		.prev , .prev-teacher {
 			border-radius: 3px 0 0 3px;
 		}
-		/* On hover, add a black background color with a little bit see-through */
 		.prev:hover, .next:hover , .prev-teacher:hover, .next-teacher:hover {
 			background-color: $secondary-col;
 		}
@@ -435,56 +262,7 @@ body {
 }
 
 @media screen and (min-width: 748px) {
-	.menu-btn {
-		display: none !important;
-	}
-
-	.menu-navbar {
-		display: inline !important;
-		font-size: 1em !important;
-
-		ul {
-			flex-direction: row !important;
-			align-items: center;
-		}
-	}
-
-	.login-signup-wrapper {
-		display: flex !important;
-		flex-direction: row;
-		align-items: center;
-		justify-content: flex-end;
-		margin-right: 1em;
-
-		a {
-			font-size: 1em !important;
-		}
 	
-		div {
-			margin: 0 3px;
-		}
-	
-	}
-
-	.login-signup-wrapper.open {
-		justify-content: flex-end !important;
-	}
-
-	.logo-wrapper {
-		justify-content: flex-start !important;
-		display: inline !important;
-	}
-
-	.header-wrapper {
-		grid-template-areas: 
-		'logo-wrapper logo-wrapper menu-navbar menu-navbar login-signup-wrapper login-signup-wrapper' !important;
-		height: auto !important;
-	}
-
-	.header.open {
-		height: auto !important;
-	}
-
 	.student-testi{
 		.student-testi-wrap{
 			position: static !important;
