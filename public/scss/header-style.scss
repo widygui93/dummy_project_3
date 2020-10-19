@@ -2,100 +2,79 @@
 @import "mixins";
 
 .header {
-    grid-area: header;
 	background-color: $light-primary-col;
 	position: fixed;
 	z-index: 1;
     width: 100%;
-    // border: 10px solid pink;
     .header-wrapper{
-        	// display: grid;
-        	// grid-template-areas: 
-        	// 'menu-btn menu-btn menu-btn logo-wrapper logo-wrapper logo-wrapper'
-        	// 'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
-        	// 'login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper';
-        	/*grid-gap: 5px;*/
-            // height: 100%;
-            // border: 10px solid gold;
-        .header-row-1{
-            // border: 10px solid salmon;
-            display: flex;
-            flex-direction: row-reverse;
-            margin-top: 5px;
-            .logo-wrapper {
-            	// grid-area: logo;
-                // display: flex;
-                // align-items: center;
-                // justify-content: flex-end;
-                // width: 100px;
-                // border: 1px solid black;
-                img{
-                    // border: 1px solid yellow;
-                    width: 8em;
-                    // position: relative;
-                    // top: 50%;
-                    // width: auto;
-                }
+        display: grid;
+        grid-template-columns: 50px auto auto auto auto 128px;
+        grid-template-areas:
+        'menu-btn search-bar search-bar search-bar search-bar logo'
+        'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
+        'login-signup login-signup login-signup login-signup login-signup login-signup';
+        grid-gap: 10px;
+        margin-top: 10px;
+        .logo-wrapper {
+            grid-area: logo;
+            img{
+                width: 8em;
             }
-            .search-bar{
-                // grid-area: search-bar; 
-                // border: 1px solid $secondary-col;
-                // padding-top: 15px;
+        }
+        .search-bar{
+            grid-area: search-bar; 
+            width: 100%;
+            input{
+                border-radius: 3px;
+                padding: 10px 5px;
                 width: 100%;
-                margin: 5px 0px;
-                margin-right: 3px;
-                input{
-                    border-radius: 3px;
-                    padding: 10px 5px;
-                    width: 100%;
-                    border: 1px solid $secondary-col;
-                    &:focus{
-                        background-color: $light-grey;
-                    }
+                border: 1px solid $secondary-col;
+                &:focus{
+                    background-color: $light-grey;
                 }
             }
-            .login-signup-wrapper {
-                // grid-area: login-signup-wrapper;
-                display: none;
-                text-align: center;
-            
-                a {
-                    text-decoration: none;
-                    // font-size: 1.5em;
-                    color: $light-grey;
-                    
-                }
+        }
+        .login-signup-wrapper {
+            grid-area: login-signup;
+            display: none;
+            text-align: center;
+            margin-bottom: 10px;
+        
+            a {
+                text-decoration: none;
+                color: $light-grey;
                 
-                a:hover {
-                    color: $secondary-col;
-                }
-
-                .login-wrapper , .signup-wrapper {
-                    padding: 10px;
-                    border-radius: 5px;
-                    width: 5em;
-                    margin-right: 5px;
-                }
-    
-                .login-wrapper {
-                    border: 1px solid $dark-primary-col;
-                }
-    
-                .signup-wrapper {
-                    background-color: $dark-primary-col;
-                }
             }
-            // .login-signup-wrapper.open {
-            // 	display: flex;
-            // 	align-items: center;
-            // 	justify-content: space-around;
-            // }
+            
+            a:hover {
+                color: $secondary-col;
+            }
+
+            .login-wrapper , .signup-wrapper {
+                padding: 10px;
+                border-radius: 5px;
+                width: 5em;
+                margin-right: 5px;
+                font-size: 1.5em;
+            }
+
+            .login-wrapper {
+                border: 1px solid $dark-primary-col;
+            }
+
+            .signup-wrapper {
+                background-color: $dark-primary-col;
+            }
+        }
+        .login-signup-wrapper.open {
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+        }
+        .menu-btn-wrapper{
+            grid-area: menu-btn;
             .menu-btn {
-                // grid-area: menu-burger;
-                // border: 1px solid yellow;
                 padding: 5px;
-                // margin-top: auto;
-                // grid-area: menu-btn;
                 position: relative;
                 display: flex;
                 justify-content: center;
@@ -104,9 +83,8 @@
                 height: 20px;
                 cursor: pointer;
                 transition: all .2s ease-in-out;
-                // left: 10px;
-                // left: -28px;
-                top: 10px;
+                left: 10px;
+                top: 3px;
                 .menu-btn__burger {
                     width: 15px;
                     height: 2px;
@@ -149,237 +127,108 @@
                 transform: rotate(-45deg);
             }
         }
-        .header-row-2{
-            // border: 10px solid purple;
-            // display: flex;
-            // flex-direction: column;
-            // justify-content: space-evenly;
-            // height: 100%;
+        .menu-navbar {
+            grid-area: menu-navbar;
+            display: none;
+            font-size: 2.5em;
+            text-align: center;
             user-select: none;
-            // display: none;
-            height: 0;
-            .menu-navbar {
-                // grid-area: menu-navbar;
-                // display: none;
-                font-size: 2.5em;
-                text-align: center;
-                // opacity: 0;
-                visibility: hidden;
-                // transition: visibility 1s;
-            
-                a {
-                    text-decoration: none;
-                    color: $light-grey;
-                    border-bottom: 0px solid $secondary-col;
-                    transition: border-bottom 0.3s, color 0.5s;
-                }
-            
-                a:hover {
-                    border-bottom: 5px solid $secondary-col;
-                    color: $dark-primary-col;
-                }
-            
-                ul {
-                    list-style-type: none;
-                    // height: 100%;
-                    // display: flex;
-                    // flex-direction: column;
-                    // justify-content: space-between;
-                    li{
-                        padding: 10px;
-                    }
-                }
+            a {
+                text-decoration: none;
+                color: $light-grey;
+                border-bottom: 0px solid $secondary-col;
+                transition: border-bottom 0.3s, color 0.5s;
             }
-            .menu-navbar.open {
-                // border: 10px solid blue;
-                // opacity: 1;
-                visibility: visible;
+        
+            a:hover {
+                border-bottom: 5px solid $secondary-col;
+                color: $secondary-col;
             }
-            .login-signup-wrapper-2 {
-                // grid-area: login-signup-wrapper;
-                // display: none;
-                margin-bottom: 10px;
-                display: flex;
-            	align-items: center;
-                justify-content: space-around;
-                // opacity: 0;
-                visibility: hidden;
-                // transition: visibility 1s;
-                a {
-                    text-decoration: none;
-                    font-size: 1.5em;
-                    color: $light-grey;
-                    
-                }
-                
-                a:hover {
-                    color: $secondary-col;
-                }
-
-                .login-wrapper-2 , .signup-wrapper-2 {
+        
+            ul {
+                list-style-type: none;
+                li{
                     padding: 10px;
-                    border-radius: 5px;
                 }
-    
-                .login-wrapper-2 {
-                    border: 1px solid $dark-primary-col;
-                }
-    
-                .signup-wrapper-2 {
-                    background-color: $dark-primary-col;
-                }
-            }
-            .login-signup-wrapper-2.open {
-                // border: 1px solid red;
-            	// display: flex;
-            	// align-items: center;
-                // justify-content: space-around;
-                // opacity: 1;
-                visibility: visible;
             }
         }
+        .menu-navbar.open {
+            display: flex;
+            justify-content: center;
+        }
+        .login-signup-wrapper-2 {
+            margin-bottom: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: space-around;
+            visibility: hidden;
+            a {
+                text-decoration: none;
+                font-size: 1.5em;
+                color: $light-grey;
+            }
+            
+            a:hover {
+                color: $secondary-col;
+            }
+
+            .login-wrapper-2 , .signup-wrapper-2 {
+                padding: 10px;
+                border-radius: 5px;
+            }
+
+            .login-wrapper-2 {
+                border: 1px solid $dark-primary-col;
+            }
+
+            .signup-wrapper-2 {
+                background-color: $dark-primary-col;
+            }
+        }
+        .login-signup-wrapper-2.open {
+            visibility: visible;
+        }
         .header-row-2.open{
-            // display: block;
-            // height: 385px;
             height: auto;
         }
     }
-
-    // .header-wrapper.open{
-    //     height: 100%;
-    //     display: grid;
-    //     grid-template-areas: 
-    //     'menu-burger search-bar search-bar search-bar search-bar logo'
-    //     'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
-    //     'login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper'
-    //     ;
-
-    // }
-    
 }
 
-
-
-
-
-
-
-
-
-
-
-
-
-// .header-wrapper {
-// 	display: grid;
-// 	grid-template-areas: 
-// 	'menu-btn menu-btn menu-btn logo-wrapper logo-wrapper logo-wrapper'
-// 	'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar'
-// 	'login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper login-signup-wrapper';
-// 	/*grid-gap: 5px;*/
-// 	height: 100%;
-// }
-
-
-// .header.open {
-//     height: 100%;
-// }
-
-.main { 
-	grid-area: main; 
-	/* margin-top: 80px; */
-	margin-top: 54px;
-}
 .footer { 
-	grid-area: footer;
 	background-color: #999999;
 }
 
-.grid-container {
-	display: grid;
-	grid-template-areas: 
-	'header header header header header header'
-	'main main main main main main'
-	'footer footer footer footer footer footer';
-	grid-gap: 5px;
-}
-
-
-
 @media screen and (min-width: 748px) {
-    .header-row-1{
-        flex-direction: row !important;
-        // .logo-wrapper {
-        //     justify-content: flex-start !important;
-        //     display: inline !important;
-        // }
-        .menu-btn {
-            display: none !important;
-        }
+    .header-wrapper{
+        grid-template-columns: 128px auto auto auto auto 200px !important;
+        grid-template-areas:
+            'logo search-bar search-bar search-bar search-bar login-signup'
+            'menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar menu-navbar' !important;
         .login-signup-wrapper {
             display: flex !important;
             align-items: center;
-            // justify-content: space-around;
+            .login-wrapper , .signup-wrapper {
+                font-size: 16px !important;
+            }
         }
-        // .login-signup-wrapper {
-        //     display: flex !important;
-        //     flex-direction: row;
-        //     align-items: center;
-        //     justify-content: flex-end;
-        //     margin-right: 1em;
-    
-        //     a {
-        //         font-size: 1em !important;
-        //     }
-        
-        //     div {
-        //         margin: 0 3px;
-        //     }
-        
-        // }
-        // .login-signup-wrapper.open {
-        //     justify-content: flex-end !important;
-        // }
-    }
-	
-    .header-row-2{
-        height: auto !important;
         .menu-navbar {
-            // display: inline !important;
+            display: flex !important;
+            justify-content: start !important;
             font-size: 1em !important;
-            visibility: visible !important;
-            text-align: left !important;
-            margin: 10px 0;
-    
-            ul {
-                // flex-direction: row !important;
-                // align-items: center;
-                li{
+            margin-bottom: 10px;
+            ul{
+                flex-direction: row !important;
+                li {
                     display: inline;
                 }
             }
         }
-        .login-signup-wrapper-2{
+        .menu-btn-wrapper{
             display: none !important;
-            visibility: hidden !important;
+            .menu-btn {
+                display: none !important;
+            }
         }
+
     }
-
-
-
-
-
-
-
-	// .header-wrapper {
-	// 	grid-template-areas: 
-	// 	'logo-wrapper logo-wrapper menu-navbar menu-navbar login-signup-wrapper login-signup-wrapper' !important;
-	// 	height: auto !important;
-	// }
-
-	// .header.open {
-	// 	height: auto !important;
-	// }
-
-
 }
