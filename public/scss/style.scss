@@ -27,32 +27,31 @@ body {
 	background-repeat: no-repeat;
 	background-size: cover;
 	color: $light-grey;
-}
-
-.cta-content {
-	position: relative;
-	top: 10em;
-	height: 100px;
-	margin-left: 10%;
-
-	div {
-		background-color: $dark-primary-col;
-		width: 100px;
-		height: 50px;
-		margin-top: 10px;
-		border-radius: 5px;
-		text-align: center;
-		line-height: 1.8;
-	}
+	.cta-content {
+		position: relative;
+		top: 10em;
+		height: 100px;
+		margin-left: 10%;
 	
-	a {
-		text-decoration: none;
-		color: $light-grey;
-		font-size: 25px;
-	}
-	
-	a:hover {
-		color: $secondary-col;
+		div {
+			background-color: $dark-primary-col;
+			width: 100px;
+			height: 50px;
+			margin-top: 10px;
+			border-radius: 5px;
+			text-align: center;
+			line-height: 1.8;
+		}
+		
+		a {
+			text-decoration: none;
+			color: $light-grey;
+			font-size: 25px;
+		}
+		
+		a:hover {
+			color: $secondary-col;
+		}
 	}
 }
 
