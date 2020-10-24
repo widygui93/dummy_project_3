@@ -284,4 +284,45 @@ body {
 		}
 	}
 
+	.list-teacher{
+		.list-teacher-wrap{
+			position: static !important;
+			width: auto !important;
+			display: flex;
+			flex-direction: column;
+			.teacher:nth-child(odd){
+				flex-direction: row-reverse;
+			}
+			.teacher:nth-child(even){
+				flex-direction: row;
+			}
+			.teacher{
+				position: static !important;
+				display: flex !important;
+				justify-content: space-around;
+				margin-top: 10px;
+				.teacher-head{
+					img{
+						width: 300px;
+						height: 400px;
+						box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
+					   -2px -2px 5px rgba(116,116,106,.75);
+					}
+				}
+				.teacher-main{
+					display: flex;
+					flex-direction: column;
+					justify-content: center;
+					.teacher-name, .teacher-specialist{
+						font-size: 40px;
+					}
+				}
+			}
+			.numbertext, .prev-teacher, .next-teacher{
+				display: none !important;
+			}
+		}
+
+	}
+
 }
