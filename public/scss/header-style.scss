@@ -31,6 +31,7 @@
                 border: 1px solid $secondary-col;
                 &:focus{
                     background-color: $light-grey;
+                    outline: none;
                 }
             }
         }

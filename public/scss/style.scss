@@ -260,6 +260,60 @@ body {
 	}
 }
 
+.comparison{
+	background-image: linear-gradient(to bottom right, $dark-primary-col, $light-primary-col);
+	padding: .3em 0 1em;
+	h3{
+		@include section-header;
+	}
+	.comparison-table{
+		.comparison-table-head{
+			margin-top: 20px;
+			padding: 10px;
+			display: flex;
+			button{
+				cursor: pointer;
+				width: 100%;
+				font-size: 20px;
+				font-weight: bold;
+				padding: 20px 0;
+				border-bottom: none;
+				border-right: none;
+				border-left: none;
+				border-top: none;
+				transition: border-bottom .5s , color .5s;
+				&:hover{
+					color: $dark-primary-col;
+				}
+				&:focus{
+					color: $dark-primary-col;
+					border-bottom: 10px solid $secondary-col;
+					outline: none;
+					box-shadow: none;
+				}
+			}
+		}
+		.comparison-table-main{
+			table{
+				margin: auto;
+				width: 100%;
+				text-align: center;
+				padding: 10px;
+				font-size: 20px;
+				tr:nth-child(even){
+					background-color: $light-grey;
+				}
+			}
+			// .conven-feature{
+			// 	display: none;
+			// }
+			.unemi-feature{
+				display: none;
+			}
+		}
+	}
+}
+
 @media screen and (min-width: 748px) {
 	
 	.student-testi{

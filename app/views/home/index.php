@@ -391,91 +391,50 @@
 		</div>
 	</div>
 	<div class="comparison">
-		<h3>Why use YouAndMe</h3>
+		<h3>Why do you need to use Unemi?</h3>
 		<div class="comparison-table">
 			<div class="comparison-table-head">
-				<button>Konventional</button>
-				<button>YouAndMe</button>
+				<button class="tab-conven">Konventional</button>
+				<button class="tab-unemi">Unemi</button>
 			</div>
 			<div class="comparison-table-main">
-				<div class="konven-tab">
-					<table>
-						<tr>
-						  <th>Company</th>
-						  <th>Contact</th>
-						  <th>Country</th>
-						</tr>
-						<tr>
-						  <td>Alfreds Futterkiste</td>
-						  <td>Maria Anders</td>
-						  <td>Germany</td>
-						</tr>
-						<tr>
-						  <td>Centro comercial Moctezuma</td>
-						  <td>Francisco Chang</td>
-						  <td>Mexico</td>
-						</tr>
-						<tr>
-						  <td>Ernst Handel</td>
-						  <td>Roland Mendel</td>
-						  <td>Austria</td>
-						</tr>
-						<tr>
-						  <td>Island Trading</td>
-						  <td>Helen Bennett</td>
-						  <td>UK</td>
-						</tr>
-						<tr>
-						  <td>Laughing Bacchus Winecellars</td>
-						  <td>Yoshi Tannamuri</td>
-						  <td>Canada</td>
-						</tr>
-						<tr>
-						  <td>Magazzini Alimentari Riuniti</td>
-						  <td>Giovanni Rovelli</td>
-						  <td>Italy</td>
-						</tr>
-					</table>
-				</div>
-				<div class="youandme-tab">
-					<table>
-						<tr>
-						  <th>Company</th>
-						  <th>Contact</th>
-						  <th>Country</th>
-						</tr>
-						<tr>
-						  <td>Island Trading</td>
-						  <td>Helen Bennett</td>
-						  <td>UK</td>
-						</tr>
-						<tr>
-						  <td>Laughing Bacchus Winecellars</td>
-						  <td>Yoshi Tannamuri</td>
-						  <td>Canada</td>
-						</tr>
-						<tr>
-						  <td>Magazzini Alimentari Riuniti</td>
-						  <td>Giovanni Rovelli</td>
-						  <td>Italy</td>
-						</tr>
-						<tr>
-						  <td>Alfreds Futterkiste</td>
-						  <td>Maria Anders</td>
-						  <td>Germany</td>
-						</tr>
-						<tr>
-						  <td>Centro comercial Moctezuma</td>
-						  <td>Francisco Chang</td>
-						  <td>Mexico</td>
-						</tr>
-						<tr>
-						  <td>Ernst Handel</td>
-						  <td>Roland Mendel</td>
-						  <td>Austria</td>
-						</tr>
-					</table>
-				</div>
+				<table>
+					<tr>
+						<th>Features</th>
+						<th class="conven-feature">Conventional</th>
+						<th class="unemi-feature">Unemi</th>
+					</tr>
+					<tr>
+						<td>Price</td>
+						<td class="conven-feature">Unpredictable</td>
+						<td class="unemi-feature">Predictable</td>
+					</tr>
+					<tr>
+						<td>Personality</td>
+						<td class="conven-feature">Monoton</td>
+						<td class="unemi-feature">Adaptive</td>
+					</tr>
+					<tr>
+						<td>Learning Schedule</td>
+						<td class="conven-feature">Predetermined</td>
+						<td class="unemi-feature">Flexible</td>
+					</tr>
+					<tr>
+						<td>Location</td>
+						<td class="conven-feature">Onsite</td>
+						<td class="unemi-feature">Online</td>
+					</tr>
+					<tr>
+						<td>Participants</td>
+						<td class="conven-feature">More than 40</td>
+						<td class="unemi-feature">one on one</td>
+					</tr>
+					<tr>
+						<td>Method</td>
+						<td class="conven-feature">Out of date</td>
+						<td class="unemi-feature">Up to date</td>
+					</tr>
+				</table>
 			</div>
 		</div>
 	</div>
