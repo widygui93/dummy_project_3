@@ -261,7 +261,7 @@ body {
 }
 
 .comparison{
-	background-image: linear-gradient(to bottom right, $dark-primary-col, $light-primary-col);
+	background-image: linear-gradient(to bottom right, $dark-primary-col, lighten($dark-primary-col, 50%));
 	padding: .3em 0 1em;
 	h3{
 		@include section-header;
@@ -296,18 +296,42 @@ body {
 		.comparison-table-main{
 			table{
 				margin: auto;
-				width: 100%;
 				text-align: center;
 				padding: 10px;
 				font-size: 20px;
-				tr:nth-child(even){
-					background-color: $light-grey;
+				background-color: $light-grey;
+				border-radius: 10px;
+				opacity: 0.8;
+				transition: 0.5s;
+				&:hover{
+					opacity: 1;
+					box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
+					-2px -2px 5px rgba(116,116,106,.75);
+				}
+				td{
+					padding: 10px;
 				}
 			}
-			// .conven-feature{
-			// 	display: none;
-			// }
+			.conven-feature, .unemi-feature{
+				border-radius: 10px;
+			}
+			.conven-feature{
+				display: none;
+				background-color: lighten($dark-primary-col, 50%);
+			}
 			.unemi-feature{
+				background-color: lighten($secondary-col, 20%);
+			}
+			.conven-feature.open{
+				display: block;
+			}
+			.conven-feature.close{
+				display: none;
+			}
+			.unemi-feature.open{
+				display: block;
+			}
+			.unemi-feature.close{
 				display: none;
 			}
 		}

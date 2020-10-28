@@ -49,4 +49,17 @@ $(function(){
 		showSlidesTeacher(slideTeacher -= 1);
 	});
 
+	$(".tab-conven").on('click',function(){
+		$(".conven-feature").removeClass("close");
+		$(".conven-feature").addClass("open");
+		$(".unemi-feature").removeClass("open");
+		$(".unemi-feature").addClass("close");
+	});
+	$(".tab-unemi").on('click',function(){
+		$(".unemi-feature").removeClass("close");
+		$(".unemi-feature").addClass("open");
+		$(".conven-feature").removeClass("open");
+		$(".conven-feature").addClass("close");
+	});
+
 });

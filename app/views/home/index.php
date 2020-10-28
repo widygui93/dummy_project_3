@@ -394,7 +394,7 @@
 		<h3>Why do you need to use Unemi?</h3>
 		<div class="comparison-table">
 			<div class="comparison-table-head">
-				<button class="tab-conven">Konventional</button>
+				<button class="tab-conven">Conventional</button>
 				<button class="tab-unemi">Unemi</button>
 			</div>
 			<div class="comparison-table-main">
@@ -426,7 +426,7 @@
 					</tr>
 					<tr>
 						<td>Participants</td>
-						<td class="conven-feature">More than 40</td>
+						<td class="conven-feature">More than 40 Students</td>
 						<td class="unemi-feature">one on one</td>
 					</tr>
 					<tr>
