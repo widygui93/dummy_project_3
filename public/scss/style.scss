@@ -422,5 +422,23 @@ body {
 		}
 
 	}
+	.comparison{
+		.comparison-table-head{
+			display: none !important;
+		}
+		.comparison-table-main{
+			table{
+				width: 80%;
+				margin-top: 1em !important;
+				margin-bottom: 1em !important;
+				.conven-feature{
+					display: table-cell !important;
+				}
+				.unemi-feature{
+					display: table-cell !important;
+				}
+			}
+		}
+	}
 
 }
