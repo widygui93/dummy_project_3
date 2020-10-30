@@ -1,0 +1,45 @@
+@import "variables";
+@import "mixins";
+
+.footer { 
+    background-color: #999999;
+    .footer-main{
+        display: flex;
+        flex-direction: column-reverse;
+        .footer-links{
+            a{
+                text-decoration: none;
+            }
+        }
+        .footer-contact{
+            padding: 20px;
+            h3{
+                @include section-header;
+            }
+            input, textarea {
+                width: 100%;
+                padding: 12px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                box-sizing: border-box;
+                margin-top: 6px;
+                margin-bottom: 16px;
+                resize: vertical;
+            }
+            button[type=submit] {
+                background-color: $light-primary-col;
+                color: white;
+                padding: 12px 20px;
+                border: none;
+                border-radius: 4px;
+                cursor: pointer;
+                &:hover{
+                    background-color: $dark-primary-col;
+                }
+            }
+        }
+    }
+    .footer-brand{
+        @include section-header;
+    }
+}

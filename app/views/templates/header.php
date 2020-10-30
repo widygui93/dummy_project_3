@@ -6,6 +6,7 @@
 	<title>Unemi</title>
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/header-style.css">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/style.css">
+	<link rel="stylesheet" href="<?= BASEURL; ?>/css/footer-style.css">
 </head>
 <body>
 	<div class="grid-container">
@@ -41,8 +42,6 @@
 						<li><a href="">Most Liked Tutorial</a></li>
 						<!-- <li><a href="">Dashboard</a></li> -->
 						<!-- <li><a href="">Profile</a></li> -->
-						<!-- <li><a href="">About</a></li> masukkan ke footer -->
-						<!-- <li><a href="">FAQ</a></li> masukkan ke footer -->
 					</ul>
 				</div>
     		</div>
