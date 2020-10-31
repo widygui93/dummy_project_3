@@ -38,6 +38,10 @@
                 margin-top: 6px;
                 margin-bottom: 16px;
                 resize: vertical;
+                &:focus{
+                    background-color: $light-grey;
+                    outline: none;
+                }
             }
             button[type=submit] {
                 background-color: $light-primary-col;
