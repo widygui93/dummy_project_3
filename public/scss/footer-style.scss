@@ -10,6 +10,7 @@
             padding: 20px;
             line-height: 1.6;
             font-size: 20px;
+            user-select: none;
             ul{
                 list-style-type: none;
                 a{
@@ -60,5 +61,18 @@
         @include section-header;
         background-color: lighten(#999999, 10%);
         padding: 20px;
+    }
+}
+
+@media screen and (min-width: 748px){
+    .footer{
+        .footer-main{
+            flex-direction: row !important;
+            justify-content: center;
+            .footer-links{
+                align-self: center;
+                flex-shrink: 0;
+            }
+        }
     }
 }
