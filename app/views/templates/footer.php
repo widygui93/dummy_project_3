@@ -2,11 +2,11 @@
 			<div class="footer-main">
 				<div class="footer-links">
 					<ul>
-						<li><a href="#">HOME</a></li>
-						<li><a href="#">ABOUT</a></li>
+						<li><a href="#">Home</a></li>
+						<li><a href="#">About</a></li>
 						<li><a href="#">FAQ</a></li>
-						<li><a href="#">PRIVACY POLICY</a></li>
-						<li><a href="#">TERM & CONDITIONS</a></li>
+						<li><a href="#">Privacy Policy</a></li>
+						<li><a href="#">Term & Conditions</a></li>
 					</ul>
 				</div>
 				<div class="footer-contact">

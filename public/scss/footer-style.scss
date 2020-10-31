@@ -7,8 +7,21 @@
         display: flex;
         flex-direction: column-reverse;
         .footer-links{
-            a{
-                text-decoration: none;
+            padding: 20px;
+            line-height: 1.6;
+            font-size: 20px;
+            ul{
+                list-style-type: none;
+                a{
+                    text-decoration: none;
+                    color: $light-grey;
+                    border-bottom: 0px solid $secondary-col;
+                    transition: border-bottom 0.3s, color 0.5s;
+                    &:hover{
+                        border-bottom: 5px solid $secondary-col;
+                        color: $secondary-col;
+                    }
+                }
             }
         }
         .footer-contact{
