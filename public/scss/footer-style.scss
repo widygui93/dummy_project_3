@@ -54,5 +54,7 @@
     }
     .footer-brand{
         @include section-header;
+        background-color: lighten(#999999, 10%);
+        padding: 20px;
     }
 }
