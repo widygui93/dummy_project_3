@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<title>Unemi</title>
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/header-style.css">
-	<link rel="stylesheet" href="<?= BASEURL; ?>/css/style.css">
+	<link rel="stylesheet" href="<?= $data['style']; ?>">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/footer-style.css">
 </head>
 <body>
@@ -27,7 +27,7 @@
 						<a href="#">Log in</a>
 					</div>
 					<div class="signup-wrapper">
-						<a href="#">Sign Up</a>
+						<a href="<?= BASEURL; ?>/Signup">Sign Up</a>
 					</div>
 				</div>
 				<div class="menu-btn-wrapper">

@@ -1,6 +1,23 @@
 @import "variables";
 @import "mixins";
 
+@font-face {
+    font-family: 'Montserrat-Regular';
+    src: url('../font-face/Montserrat-Regular.ttf') format('ttf');       
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+	padding: 0;
+	margin: 0;
+}
+
+body {
+    background-color: $light-grey;
+	font-family: $font-fam;
+}
+
 .header {
 	background-color: $light-primary-col;
 	position: fixed;

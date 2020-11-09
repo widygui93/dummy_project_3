@@ -1,0 +1,23 @@
+@import "variables";
+@import "mixins";
+
+.signup{
+    height: 200px;
+    padding-top: 10em;
+    line-height: 1.6;
+    h3{
+        @include section-header;
+    }
+    .container-signup{
+        text-align: center;
+        a{
+            text-decoration: none;
+            border-bottom: 0px solid $secondary-col;
+            transition: border-bottom 0.3s, color 0.5s;
+            &:hover{
+                border-bottom: 5px solid $secondary-col;
+                color: $secondary-col;
+            }
+        }
+    }
+}
