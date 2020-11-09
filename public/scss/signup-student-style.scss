@@ -1,0 +1,40 @@
+@import "variables";
+@import "mixins";
+
+.signup-student{
+    padding-top: 10em;
+    line-height: 1.6;
+    .row-header{
+        h3{
+            @include section-header;
+        }
+    }
+    .row-main{
+        padding: 1em;
+        input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            &:focus{
+                background-color: $light-grey;
+                outline: none;
+            }
+        }
+        button[type=submit] {
+            background-color: $light-primary-col;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover{
+                background-color: $dark-primary-col;
+            }
+        }
+    }
+}

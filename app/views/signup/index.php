@@ -3,7 +3,7 @@
     <div class="container-signup">
         <h2>Make Learning cheerful again with Unemy</h2>
         <span>Sign up as</span>
-        <a href="">Student</a>
+        <a href="<?= BASEURL; ?>/Signup/student">Student</a>
         <span>Or</span>
         <a href="">Teacher</a>
     </div>

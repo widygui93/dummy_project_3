@@ -7,4 +7,10 @@ class Signup extends Controller {
 		$this->view('signup/index');
 		$this->view('templates/footer');
 	}
+	public function student(){
+		$data['style'] = BASEURL.'/css/signup-student-style.css';
+		$this->view('templates/header', $data);
+		$this->view('signup/student');
+		$this->view('templates/footer');
+	}
 }
