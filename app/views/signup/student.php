@@ -6,6 +6,17 @@
         <form action="" method="post" autocomplete="off">
             <div class="form-group">
                 <input 
+                    type="text"
+                    name="name"
+                    id="name"
+                    class="form-control"
+                    placeholder="Name"
+                    autocomplete="off"
+                    required
+                >
+            </div>
+            <div class="form-group">
+                <input 
                     type="text" 
                     name="username" 
                     id="username" 
