@@ -9,11 +9,13 @@
                     type="text"
                     name="name"
                     id="name"
+                    pattern="^[a-zA-Z .,]*$"
                     class="form-control"
                     placeholder="Name"
                     autocomplete="off"
                     required
                 >
+                <small>Format: letters, space, comma and period</small>
             </div>
             <div class="form-group">
                 <input 
@@ -22,7 +24,7 @@
                     id="username" 
                     minlength="6" 
                     maxlength="12" 
-                    pattern="^[a-zA-Z0-9]*$" 
+                    pattern="^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$" 
                     class="form-control" 
                     placeholder="Username" 
                     autocomplete="off"
@@ -35,11 +37,13 @@
                     type="email" 
                     name="email" 
                     id="email" 
+                    pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$"
                     class="form-control"
                     placeholder="Email" 
                     autocomplete="off"
                     required
                 >
+                <small>Email must follow this format: yourname@domain.com(.id)</small>
             </div>
             <div class="form-group">
                 <input 
@@ -48,6 +52,7 @@
                     name="phone"
                     minlength="10" 
                     maxlength="12" 
+                    pattern="^\d{10,12}$"
                     class="form-control" 
                     placeholder="Phone No" 
                     autocomplete="off"
@@ -62,6 +67,7 @@
                     id="password" 
                     minlength="8" 
                     maxlength="12" 
+                    pattern="^[\w@-]{8,12}$"
                     class="form-control" 
                     placeholder="Password" 
                     required
@@ -75,6 +81,7 @@
                     id="password-confirm" 
                     minlength="8" 
                     maxlength="12" 
+                    pattern="^[\w@-]{8,12}$"
                     class="form-control" 
                     placeholder="Confirm Password" 
                     required
