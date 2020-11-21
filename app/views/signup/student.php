@@ -72,7 +72,8 @@
                     placeholder="Password" 
                     required
                 >
-                <small>Length: 8 - 12 characters</small>
+                <small>Length: 8 - 12 characters.</small>
+                <small>Allow letter, number, @, -, _</small>
             </div>
             <div class="form-group">
                 <input 
