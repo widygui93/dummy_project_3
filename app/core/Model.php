@@ -13,5 +13,9 @@ class Model {
         return $randomID;
 
     }
+    
+    public function getRegisterDate(){
+        return date("Y-m-d",strtotime(date("Y-m-d")));
+    }
 
 }

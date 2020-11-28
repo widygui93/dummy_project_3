@@ -8,7 +8,7 @@ class Signup_model extends Model {
     }
 
     public function signupStudent($data){
-        $reg_date =date("Y-m-d",strtotime(date("Y-m-d")));
+        $reg_date = $this->getRegisterDate();
         $coin = 100;
         $profile_pic = 'student.png';
         $id = $this->createRandomID();
