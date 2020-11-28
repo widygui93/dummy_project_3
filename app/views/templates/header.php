@@ -7,6 +7,8 @@
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/header-style.css">
 	<link rel="stylesheet" href="<?= $data['style']; ?>">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/footer-style.css">
+	<!-- CDN sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
 </head>
 <body>
 	<div class="grid-container">

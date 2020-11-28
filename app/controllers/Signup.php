@@ -14,11 +14,11 @@ class Signup extends Controller {
 	}
 	public function signupStudent(){
 		if( $this->model('Signup_model')->signupStudent($_POST) > 0 ){
-			Flasher::setFlash('success', 'created', 'green');
+			Flasher::setFlash('success', 'Success', 'Register successfully', 'success');
 			header('Location: ' . BASEURL . '/signup/student');
 			exit;
 		} else{
-			Flasher::setFlash('failed', 'created', 'red');
+			Flasher::setFlash('error', 'Failed', 'Register failed', 'error');
 			header('Location: ' . BASEURL . '/signup/student');
 			exit;
 		}
