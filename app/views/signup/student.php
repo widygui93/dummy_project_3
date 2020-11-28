@@ -1,9 +1,10 @@
 <main class="signup-student">
+    <?php Flasher::flash();  ?>
     <div class="row-header">
         <h3>Register As Student</h3>
     </div>
     <div class="row-main">
-        <form action="" method="post" autocomplete="off">
+        <form action="<?= BASEURL; ?>/signup/signupstudent" method="post" autocomplete="off">
             <div class="form-group">
                 <input 
                     type="text"
