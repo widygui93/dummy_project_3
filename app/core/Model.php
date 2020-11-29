@@ -1,7 +1,7 @@
 <?php
 
 class Model {
-    public function createRandomID(){
+    public function createRandomID(): string {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomID = '';
 
@@ -14,8 +14,18 @@ class Model {
 
     }
     
-    public function getRegisterDate(){
+    public function getRegisterDate(): string {
         return date("Y-m-d",strtotime(date("Y-m-d")));
+    }
+
+    public function isDataAvailable(array $data): bool {
+        foreach ($data as $val){
+            if( strlen($val) == 0 ){
+                return false;
+                break;
+            }
+        }
+        return true;
     }
 
 }
