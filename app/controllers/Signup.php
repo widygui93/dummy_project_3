@@ -13,14 +13,9 @@ class Signup extends Controller {
 		$this->view('templates/footer');
 	}
 	public function signupStudent(){
-		if( $this->model('Signup_model')->signupStudent($_POST) > 0 ){
-			Flasher::setFlash('success', 'Success', 'Register successfully', 'success');
-			header('Location: ' . BASEURL . '/signup/student');
-			exit;
-		} else{
-			Flasher::setFlash('error', 'Failed', 'Register failed', 'error');
-			header('Location: ' . BASEURL . '/signup/student');
-			exit;
-		}
+		$result = $this->model('Signup_model')->signupStudent($_POST);
+		Flasher::setFlash($result['icon'], $result['title'], $result['text'], $result['type']);
+		header('Location: ' . BASEURL . '/signup/student');
+		exit;
 	}
 }

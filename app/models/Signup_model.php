@@ -12,7 +12,6 @@ class Signup_model extends Model {
         $coin = 100;
         $profile_pic = 'student.png';
         $id = $this->createRandomID();
-        // if( strlen($data['name']) == 0 ){
         $data_student = array(
             $data['name'], 
             $data['username'], 
@@ -22,7 +21,12 @@ class Signup_model extends Model {
             $data['password-confirm']
         );
         if( !$this->isDataAvailable($data_student) ){
-            return -1;
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data name, username, email, phone no, password and password confirm are mandatory',
+                'type' => 'error'
+            ];
         } else {
             // enkripsi password
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
@@ -40,7 +44,12 @@ class Signup_model extends Model {
             $this->db->bind(':phone_no', $data['phone']);
             $this->db->execute();
 
-            return $this->db->rowCount();
+            return [
+                'icon' => 'success',
+                'title' => 'Success',
+                'text' => 'Register successfully',
+                'type' => 'success'
+            ];
 
         }
         
