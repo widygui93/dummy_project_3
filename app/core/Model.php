@@ -1,6 +1,7 @@
 <?php
 
 class Model {
+    private $db;
     public function createRandomID(): string {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomID = '';
@@ -26,6 +27,22 @@ class Model {
             }
         }
         return true;
+    }
+
+    public function purify($data){
+        return htmlspecialchars($data);
+    }
+
+    public function isUsernameAvailable(string $username, string $table): bool{
+        $this->db = new Database;
+        $query = "SELECT * FROM  " . $table . " WHERE username = '" . $username . "'";
+        $this->db->query($query);
+        $this->db->execute();
+        if($this->db->rowCount() > 0 ){
+            return true;
+        } else {
+            return false;
+        }
     }
 
 }
