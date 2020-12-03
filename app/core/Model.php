@@ -38,11 +38,7 @@ class Model {
         $query = "SELECT * FROM  " . $table . " WHERE username = '" . $username . "'";
         $this->db->query($query);
         $this->db->execute();
-        if($this->db->rowCount() > 0 ){
-            return true;
-        } else {
-            return false;
-        }
+        return $this->db->rowCount() > 0 ? true : false;
     }
 
     public function isBreak(string $data, string $pattern){
