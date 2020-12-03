@@ -20,7 +20,7 @@ class Signup_model extends Model {
             "password" => $data['password'],
             "password-confirm" => $data['password-confirm']
         );
-        if( !$this->isDataAvailable($data_student) ){
+        if( !$this->doesMandatoryDataFilled($data_student) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',

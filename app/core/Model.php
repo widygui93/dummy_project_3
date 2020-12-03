@@ -19,7 +19,7 @@ class Model {
         return date("Y-m-d",strtotime(date("Y-m-d")));
     }
 
-    public function isDataAvailable(array $data): bool {
+    public function doesMandatoryDataFilled(array $data): bool {
         foreach ($data as $val){
             if( strlen($val) == 0 ){
                 return false;
@@ -41,7 +41,7 @@ class Model {
         return $this->db->rowCount() > 0 ? true : false;
     }
 
-    public function isBreak(string $data, string $pattern){
+    public function isBreak(string $data, string $pattern): bool{
         return preg_match($pattern, $data) === 1 ?  false :  true;
     }
 
