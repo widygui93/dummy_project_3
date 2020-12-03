@@ -33,7 +33,7 @@ class Model {
         return htmlspecialchars($data);
     }
 
-    public function isUsernameAvailable(string $username, string $table): bool{
+    public function isUsernameExist(string $username, string $table): bool{
         $this->db = new Database;
         $query = "SELECT * FROM  " . $table . " WHERE username = '" . $username . "'";
         $this->db->query($query);

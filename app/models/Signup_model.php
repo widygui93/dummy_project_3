@@ -27,7 +27,7 @@ class Signup_model extends Model {
                 'text' => 'Data name, username, email, phone no, password and password confirm are mandatory',
                 'type' => 'error'
             ];
-        } elseif( $this->isUsernameAvailable($data_student['username'], $this->table) ){
+        } elseif( $this->isUsernameExist($data_student['username'], $this->table) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
