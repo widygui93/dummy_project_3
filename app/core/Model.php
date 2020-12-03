@@ -45,4 +45,8 @@ class Model {
         }
     }
 
+    public function isBreak(string $data, string $pattern){
+        return preg_match($pattern, $data) === 1 ?  false :  true;
+    }
+
 }

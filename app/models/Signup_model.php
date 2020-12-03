@@ -34,6 +34,13 @@ class Signup_model extends Model {
                 'text' => 'Username already exist',
                 'type' => 'error'
             ];
+        } elseif( $this->isBreak($data_student['name'], "/^[a-zA-Z .,]*$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Name Format: letters, space, comma and period',
+                'type' => 'error'
+            ];
         } else {
             $data_student['name'] = $this->purify($data_student['name']);
             $data_student['username'] = $this->purify($data_student['username']);
