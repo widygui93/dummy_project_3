@@ -1,11 +1,10 @@
 <?php
 class Flasher {
-	public static function setFlash($icon, $title, $text, $type){
+	public static function setFlash($icon, $title, $text){
 		$_SESSION['flash'] = [
 			'icon' => $icon,
 			'title' => $title,
-			'text' => $text,
-			'type' => $type
+			'text' => $text
 		];
 	}
 
@@ -14,14 +13,12 @@ class Flasher {
 			$icon = $_SESSION['flash']['icon'];
 			$title = $_SESSION['flash']['title'];
 			$text = $_SESSION['flash']['text'];
-			$type = $_SESSION['flash']['type'];
 			echo "<script>
 					
 					swal({
 						icon: '";echo "$icon";echo"',
 						title: '";echo "$title";echo"',
-						text: '";echo "$text";echo"',
-					    type: '";echo "$type";echo"'
+						text: '";echo "$text";echo"'
 					});
 
 				</script>";

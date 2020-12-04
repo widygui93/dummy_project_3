@@ -103,8 +103,7 @@ class Signup_model extends Model {
             return [
                 'icon' => 'success',
                 'title' => 'Success',
-                'text' => 'Register successfully',
-                'type' => 'success'
+                'text' => 'Register successfully'
             ];
 
         }

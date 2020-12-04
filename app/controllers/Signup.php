@@ -14,7 +14,7 @@ class Signup extends Controller {
 	}
 	public function signupStudent(){
 		$result = $this->model('Signup_model')->signupStudent($_POST);
-		Flasher::setFlash($result['icon'], $result['title'], $result['text'], $result['type']);
+		Flasher::setFlash($result['icon'], $result['title'], $result['text']);
 		header('Location: ' . BASEURL . '/signup/student');
 		exit;
 	}
