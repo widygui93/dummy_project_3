@@ -45,4 +45,8 @@ class Model {
         return preg_match($pattern, $data) === 1 ?  false :  true;
     }
 
+    public function isNotMatch(string $password, string $password_confirm): bool{
+        return $password !== $password_confirm ? true : false;
+    }
+
 }

@@ -49,6 +49,34 @@ class Signup_model extends Model {
                 'text' => 'Name Format: letters, space, comma and period',
                 'type' => 'error'
             ];
+        } elseif( $this->isBreak($data_student['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Email must follow this format: yourname@domain.com(.id)',
+                'type' => 'error'
+            ];
+        } elseif( $this->isBreak($data_student['phone'], "/^\d{10,12}$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Phone Format: number only, Length: 10 - 12 digit',
+                'type' => 'error'
+            ];
+        } elseif( $this->isBreak($data_student['password'], "/^[\w@-]{8,12}$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit',
+                'type' => 'error'
+            ];
+        } elseif( $this->isNotMatch($data_student['password'],$data_student['password-confirm']) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Password does not match with Confirm Password',
+                'type' => 'error'
+            ];
         } else {
             $data_student['name'] = $this->purify($data_student['name']);
             $data_student['username'] = $this->purify($data_student['username']);
