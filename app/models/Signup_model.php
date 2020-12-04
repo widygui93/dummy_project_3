@@ -34,6 +34,14 @@ class Signup_model extends Model {
                 'text' => 'Username already exist',
                 'type' => 'error'
             ];
+        } elseif( $this->isBreak($data_student['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12',
+                'type' => 'error'
+            ];
+
         } elseif( $this->isBreak($data_student['name'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
