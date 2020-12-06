@@ -15,7 +15,7 @@
 		<header class="header">
 			<div class="header-wrapper">
 				<div class="logo-wrapper">
-					<a href="">
+					<a href="<?= BASEURL; ?>">
 						<img src="<?= BASEURL; ?>/img/logo.png" alt="logo-img" class="logo">
 					</a>
 				</div>

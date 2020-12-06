@@ -15,7 +15,7 @@
 						<input 
 							type="text" 
 							name="name" 
-							id="name" 
+							id="name-contact" 
 							minlength="6" 
 							maxlength="12" 
 							pattern="^[a-zA-Z0-9]*$" 
@@ -27,7 +27,7 @@
 						<input 
 							type="email" 
 							name="email" 
-							id="email" 
+							id="email-contact" 
 							class="form-control" 
 							placeholder="Email" 
 							autocomplete="off" 
