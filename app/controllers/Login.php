@@ -27,9 +27,17 @@ class Login extends Controller {
 		$this->view('templates/footer');
 	}
 	public function loginTeacher(){
-		// $result = $this->model('Signup_model')->signupTeacher($_POST);
-		// Flasher::setFlash($result['icon'], $result['title'], $result['text']);
-		header('Location: ' . BASEURL );
-		exit;
+		$result = $this->model('Login_model')->loginTeacher($_POST);
+		if( $result['title'] == 'Failed' ){
+			Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+			header('Location: ' . BASEURL . '/login/teacher');
+			exit;
+		}else{
+			$_SESSION["login"] = true;
+			$_SESSION["username-student"] = $_POST["username"];
+
+			header('Location: ' . BASEURL );
+			exit;
+		}
 	}
 }

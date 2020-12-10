@@ -1,4 +1,5 @@
 <main class="login-main">
+    <?php Flasher::flash();  ?>
     <div class="row-header">
         <h3>Login As Student</h3>
     </div>
