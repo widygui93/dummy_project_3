@@ -57,6 +57,7 @@
                     autocomplete="off"
                     required
                 >
+                <small>Format: letters, space, comma and period</small>
             </div>
             <div class="form-group">
                 <input 
