@@ -5,6 +5,6 @@
         <span>Sign up as</span>
         <a href="<?= BASEURL; ?>/Signup/student">Student</a>
         <span>Or</span>
-        <a href="">Teacher</a>
+        <a href="<?= BASEURL; ?>/Signup/teacher">Teacher</a>
     </div>
 </main>

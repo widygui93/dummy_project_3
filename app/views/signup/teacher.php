@@ -1,10 +1,10 @@
 <main class="signup-main">
     <?php Flasher::flash();  ?>
     <div class="row-header">
-        <h3>Register As Student</h3>
+        <h3>Register As Teacher</h3>
     </div>
     <div class="row-main">
-        <form action="<?= BASEURL; ?>/signup/signupstudent" method="post" autocomplete="off">
+        <form action="<?= BASEURL; ?>/signup/signupteacher" method="post" autocomplete="off">
             <div class="form-group">
                 <input 
                     type="text"
@@ -48,18 +48,15 @@
             </div>
             <div class="form-group">
                 <input 
-                    type="tel" 
-                    id="phone" 
-                    name="phone"
-                    minlength="10" 
-                    maxlength="12" 
-                    pattern="^\d{10,12}$"
+                    type="text" 
+                    id="expert" 
+                    name="expert"
+                    pattern="^[a-zA-Z .,]*$"
                     class="form-control" 
-                    placeholder="Phone No" 
+                    placeholder="Expert" 
                     autocomplete="off"
                     required
                 >
-                <small>Length: 10 - 12 digit</small>
             </div>
             <div class="form-group">
                 <input 
