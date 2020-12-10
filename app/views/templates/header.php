@@ -26,7 +26,7 @@
 				</div>
 				<div class="login-signup-wrapper">
 					<div class="login-wrapper">
-						<a href="#">Log in</a>
+						<a href="<?= BASEURL; ?>/Login">Log in</a>
 					</div>
 					<div class="signup-wrapper">
 						<a href="<?= BASEURL; ?>/Signup">Sign Up</a>
