@@ -1,6 +1,5 @@
 <?php
 class Signup_model extends Model {
-    // private $table = 'student';
     private $db;
 
     public function __construct(){
