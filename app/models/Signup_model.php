@@ -23,58 +23,50 @@ class Signup_model extends Model {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Data name, username, email, phone no, password and password confirm are mandatory',
-                'type' => 'error'
+                'text' => 'Data name, username, email, phone no, password and password confirm are mandatory'
             ];
         } elseif( $this->isUsernameExist($data_student['username'], 'student') ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Username already exist',
-                'type' => 'error'
+                'text' => 'Username already exist'
             ];
         } elseif( $this->isBreak($data_student['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12',
-                'type' => 'error'
+                'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12'
             ];
 
         } elseif( $this->isBreak($data_student['name'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Name Format: letters, space, comma and period',
-                'type' => 'error'
+                'text' => 'Name Format: letters, space, comma and period'
             ];
         } elseif( $this->isBreak($data_student['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Email must follow this format: yourname@domain.com(.id)',
-                'type' => 'error'
+                'text' => 'Email must follow this format: yourname@domain.com(.id)'
             ];
         } elseif( $this->isBreak($data_student['phone'], "/^\d{10,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Phone Format: number only, Length: 10 - 12 digit',
-                'type' => 'error'
+                'text' => 'Phone Format: number only, Length: 10 - 12 digit'
             ];
         } elseif( $this->isBreak($data_student['password'], "/^[\w@-]{8,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit',
-                'type' => 'error'
+                'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit'
             ];
         } elseif( $this->isNotMatch($data_student['password'],$data_student['password-confirm']) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Password does not match with Confirm Password',
-                'type' => 'error'
+                'text' => 'Password does not match with Confirm Password'
             ];
         } else {
             $data_student['name'] = $this->purify($data_student['name']);
@@ -125,58 +117,50 @@ class Signup_model extends Model {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Data name, username, email, expert, password and password confirm are mandatory',
-                'type' => 'error'
+                'text' => 'Data name, username, email, expert, password and password confirm are mandatory'
             ];
         } elseif( $this->isUsernameExist($data_teacher['username'], 'teacher') ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Username already exist',
-                'type' => 'error'
+                'text' => 'Username already exist'
             ];
         } elseif( $this->isBreak($data_teacher['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12',
-                'type' => 'error'
+                'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12'
             ];
 
         } elseif( $this->isBreak($data_teacher['name'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Name Format: letters, space, comma and period',
-                'type' => 'error'
+                'text' => 'Name Format: letters, space, comma and period'
             ];
         } elseif( $this->isBreak($data_teacher['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Email must follow this format: yourname@domain.com(.id)',
-                'type' => 'error'
+                'text' => 'Email must follow this format: yourname@domain.com(.id)'
             ];
         } elseif( $this->isBreak($data_teacher['expert'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Expert Format: letters, space, comma and period',
-                'type' => 'error'
+                'text' => 'Expert Format: letters, space, comma and period'
             ];
         } elseif( $this->isBreak($data_teacher['password'], "/^[\w@-]{8,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit',
-                'type' => 'error'
+                'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit'
             ];
         } elseif( $this->isNotMatch($data_teacher['password'],$data_teacher['password-confirm']) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Password does not match with Confirm Password',
-                'type' => 'error'
+                'text' => 'Password does not match with Confirm Password'
             ];
         } else {
             $data_teacher['name'] = $this->purify($data_teacher['name']);
