@@ -24,13 +24,21 @@
 						<input type="search" placeholder="Search Tutorial" name="q" autocomplete="off">
 					</form>
 				</div>
-				<div class="login-signup-wrapper">
-					<div class="login-wrapper">
-						<a href="<?= BASEURL; ?>/Login">Log in</a>
-					</div>
-					<div class="signup-wrapper">
-						<a href="<?= BASEURL; ?>/Signup">Sign Up</a>
-					</div>
+				<div class="login-signup-logout-wrapper">
+					<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
+						<div class="logout-wrapper">
+							<a href="<?= BASEURL; ?>/Logout">Log out</a>
+						</div>
+					<?php else: ?>
+						<div class="login-signup-wrapper">
+							<div class="login-wrapper">
+								<a href="<?= BASEURL; ?>/Login">Log in</a>
+							</div>
+							<div class="signup-wrapper">
+								<a href="<?= BASEURL; ?>/Signup">Sign Up</a>
+							</div>
+						</div>
+					<?php endif; ?>
 				</div>
 				<div class="menu-btn-wrapper">
 					<div class="menu-btn">
@@ -42,9 +50,21 @@
 						<li><a href="">Latest Tutorial</a></li>
 						<li><a href="">Best Seller Tutorial</a></li>
 						<li><a href="">Most Liked Tutorial</a></li>
-						<!-- <li><a href="">Dashboard</a></li> -->
-						<!-- <li><a href="">Profile</a></li> -->
+						<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
+							<li><a href="">Dashboard</a></li>
+							<li><a href=""><?= $_SESSION["username-teacher"]?></a></li>
+						<?php endif; ?>
 					</ul>
 				</div>
+				<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
+					<div class="notif-coin">
+						<div class="notif">
+							<a href="">999</a>
+						</div>
+						<div class="coin">
+							<span>$600K</span>
+						</div>
+					</div>
+				<?php endif; ?>
     		</div>
 		</header>

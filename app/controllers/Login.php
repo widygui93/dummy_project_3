@@ -33,8 +33,8 @@ class Login extends Controller {
 			header('Location: ' . BASEURL . '/login/teacher');
 			exit;
 		}else{
-			$_SESSION["login"] = true;
-			$_SESSION["username-student"] = $_POST["username"];
+			$_SESSION["login-teacher"] = true;
+			$_SESSION["username-teacher"] = $_POST["username"];
 
 			header('Location: ' . BASEURL );
 			exit;
