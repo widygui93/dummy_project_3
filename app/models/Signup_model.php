@@ -11,84 +11,97 @@ class Signup_model extends Model {
         $coin = 100;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
-        $data_student = array(
-            "name" => $data['name'], 
-            "username" => $data['username'], 
-            "email" => $data['email'], 
+        // $data_student = array(
+        //     "name" => $data['name'], 
+        //     "username" => $data['username'], 
+        //     "email" => $data['email'], 
+        //     "phone" => $data['phone'],
+        //     "password" => $data['password'],
+        //     "password-confirm" => $data['password-confirm']
+        // );
+        if( $this->isDataEmpty($data) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data name, username, email, phone no, password and password confirm are empty'
+            ];
+        }elseif( !$this->doesMandatoryDataFilled(array(
+            "name" => $data['name'],
+            "username" => $data['username'],
+            "email" => $data['email'],
             "phone" => $data['phone'],
             "password" => $data['password'],
             "password-confirm" => $data['password-confirm']
-        );
-        if( !$this->doesMandatoryDataFilled($data_student) ){
+        ) ) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data name, username, email, phone no, password and password confirm are mandatory'
             ];
-        } elseif( $this->isUsernameExist($data_student['username'], 'student') ){
+        } elseif( $this->isUsernameExist($data['username'], 'student') ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Username already exist'
             ];
-        } elseif( $this->isBreak($data_student['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
+        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12'
             ];
 
-        } elseif( $this->isBreak($data_student['name'], "/^[a-zA-Z .,]*$/") ){
+        } elseif( $this->isBreak($data['name'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Name Format: letters, space, comma and period'
             ];
-        } elseif( $this->isBreak($data_student['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
+        } elseif( $this->isBreak($data['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Email must follow this format: yourname@domain.com(.id)'
             ];
-        } elseif( $this->isBreak($data_student['phone'], "/^\d{10,12}$/") ){
+        } elseif( $this->isBreak($data['phone'], "/^\d{10,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Phone Format: number only, Length: 10 - 12 digit'
             ];
-        } elseif( $this->isBreak($data_student['password'], "/^[\w@-]{8,12}$/") ){
+        } elseif( $this->isBreak($data['password'], "/^[\w@-]{8,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit'
             ];
-        } elseif( $this->isNotMatch($data_student['password'],$data_student['password-confirm']) ){
+        } elseif( $this->isNotMatch($data['password'],$data['password-confirm']) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Password does not match with Confirm Password'
             ];
         } else {
-            $data_student['name'] = $this->purify($data_student['name']);
-            $data_student['username'] = $this->purify($data_student['username']);
-            $data_student['email'] = $this->purify($data_student['email']);
-            $data_student['phone'] = $this->purify($data_student['phone']);
-            $data_student['password'] = $this->purify($data_student['password']);
-            $data_student['password-confirm'] = $this->purify($data_student['password-confirm']);
+            $data['name'] = $this->purify($data['name']);
+            $data['username'] = $this->purify($data['username']);
+            $data['email'] = $this->purify($data['email']);
+            $data['phone'] = $this->purify($data['phone']);
+            $data['password'] = $this->purify($data['password']);
+            $data['password-confirm'] = $this->purify($data['password-confirm']);
             // enkripsi password
-            $password = password_hash($data_student['password'], PASSWORD_DEFAULT);
+            $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $query = "INSERT INTO student VALUES (:id, :nama, :username, :email, :reg_date, :coin, :password, :profile_pic, :phone_no)";
             $this->db->query($query);
             $this->db->bind(':id', $id);
-            $this->db->bind(':nama', strtolower(stripslashes($data_student['name'])));
-            $this->db->bind(':username', strtolower(stripslashes($data_student['username'])));
-            $this->db->bind(':email', strtolower(stripslashes($data_student['email'])));
+            $this->db->bind(':nama', strtolower(stripslashes($data['name'])));
+            $this->db->bind(':username', strtolower(stripslashes($data['username'])));
+            $this->db->bind(':email', strtolower(stripslashes($data['email'])));
             $this->db->bind(':reg_date', $reg_date);
             $this->db->bind(':coin', $coin);
             $this->db->bind(':password', $password);
             $this->db->bind(':profile_pic', $profile_pic);
-            $this->db->bind(':phone_no', stripslashes($data_student['phone']));
+            $this->db->bind(':phone_no', stripslashes($data['phone']));
             $this->db->execute();
 
             return [
@@ -105,84 +118,97 @@ class Signup_model extends Model {
         $coin = 0;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
-        $data_teacher = array(
-            "name" => $data['name'], 
-            "username" => $data['username'], 
-            "email" => $data['email'], 
+        // $data_teacher = array(
+        //     "name" => $data['name'], 
+        //     "username" => $data['username'], 
+        //     "email" => $data['email'], 
+        //     "expert" => $data['expert'],
+        //     "password" => $data['password'],
+        //     "password-confirm" => $data['password-confirm']
+        // );
+        if( $this->isDataEmpty($data) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data name, username, email, expert, password and password confirm are empty'
+            ];
+        }elseif( !$this->doesMandatoryDataFilled(array(
+            "name" => $data['name'],
+            "username" => $data['username'],
+            "email" => $data['email'],
             "expert" => $data['expert'],
             "password" => $data['password'],
             "password-confirm" => $data['password-confirm']
-        );
-        if( !$this->doesMandatoryDataFilled($data_teacher) ){
+        ) ) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data name, username, email, expert, password and password confirm are mandatory'
             ];
-        } elseif( $this->isUsernameExist($data_teacher['username'], 'teacher') ){
+        } elseif( $this->isUsernameExist($data['username'], 'teacher') ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Username already exist'
             ];
-        } elseif( $this->isBreak($data_teacher['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
+        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Username Format: Combination of letters and numbers, Length: 6 - 12'
             ];
 
-        } elseif( $this->isBreak($data_teacher['name'], "/^[a-zA-Z .,]*$/") ){
+        } elseif( $this->isBreak($data['name'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Name Format: letters, space, comma and period'
             ];
-        } elseif( $this->isBreak($data_teacher['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
+        } elseif( $this->isBreak($data['email'], "/^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Email must follow this format: yourname@domain.com(.id)'
             ];
-        } elseif( $this->isBreak($data_teacher['expert'], "/^[a-zA-Z .,]*$/") ){
+        } elseif( $this->isBreak($data['expert'], "/^[a-zA-Z .,]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Expert Format: letters, space, comma and period'
             ];
-        } elseif( $this->isBreak($data_teacher['password'], "/^[\w@-]{8,12}$/") ){
+        } elseif( $this->isBreak($data['password'], "/^[\w@-]{8,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Password Allow letter, number, @, -, _ Length: 10 - 12 digit'
             ];
-        } elseif( $this->isNotMatch($data_teacher['password'],$data_teacher['password-confirm']) ){
+        } elseif( $this->isNotMatch($data['password'],$data['password-confirm']) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Password does not match with Confirm Password'
             ];
         } else {
-            $data_teacher['name'] = $this->purify($data_teacher['name']);
-            $data_teacher['username'] = $this->purify($data_teacher['username']);
-            $data_teacher['email'] = $this->purify($data_teacher['email']);
-            $data_teacher['expert'] = $this->purify($data_teacher['expert']);
-            $data_teacher['password'] = $this->purify($data_teacher['password']);
-            $data_teacher['password-confirm'] = $this->purify($data_teacher['password-confirm']);
+            $data['name'] = $this->purify($data['name']);
+            $data['username'] = $this->purify($data['username']);
+            $data['email'] = $this->purify($data['email']);
+            $data['expert'] = $this->purify($data['expert']);
+            $data['password'] = $this->purify($data['password']);
+            $data['password-confirm'] = $this->purify($data['password-confirm']);
             // enkripsi password
-            $password = password_hash($data_teacher['password'], PASSWORD_DEFAULT);
+            $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
             $query = "INSERT INTO teacher VALUES (:id, :nama, :username, :email, :expert, :reg_date, :coin, :password, :profile_pic)";
             $this->db->query($query);
             $this->db->bind(':id', $id);
-            $this->db->bind(':nama', strtolower(stripslashes($data_teacher['name'])));
-            $this->db->bind(':username', strtolower(stripslashes($data_teacher['username'])));
-            $this->db->bind(':email', strtolower(stripslashes($data_teacher['email'])));
+            $this->db->bind(':nama', strtolower(stripslashes($data['name'])));
+            $this->db->bind(':username', strtolower(stripslashes($data['username'])));
+            $this->db->bind(':email', strtolower(stripslashes($data['email'])));
             $this->db->bind(':reg_date', $reg_date);
             $this->db->bind(':coin', $coin);
             $this->db->bind(':password', $password);
             $this->db->bind(':profile_pic', $profile_pic);
-            $this->db->bind(':expert', strtolower(stripslashes($data_teacher['expert'])));
+            $this->db->bind(':expert', strtolower(stripslashes($data['expert'])));
             $this->db->execute();
 
             return [

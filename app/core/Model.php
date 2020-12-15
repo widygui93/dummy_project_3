@@ -19,6 +19,13 @@ class Model {
         return date("Y-m-d",strtotime(date("Y-m-d")));
     }
 
+    /*untuk cek jika user langsung ketik 
+     http://localhost/widy/project/dummy_project_3/public/login/teacher 
+     tanpa klik login */
+    public function isDataEmpty(array $data): bool {
+        return empty($data) ? true : false;
+    }
+
     public function doesMandatoryDataFilled(array $data): bool {
         foreach ($data as $val){
             if( strlen($val) == 0 ){
@@ -35,7 +42,7 @@ class Model {
 
     public function isUsernameExist(string $username, string $table): bool{
         $this->db = new Database;
-        $query = "SELECT * FROM  " . $table . " WHERE username = '" . $username . "'";
+        $query = "SELECT * FROM  " . $table . " WHERE username = '" . strtolower(stripslashes($username)) . "'";
         $this->db->query($query);
         $this->db->execute();
         return $this->db->rowCount() > 0 ? true : false;

@@ -4,7 +4,9 @@
 		<div class="cta-content">
 			<h1>Welcome to Unemi</h1>
 			<h3>Your Learing Platform</h3>
-			<div><a href="#">Sign Up</a></div>
+			<?php if( !(isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"])) ): ?>
+				<div><a href="<?= BASEURL; ?>/Signup">Sign Up</a></div>
+			<?php endif; ?>
 		</div>
 	</div>
 	<div class="latest-tutorial">
