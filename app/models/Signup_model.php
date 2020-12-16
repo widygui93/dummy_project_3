@@ -44,7 +44,7 @@ class Signup_model extends Model {
                 'title' => 'Failed',
                 'text' => 'Username already exist'
             ];
-        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
+        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z])(?!.*[\W]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -151,7 +151,7 @@ class Signup_model extends Model {
                 'title' => 'Failed',
                 'text' => 'Username already exist'
             ];
-        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z]).{6,12}$/") ){
+        } elseif( $this->isBreak($data['username'], "/^(?=.*\d)(?=.*[a-zA-Z])(?!.*[\W]).{6,12}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
