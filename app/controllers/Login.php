@@ -21,10 +21,16 @@ class Login extends Controller {
 		exit;
 	}
 	public function teacher(){
-		$data['style'] = BASEURL.'/css/login-main-style.css';
-		$this->view('templates/header', $data);
-		$this->view('login/teacher');
-		$this->view('templates/footer');
+		if( empty($_SESSION) ){
+			$data['style'] = BASEURL.'/css/login-main-style.css';
+			$this->view('templates/header', $data);
+			$this->view('login/teacher');
+			$this->view('templates/footer');
+		} else{
+			header('Location: ' . BASEURL );
+			exit;
+		}
+		
 	}
 	public function loginTeacher(){
 		$result = $this->model('Login_model')->loginTeacher($_POST);
