@@ -10,6 +10,7 @@
 		</div>
 	</div>
 	<div class="latest-tutorial">
+	<?php var_dump($_SESSION) ?>
 		<h3>Latest Tutorial</h3>
 		<div class="tutorial-wrap">
 			<div class="tutorial">

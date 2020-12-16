@@ -7,10 +7,6 @@ class Login_model extends Model {
     }
 
     public function loginTeacher($data){
-        // $data_login = array(
-        //     "username" => $data["username"],
-        //     "password" => $data["password"]
-        // );
         if( $this->isDataEmpty($data) ){
             return [
                 'icon' => 'error',
@@ -63,5 +59,24 @@ class Login_model extends Model {
                 ];
             }
         }
+    }
+    public function isUserLogin(){
+        return empty($_SESSION["login-teacher"]) && empty($_SESSION["login-student"]) ? false : true;
+    }
+    public function goHome(){
+        header('Location: ' . BASEURL );
+		exit;
+    }
+    public function isDataEmpty(array $data): bool {
+        return empty($data) ? true : false;
+    }
+    public function setFlash($result){
+        Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+        header('Location: ' . BASEURL . '/login/teacher');
+		exit;
+    }
+    public function setSessionTeacher($username){
+        $_SESSION["login-teacher"] = true;
+		$_SESSION["username-teacher"] = strtolower(stripslashes($username));
     }
 }
