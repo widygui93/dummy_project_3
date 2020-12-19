@@ -22,9 +22,9 @@ class Model {
     /*untuk cek jika user langsung ketik 
      http://localhost/widy/project/dummy_project_3/public/login/teacher 
      tanpa klik login */
-    public function isDataEmpty(array $data): bool {
-        return empty($data) ? true : false;
-    }
+    // public function isDataEmpty(array $data): bool {
+    //     return empty($data) ? true : false;
+    // }
 
     public function doesMandatoryDataFilled(array $data): bool {
         foreach ($data as $val){

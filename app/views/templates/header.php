@@ -52,7 +52,7 @@
 						<li><a href="">Most Liked Tutorial</a></li>
 						<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
 							<li><a href="">Dashboard</a></li>
-							<li><a href=""><?= $_SESSION["username-teacher"]?></a></li>
+							<li><a href=""><?= $_SESSION["username-teacher"] ?? $_SESSION['username-student'] ?></a></li>
 						<?php endif; ?>
 					</ul>
 				</div>

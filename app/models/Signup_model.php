@@ -11,21 +11,7 @@ class Signup_model extends Model {
         $coin = 100;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
-        // $data_student = array(
-        //     "name" => $data['name'], 
-        //     "username" => $data['username'], 
-        //     "email" => $data['email'], 
-        //     "phone" => $data['phone'],
-        //     "password" => $data['password'],
-        //     "password-confirm" => $data['password-confirm']
-        // );
-        if( $this->isDataEmpty($data) ){
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Data name, username, email, phone no, password and password confirm are empty'
-            ];
-        }elseif( !$this->doesMandatoryDataFilled(array(
+        if( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
             "email" => $data['email'],
@@ -118,21 +104,7 @@ class Signup_model extends Model {
         $coin = 0;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
-        // $data_teacher = array(
-        //     "name" => $data['name'], 
-        //     "username" => $data['username'], 
-        //     "email" => $data['email'], 
-        //     "expert" => $data['expert'],
-        //     "password" => $data['password'],
-        //     "password-confirm" => $data['password-confirm']
-        // );
-        if( $this->isDataEmpty($data) ){
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Data name, username, email, expert, password and password confirm are empty'
-            ];
-        }elseif( !$this->doesMandatoryDataFilled(array(
+        if( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
             "email" => $data['email'],
@@ -219,5 +191,15 @@ class Signup_model extends Model {
 
         }
         
+    }
+    public function isUserLogin(){
+        return empty($_SESSION["login-teacher"]) && empty($_SESSION["login-student"]) ? false : true;
+    }
+    public function goHome(){
+        header('Location: ' . BASEURL );
+		exit;
+    }
+    public function isDataEmpty(array $data): bool{
+        return empty($data) ? true : false;
     }
 }
