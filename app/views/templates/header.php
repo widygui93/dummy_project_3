@@ -59,10 +59,12 @@
 				<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
 					<div class="notif-coin">
 						<div class="notif">
+							<img src="<?= BASEURL; ?>/svg/notification-bell.svg" alt="notif">
 							<a href="">999</a>
 						</div>
 						<div class="coin">
-							<span>$600K</span>
+							<img src="<?= BASEURL; ?>/svg/coin.svg" alt="coin">
+							<span>600K</span>
 						</div>
 					</div>
 				<?php endif; ?>

@@ -43,14 +43,22 @@ body {
             grid-area: notif-coin;
             display: flex;
             justify-content: flex-start;
+            img{
+                @include icon-size;
+
+            }
             .notif{
                 margin-left: 15px;
-                background-color: $dark-primary-col;
-                border-radius: 3px;
-                padding: 3px;
+                margin-top: 2px;
                 a{
                     text-decoration: none;
                     color: $light-grey;
+                    border-bottom: 0px solid $secondary-col;
+                    transition: border-bottom 0.3s, color 0.5s;
+                }
+                a:hover {
+                    border-bottom: 5px solid $secondary-col;
+                    color: $secondary-col;
                 }
             }
             .coin {
