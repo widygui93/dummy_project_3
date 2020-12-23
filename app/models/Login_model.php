@@ -54,16 +54,6 @@ class Login_model extends Model {
             }
         }
     }
-    public function isUserLogin(){
-        return empty($_SESSION["login-teacher"]) && empty($_SESSION["login-student"]) ? false : true;
-    }
-    public function goHome(){
-        header('Location: ' . BASEURL );
-		exit;
-    }
-    public function isDataEmpty(array $data): bool {
-        return empty($data) ? true : false;
-    }
     public function setFlash($result, $method){
         Flasher::setFlash($result['icon'], $result['title'], $result['text']);
         header('Location: ' . BASEURL . '/login/' . $method . '');

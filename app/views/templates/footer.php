@@ -57,6 +57,7 @@
 		</footer>
 	</div>
 <script src="<?= BASEURL; ?>/js/jquery-3.4.1.min.js"></script>
-<script src="<?= BASEURL; ?>/js/script.js"></script>
+<script src="<?= BASEURL; ?>/js/script-header.js"></script>
+<script src="<?= $data['script'] ?? '' ?>" ></script>
 </body>
 </html>

@@ -50,9 +50,13 @@
 						<li><a href="">Latest Tutorial</a></li>
 						<li><a href="">Best Seller Tutorial</a></li>
 						<li><a href="">Most Liked Tutorial</a></li>
-						<?php if( isset($_SESSION["login-teacher"]) || isset($_SESSION["login-student"]) ): ?>
-							<li><a href="">Dashboard</a></li>
-							<li><a href=""><?= $_SESSION["username-teacher"] ?? $_SESSION['username-student'] ?></a></li>
+						<?php if( isset($_SESSION["login-teacher"]) ): ?>
+							<li><a href="<?= BASEURL; ?>/Dashboard_teacher">Dashboard</a></li>
+							<li><a href=""><?= $_SESSION["username-teacher"] ?></a></li>
+						<?php endif; ?>
+						<?php if( isset($_SESSION["login-student"]) ): ?>
+							<li><a href="<?= BASEURL; ?>/Dashboard_student">Dashboard</a></li>
+							<li><a href=""><?= $_SESSION['username-student'] ?></a></li>
 						<?php endif; ?>
 					</ul>
 				</div>
