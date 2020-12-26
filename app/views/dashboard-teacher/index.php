@@ -10,9 +10,11 @@
                     type="text" 
                     name="title" 
                     id="title" 
-                    
+                    minlength="6" 
+                    maxlength="50"
+                    pattern="^[a-zA-Z0-9 .,-&]*$"
                     class="form-control" 
-                    placeholder="title" 
+                    placeholder="Your tutorial title" 
                     autocomplete="off"
                     required
                 >
@@ -32,25 +34,35 @@
                     type="text" 
                     name="prize" 
                     id="prize" 
-                    
+                    pattern="^[0-9]*$"
                     class="form-control" 
-                    placeholder="prize" 
+                    placeholder="0" 
                     autocomplete="off"
                     required
                 >
             </div>
             <div class="form-group">
                 <label for="desc">Description</label>
-                <textarea id="desc" name="desc" placeholder="Description..." required></textarea>
+                <textarea 
+                    id="desc"
+                    name="desc"
+                    minlength="10"
+                    maxlength="300"
+                    placeholder="Description..."
+                    required></textarea>
             </div>
             <div class="form-group">
                 <label for="video">Upload Video</label>
                 <input type="file" name="video" id="video" class="form-control" required>
-                <img style="width:100px; height:100px;" id="blah" src="#" alt="your image" />
+                <video poster="<?= BASEURL; ?>/img/default-video.png">
+                    <source id="vid-src" src="#" type="video/webm" />
+                    Your Browser is not supported.
+                </video>
             </div>
             <div class="form-group">
                 <label for="img-cover">Upload image cover</label>
-                <input type="file" name="img-cover" id="img-cover" class="form-control" required>
+                <input type="file" name="img-cover" id="img-cover-input" class="form-control" required>
+                <img id="img-cover" src="<?= BASEURL; ?>/img/default-img.jpg" />
             </div>
             <div class="form-group">
                 <button type="submit" name="upload" class="btn btn-outline-dark">Upload</button>

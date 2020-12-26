@@ -40,6 +40,12 @@
                     background-color: $dark-primary-col;
                 }
             }
+            img, video{
+                width: 100px;
+                height: 100px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+            }
         } 
         .form-group:last-child{
             border: 0;
