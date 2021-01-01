@@ -11,6 +11,7 @@
     }
     .tutorial-form{
         padding: 1em;
+        box-shadow: 0 2px 2px 1px rgba(0, 0, 0, 0.2);
         .form-group{
             border-left: 3px solid $dark-primary-col;
             margin: 1em 0;
@@ -51,114 +52,137 @@
             border: 0;
         }
     }
+    .tutorial-display {
+        h3{
+            @include section-header;
+        }
+        .tutorial-wrap {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            .tutorial {
+                width: 18em;
+                margin: 10px;
+                border: 1px solid rgba(170, 163, 170, 0.5);
+                border-radius: 5px;
+                overflow: hidden;
+                transition: 0.5s;
+                &:hover{
+                    box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
+                           -2px -2px 5px rgba(116,116,106,.75);
+                    transform: scale(1.05);
+                }
+                .tutorial-video{
+                    height: 10em;
+                    img{
+                        width: 288px;
+                        height: 150px;
+                    }
+                }
+                .tutorial-info{
+                    .info-1{
+                        margin: 1em 0 1em 1em;
+                        font-weight: bold;
+                        position: relative;
+                        a{
+                            text-decoration: none;
+                            color: #000;
+                            &:hover{
+                                color: $dark-primary-col;
+                            }
+                        }
+                        .tooltiptext{
+                            font-size: .7em;
+                            visibility: hidden;
+                            background-color: black;
+                            color: $light-grey;
+                            border-radius: 10px 10px 10px 0;
+                            padding: 5px 0;
+                            text-align: center;
+                            position: absolute;
+                            top: -20px;
+                            z-index: 1;
+                        }
+                        &:hover {
+                            .tooltiptext{
+                                visibility: visible;
+                            }
+                        }
+                    }
+                    .info-2{
+                        display: flex;
+                        justify-content: space-between;
+                        margin: 0 1em 1em;
+                    }
+                }
+                .tutorial-play {
+                    border-top: 1px solid $light-primary-col;
+                    display: flex;
+                    justify-content: space-between;
+                    div{
+                        margin: 1em;
+                    }
+                    .play-button{
+                        background-color: $light-primary-col;
+                        border-radius: 5px;
+                        line-height: 2.7;
+                        a{
+                            text-decoration: none;
+                            color: black;
+                            padding: 12px 10px 12px 12px;
+                        }
+                        &:hover{
+                            background-color: $dark-primary-col;
+                        }
+                    }
+                    .play-info {
+                        line-height: 2.8;
+                        .tutorial-like,
+                        .tutorial-cost{
+                            img{
+                                @include icon-size;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        .tutorial-page{
+            ul{
+                display: flex;
+                justify-content: center;
+                li{
+                    display: inline-block;
+                    margin-right: 5px;
+                }
+                a{
+                    text-decoration: none;
+                    color: black;
+                }
+            }
+        }
+    }
 }
-.tutorial-display {
-	h3{
-		@include section-header;
-	}
-	.tutorial-wrap {
-		display: flex;
-		flex-wrap: wrap;
-		justify-content: center;
-		.tutorial {
-			width: 18em;
-			margin: 10px;
-			border: 1px solid rgba(170, 163, 170, 0.5);
-			border-radius: 5px;
-			overflow: hidden;
-			transition: 0.5s;
-			&:hover{
-				box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
-					   -2px -2px 5px rgba(116,116,106,.75);
-				transform: scale(1.05);
-			}
-			.tutorial-video{
-				height: 10em;
-				img{
-					width: 288px;
-					height: 150px;
-				}
-			}
-			.tutorial-info{
-				.info-1{
-					margin: 1em 0 1em 1em;
-					font-weight: bold;
-					position: relative;
-					a{
-						text-decoration: none;
-						color: #000;
-						&:hover{
-							color: $dark-primary-col;
-						}
-					}
-					.tooltiptext{
-						font-size: .7em;
-						visibility: hidden;
-						background-color: black;
-						color: $light-grey;
-						border-radius: 10px 10px 10px 0;
-						padding: 5px 0;
-						text-align: center;
-						position: absolute;
-						top: -20px;
-						z-index: 1;
-					}
-					&:hover {
-						.tooltiptext{
-							visibility: visible;
-						}
-					}
-				}
-				.info-2{
-					display: flex;
-					justify-content: space-between;
-					margin: 0 1em 1em;
-				}
-			}
-			.tutorial-play {
-				border-top: 1px solid $light-primary-col;
-				display: flex;
-				justify-content: space-between;
-				div{
-					margin: 1em;
-				}
-				.play-button{
-					background-color: $light-primary-col;
-					border-radius: 5px;
-					line-height: 2.7;
-					a{
-						text-decoration: none;
-						color: black;
-						padding: 12px 10px 12px 12px;
-					}
-					&:hover{
-						background-color: $dark-primary-col;
-					}
-				}
-				.play-info {
-					line-height: 2.8;
-					.tutorial-like,
-					.tutorial-cost{
-						img{
-							@include icon-size;
-						}
-					}
-				}
-			}
-		}
-	}
-	.tutorial-page{
-		ul{
-			display: flex;
-			justify-content: center;
-			li{
-				display: inline-block;
-				margin-right: 5px;
-			}
-			a{
-				text-decoration: none;
-				color: black;
-			}
-		}
-	}
+
+@media screen and (min-width: 748px) {
+    .dashboard-teacher{
+        .tutorial-form{
+            form{
+                display: grid;
+                grid-template-columns: auto auto auto;
+            }
+
+            .item-title{ grid-area: 1 / 1 / 2 / 2; }
+            .item-level{ grid-area: 1 / 2 / 2 / 3; }
+            .item-prize{ grid-area: 1 / 3 / 2 / 4; }
+            .item-desc{ grid-area: 2 / 1 / 3 / 4; }
+            .item-vid{ grid-area: 3 / 1 / 4 / 2; }
+            .item-img-cover{ grid-area: 3 / 2 / 4 / 3; }
+            .item-btn{ 
+                grid-area: 3 / 3 / 4 / 4; 
+                margin: auto;
+            }
+        }
+    }
+
 }

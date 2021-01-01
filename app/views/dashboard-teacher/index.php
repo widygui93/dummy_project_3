@@ -4,7 +4,7 @@
     </div>
     <div class="tutorial-form">
         <form action="<?= BASEURL; ?>/Dashboard_teacher/upload" method="post" autocomplete="off">
-            <div class="form-group">
+            <div class="form-group item-title">
                 <label for="title">Title</label>
                 <input 
                     type="text" 
@@ -19,7 +19,7 @@
                     required
                 >
             </div>
-            <div class="form-group">
+            <div class="form-group item-level">
                 <label for="level">Level</label>
                 <select name="level" id="level">
                     <option value="all-level">All Level</option>
@@ -28,7 +28,7 @@
                     <option value="advance">Advance</option>
                 </select>
             </div>
-            <div class="form-group">
+            <div class="form-group item-prize">
                 <label for="prize">Prize</label>
                 <input 
                     type="text" 
@@ -41,7 +41,7 @@
                     required
                 >
             </div>
-            <div class="form-group">
+            <div class="form-group item-desc">
                 <label for="desc">Description</label>
                 <textarea 
                     id="desc"
@@ -51,7 +51,7 @@
                     placeholder="Description..."
                     required></textarea>
             </div>
-            <div class="form-group">
+            <div class="form-group item-vid">
                 <label for="video">Upload Video</label>
                 <input type="file" name="video" id="video" class="form-control" required>
                 <video poster="<?= BASEURL; ?>/img/default-video.png">
@@ -59,12 +59,12 @@
                     Your Browser is not supported.
                 </video>
             </div>
-            <div class="form-group">
+            <div class="form-group item-img-cover">
                 <label for="img-cover">Upload image cover</label>
                 <input type="file" name="img-cover" id="img-cover-input" class="form-control" required>
                 <img id="img-cover" src="<?= BASEURL; ?>/img/default-img.jpg" />
             </div>
-            <div class="form-group">
+            <div class="form-group item-btn">
                 <button type="submit" name="upload" class="btn btn-outline-dark">Upload</button>
             </div>
         </form>
