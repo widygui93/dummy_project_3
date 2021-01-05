@@ -15,7 +15,7 @@ class Model {
 
     }
     
-    public function getRegisterDate(): string {
+    public function getDate(): string {
         return date("Y-m-d",strtotime(date("Y-m-d")));
     }
 
@@ -54,6 +54,30 @@ class Model {
 
     public function isNotMatch(string $password, string $password_confirm): bool{
         return $password !== $password_confirm ? true : false;
+    }
+
+    public function isViolateMaxSize(int $fileSize, int $maxSize): bool{
+        return $fileSize > $maxSize ? true : false;
+    }
+
+    public function isViolateFileExtention(string $namaFile, array $validExtention): bool{
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        return in_array($ekstensiGambar, $validExtention) ? false : true;
+    }
+
+    public function upload($folder, $tmpName, $namaFile){
+        $ekstensiGambar = explode('.', $namaFile);
+		$ekstensiGambar = strtolower(end($ekstensiGambar));
+		// generate nama gambar baru
+		$namaFileBaru = $this->createRandomID();
+		$namaFileBaru .= '.';
+		$namaFileBaru .= $ekstensiGambar;
+
+		move_uploaded_file($tmpName, $folder . $namaFileBaru);
+
+		return $namaFileBaru;
+
     }
 
 }

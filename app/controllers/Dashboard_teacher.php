@@ -12,8 +12,12 @@ class Dashboard_teacher extends Controller{
         }
     }
     public function upload(){
-        var_dump($_POST);
-        var_dump($_SESSION);
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
+        if( $this->model('Verify_model')->isDataEmpty($_POST) ) return $this->model('Verify_model')->goHome();
+        $result = $this->model('Dashboard_teacher_model')->createTutorial($_POST);
+		Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+		header('Location: ' . BASEURL . '/dashboard_teacher');
+		exit;
     }
 
 }

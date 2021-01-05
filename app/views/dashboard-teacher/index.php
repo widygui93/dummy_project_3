@@ -1,9 +1,10 @@
 <main class="dashboard-teacher">
+	<?php Flasher::flash();  ?>
     <div class="row-header">
         <h3>Upload Your Tutorial</h3>
     </div>
     <div class="tutorial-form">
-        <form action="<?= BASEURL; ?>/Dashboard_teacher/upload" method="post" autocomplete="off">
+        <form action="<?= BASEURL; ?>/Dashboard_teacher/upload" method="post" enctype="multipart/form-data" autocomplete="off">
             <div class="form-group item-title">
                 <label for="title">Title</label>
                 <input 
@@ -12,7 +13,7 @@
                     id="title" 
                     minlength="6" 
                     maxlength="50"
-                    pattern="^[a-zA-Z0-9 .,-&]*$"
+                    pattern="^[a-zA-Z0-9 .,\-&]*$"
                     class="form-control" 
                     placeholder="Your tutorial title" 
                     autocomplete="off"

@@ -7,7 +7,7 @@ class Signup_model extends Model {
     }
 
     public function signupStudent($data){
-        $reg_date = $this->getRegisterDate();
+        $reg_date = $this->getDate();
         $coin = 100;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
@@ -100,7 +100,7 @@ class Signup_model extends Model {
         
     }
     public function signupTeacher($data){
-        $reg_date = $this->getRegisterDate();
+        $reg_date = $this->getDate();
         $coin = 0;
         $profile_pic = 'default.png';
         $id = $this->createRandomID();
