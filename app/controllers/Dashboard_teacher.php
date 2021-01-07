@@ -4,8 +4,9 @@ class Dashboard_teacher extends Controller{
         if( $this->model('Verify_model')->isLoginAsTeacher() ) {
             $data['style'] = BASEURL.'/css/dashboard-teacher-style.css';
             $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
+            $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorials($_SESSION["username-teacher"]);
             $this->view('templates/header', $data);
-            $this->view('dashboard-teacher/index');
+            $this->view('dashboard-teacher/index', $data);
             $this->view('templates/footer', $data);
         } else {
             return $this->model('Verify_model')->goHome();

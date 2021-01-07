@@ -113,4 +113,16 @@ class Dashboard_teacher_model extends Model {
             ];
         }
     }
+
+    public function getTutorials($username){
+        $query = "SELECT title,
+                        img_cover,
+                        to_char(prize, '999,999,999') AS prize,
+                        to_char(created_date, 'Month DD,YYYY') AS created_date 
+                FROM tutorial WHERE created_by=:username";
+        $this->db->query($query);
+        $this->db->bind(':username', $username);
+        return $this->db->resultSet();
+
+    }
 }

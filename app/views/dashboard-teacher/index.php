@@ -73,7 +73,38 @@
     <div class="tutorial-display">
         <h3>Your Tutorial</h3>
         <div class="tutorial-wrap">
-            <div class="tutorial">
+			<?php foreach ($data['tutorials'] as $tutorial): ?>
+				<div class="tutorial">
+					<div class="tutorial-video">
+						<img src="../app/core/videos/cover-img/<?= $tutorial['img_cover'] ?>" alt="video-poster">
+					</div>
+					<div class="tutorial-info">
+						<div class="info-1">
+							<span class="tutorial-title"><a href="#"><?= $tutorial['title'] ?></a></span>
+							<span class="tooltiptext">Click for details</span>
+						</div>
+						<div class="info-2">
+							<small class="tutorial-date"><?= $tutorial['created_date'] ?></small>
+						</div>
+					</div>
+					<div class="tutorial-play">
+						<div class="play-button">
+							<a href="#">Play</a>
+						</div>
+						<div class="play-info">
+							<span class="tutorial-like">
+								<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
+								<span>23K</span>
+							</span>
+							<span class="tutorial-cost">
+								<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
+								<span><?= $tutorial['prize'] ?></span>
+							</span>
+						</div>
+					</div>
+				</div>
+			<?php endforeach; ?>
+            <!-- <div class="tutorial">
 				<div class="tutorial-video">
 					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
 				</div>
@@ -275,36 +306,7 @@
 						</span>
 					</div>
 				</div>
-            </div>
-            <div class="tutorial">
-				<div class="tutorial-video">
-					<img src="../app/core/videos/cover-img/sample.png" alt="video-poster">
-				</div>
-				<div class="tutorial-info">
-					<div class="info-1">
-						<span class="tutorial-title"><a href="#">Learning X for Beginner</a></span>
-						<span class="tooltiptext">Click for details</span>
-					</div>
-					<div class="info-2">
-						<small class="tutorial-date">September 25,2020</small>
-					</div>
-				</div>
-				<div class="tutorial-play">
-					<div class="play-button">
-						<a href="#">Play</a>
-					</div>
-					<div class="play-info">
-						<span class="tutorial-like">
-							<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
-							<span>23K</span>
-						</span>
-						<span class="tutorial-cost">
-							<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
-							<span>45K</span>
-						</span>
-					</div>
-				</div>
-            </div>
+            </div> -->
         </div>
         <div class="tutorial-page">
             <ul>
