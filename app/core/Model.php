@@ -80,4 +80,15 @@ class Model {
 
     }
 
+    public function shortenTitle(array $tutorialSets): array{
+        foreach($tutorialSets as &$tutorialSet ){
+            if( strlen($tutorialSet['title']) > 23 ){
+                $tutorialSet['title'] = substr($tutorialSet['title'], 0, 20);
+                $tutorialSet['title'] = $tutorialSet['title'] . '...';
+            }
+        }
+        unset($tutorialSet);
+        return $tutorialSets;
+    }
+
 }

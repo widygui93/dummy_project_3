@@ -98,7 +98,7 @@ class Dashboard_teacher_model extends Model {
             $this->db->bind(':id', $id);
             $this->db->bind(':title', strtolower(stripslashes($data['title'])));
             $this->db->bind(':createdBy', $createdBy);
-            $this->db->bind(':prize', strtolower(stripslashes($data['prize'])));
+            $this->db->bind(':prize', stripslashes($data['prize']));
             $this->db->bind(':createdDate', $createdDate);
             $this->db->bind(':level', strtolower(stripslashes($data['level'])));
             $this->db->bind(':desc', strtolower(stripslashes($data['desc'])));
@@ -114,7 +114,7 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
-    public function getTutorials($username){
+    public function getTutorials(string $username): array{
         $query = "SELECT title,
                         img_cover,
                         to_char(prize, '999,999,999') AS prize,
@@ -122,7 +122,14 @@ class Dashboard_teacher_model extends Model {
                 FROM tutorial WHERE created_by=:username";
         $this->db->query($query);
         $this->db->bind(':username', $username);
-        return $this->db->resultSet();
+        $resultSets = $this->db->resultSet();
+
+        $resultSets = $this->shortenTitle($resultSets);
+
+        return $resultSets;
+        // return $this->db->resultSet();
+        // buat title jadi ... klu terlalu panjang
+            // dan cari dari liked_tutorial
 
     }
 }

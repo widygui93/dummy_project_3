@@ -71,6 +71,7 @@
         </form>
     </div>
     <div class="tutorial-display">
+	<?php var_dump($data['tutorials']) ?>
         <h3>Your Tutorial</h3>
         <div class="tutorial-wrap">
 			<?php foreach ($data['tutorials'] as $tutorial): ?>
