@@ -121,7 +121,7 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
-    public function getTutorials(string $username): array{
+    public function getTutorialsBy(string $username): array{
         $query = "
             SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date
                 FROM (
