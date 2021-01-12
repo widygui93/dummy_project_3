@@ -53,13 +53,19 @@ class Dashboard_teacher_model extends Model {
                 'title' => 'Failed',
                 'text' => 'Title Format: Combination of letters and numbers, Length: 6 - 50'
             ];
+        } elseif( $this->isBreak($data['level'], "/^[a-zA-Z_]*$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Level Format: letters only'
+            ];
         } elseif( $this->isBreak($data['prize'], "/^[0-9]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Prize Format: number only'
             ];
-        } elseif( $this->isBreak($data['desc'], "/^[\w -.,'!?\n\t\r]{10,300}$/") ){
+        } elseif( $this->isBreak($data['desc'], "/^[\w -.,!?\n\t\r]{10,300}$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -72,6 +78,7 @@ class Dashboard_teacher_model extends Model {
             $createdBy = $_SESSION["username-teacher"];
 
             $data['title'] = $this->purify($data['title']);
+            $data['level'] = $this->purify($data['level']);
             $data['prize'] = $this->purify($data['prize']);
             $data['desc'] = $this->purify($data['desc']);
 
@@ -96,12 +103,12 @@ class Dashboard_teacher_model extends Model {
             $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover)";
             $this->db->query($query);
             $this->db->bind(':id', $id);
-            $this->db->bind(':title', strtolower(stripslashes($data['title'])));
+            $this->db->bind(':title', stripslashes($data['title']));
             $this->db->bind(':createdBy', $createdBy);
             $this->db->bind(':prize', stripslashes($data['prize']));
             $this->db->bind(':createdDate', $createdDate);
-            $this->db->bind(':level', strtolower(stripslashes($data['level'])));
-            $this->db->bind(':desc', strtolower(stripslashes($data['desc'])));
+            $this->db->bind(':level', stripslashes($data['level']));
+            $this->db->bind(':desc', stripslashes($data['desc']));
             $this->db->bind(':video', $video);
             $this->db->bind(':imgCover', $imgCover);
             $this->db->execute();
@@ -115,11 +122,35 @@ class Dashboard_teacher_model extends Model {
     }
 
     public function getTutorials(string $username): array{
-        $query = "SELECT title,
-                        img_cover,
-                        to_char(prize, '999,999,999') AS prize,
-                        to_char(created_date, 'Month DD,YYYY') AS created_date 
-                FROM tutorial WHERE created_by=:username";
+        $query = "
+            SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date
+                FROM (
+                    SELECT tutorial.id,
+                        tutorial.title,
+                        tutorial.img_cover,
+                        tutorial.created_by,
+                        to_char(tutorial.prize, '999,999,999') AS prize,
+                        to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                        liked_tutorial.liked_by
+                    FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.id_tutorial
+                    WHERE tutorial.created_by = :username
+                ) AS tbl_tutorial
+            GROUP BY id,title, img_cover, created_by , prize,created_date
+            UNION
+            SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date
+                FROM (
+                    SELECT tutorial.id,
+                        tutorial.title,
+                        tutorial.img_cover,
+                        tutorial.created_by,
+                        to_char(tutorial.prize, '999,999,999') AS prize,
+                        to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                        liked_tutorial.liked_by
+                    FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.id_tutorial
+                    WHERE tutorial.created_by = :username AND liked_by IS NULL
+                ) AS tbl_tutorial
+            ORDER BY created_date DESC
+        ";
         $this->db->query($query);
         $this->db->bind(':username', $username);
         $resultSets = $this->db->resultSet();
@@ -129,7 +160,8 @@ class Dashboard_teacher_model extends Model {
         return $resultSets;
         // return $this->db->resultSet();
         // buat title jadi ... klu terlalu panjang
-            // dan cari dari liked_tutorial
+        // dan cari dari liked_tutorial
+        // buat modal untuk click for details, nanti detail info ny pake dom js
 
     }
 }

@@ -23,7 +23,7 @@
             <div class="form-group item-level">
                 <label for="level">Level</label>
                 <select name="level" id="level">
-                    <option value="all-level">All Level</option>
+                    <option value="all_level">All Level</option>
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="advance">Advance</option>
@@ -85,6 +85,7 @@
 							<span class="tooltiptext">Click for details</span>
 						</div>
 						<div class="info-2">
+							<span class="tutorial-author">By <?= $tutorial['created_by'] ?></span>
 							<small class="tutorial-date"><?= $tutorial['created_date'] ?></small>
 						</div>
 					</div>
@@ -95,7 +96,7 @@
 						<div class="play-info">
 							<span class="tutorial-like">
 								<img src="<?= BASEURL; ?>/svg/Green_Heart_Icon.svg" alt="like">
-								<span>23K</span>
+								<span><?= $tutorial['total_like'] ?></span>
 							</span>
 							<span class="tutorial-cost">
 								<img src="<?= BASEURL; ?>/svg/green_dollar_icon.svg" alt="cost">
