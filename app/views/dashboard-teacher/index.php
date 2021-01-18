@@ -80,7 +80,7 @@
 					</div>
 					<div class="tutorial-info">
 						<div class="info-1">
-							<span class="tutorial-title"><a href="#"><?= $tutorial['title'] ?></a></span>
+							<span class="tutorial-title"><a><?= $tutorial['title'] ?></a></span>
 							<span class="tooltiptext">Click for details</span>
 						</div>
 						<div class="info-2">

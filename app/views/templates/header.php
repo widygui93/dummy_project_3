@@ -6,6 +6,7 @@
 	<title>Unemi</title>
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/header-style.css">
 	<link rel="stylesheet" href="<?= $data['style']; ?>">
+	<link rel="stylesheet" href="<?= $data['style-modal-detail-tutorial'] ?? '' ?>">
 	<link rel="stylesheet" href="<?= BASEURL; ?>/css/footer-style.css">
 	<!-- CDN sweetalert -->
 	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

@@ -80,6 +80,19 @@ class Model {
 
     }
 
+    public function getVideoDuration($vidTmpName){
+        $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
+        $output = shell_exec($ffmpeg);
+        $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
+        if (preg_match($regex_duration, $output, $regs)) {
+            $hours = $regs [1] ? $regs [1] : null;
+            $mins = $regs [2] ? $regs [2] : null;
+            $secs = $regs [3] ? $regs [3] : null;
+        }
+        $video_duration = $hours . ':' . $mins . ':' . $secs;
+        return $video_duration;
+    }
+
     public function shortenTitle(array $tutorialSets): array{
         foreach($tutorialSets as &$tutorialSet ){
             if( strlen($tutorialSet['title']) > 23 ){

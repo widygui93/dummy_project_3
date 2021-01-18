@@ -76,6 +76,7 @@ class Dashboard_teacher_model extends Model {
             $createdDate = $this->getDate();
             $id = $this->createRandomID();
             $createdBy = $_SESSION["username-teacher"];
+            $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
 
             $data['title'] = $this->purify($data['title']);
             $data['level'] = $this->purify($data['level']);
@@ -100,7 +101,7 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
-            $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover)";
+            $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover, :videoDuration)";
             $this->db->query($query);
             $this->db->bind(':id', $id);
             $this->db->bind(':title', stripslashes($data['title']));
@@ -111,6 +112,7 @@ class Dashboard_teacher_model extends Model {
             $this->db->bind(':desc', stripslashes($data['desc']));
             $this->db->bind(':video', $video);
             $this->db->bind(':imgCover', $imgCover);
+            $this->db->bind(':videoDuration', $videoDuration);
             $this->db->execute();
 
             return [
@@ -158,10 +160,6 @@ class Dashboard_teacher_model extends Model {
         $resultSets = $this->shortenTitle($resultSets);
 
         return $resultSets;
-        // return $this->db->resultSet();
-        // buat title jadi ... klu terlalu panjang
-        // dan cari dari liked_tutorial
-        // buat modal untuk click for details, nanti detail info ny pake dom js
 
     }
 }
