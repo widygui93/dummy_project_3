@@ -65,6 +65,10 @@
                 <input type="file" name="img-cover" id="img-cover-input" class="form-control" required>
                 <img id="img-cover" src="<?= BASEURL; ?>/img/default-img.jpg" />
             </div>
+            <div class="form-group item-subtitle">
+                <label for="subtitle">Upload subtitle (Optional)</label>
+                <input type="file" name="subtitle" id="subtitle-input" class="form-control">
+            </div>
             <div class="form-group item-btn">
                 <button type="submit" name="upload" class="btn btn-outline-dark">Upload</button>
             </div>
