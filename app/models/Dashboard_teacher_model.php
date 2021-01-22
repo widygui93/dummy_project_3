@@ -33,6 +33,13 @@ class Dashboard_teacher_model extends Model {
                 'text' => 'Max image size is 200 KB'
             ];
 
+        } elseif( $this->isViolateMaxSize($_FILES['subtitle']['size'], 200000) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Max file subtitle size is 200 KB'
+            ];
+
         } elseif( $this->isViolateFileExtention($_FILES['img-cover']['name'], ['jpg', 'jpeg', 'png']) ){
             return [
                 'icon' => 'error',
@@ -45,6 +52,13 @@ class Dashboard_teacher_model extends Model {
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'You upload incorrect video extention'
+            ];
+
+        } elseif( $this->isViolateFileExtention($_FILES['subtitle']['name'], ['vtt']) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'You upload incorrect subtitle extention'
             ];
 
         } elseif( $this->isBreak($data['title'], "/^[a-zA-Z0-9 .,\-&]{6,50}$/") ){
@@ -92,6 +106,15 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
+            $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
+            if( !$subtitle ){
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Failed to upload subtitle'
+                ];
+            }
+
             $video = $this->upload("../app/core/videos/", $_FILES['video']['tmp_name'], $_FILES['video']['name']);
             if( !$video ){
                 return [
@@ -101,7 +124,7 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
-            $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover, :videoDuration)";
+            $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover, :videoDuration, :subtitle)";
             $this->db->query($query);
             $this->db->bind(':id', $id);
             $this->db->bind(':title', stripslashes($data['title']));
@@ -113,6 +136,7 @@ class Dashboard_teacher_model extends Model {
             $this->db->bind(':video', $video);
             $this->db->bind(':imgCover', $imgCover);
             $this->db->bind(':videoDuration', $videoDuration);
+            $this->db->bind(':subtitle', $subtitle);
             $this->db->execute();
 
             return [
