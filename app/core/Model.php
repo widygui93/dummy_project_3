@@ -94,9 +94,11 @@ class Model {
     }
 
     public function shortenTitle(array $tutorialSets): array{
+        $maxChars = 23; // max jumlah karakter yang di tampilkan di browser
+        $charLimit = 20; // batas karakter sebelum ...
         foreach($tutorialSets as &$tutorialSet ){
-            if( strlen($tutorialSet['title']) > 23 ){
-                $tutorialSet['title'] = substr($tutorialSet['title'], 0, 20);
+            if( strlen($tutorialSet['title']) > $maxChars ){
+                $tutorialSet['title'] = substr($tutorialSet['title'], 0, $charLimit);
                 $tutorialSet['title'] = $tutorialSet['title'] . '...';
             }
         }
