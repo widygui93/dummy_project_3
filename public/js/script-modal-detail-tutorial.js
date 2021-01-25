@@ -1,25 +1,34 @@
 $(function(){
-	  
-	// Get the modal
-    // let modal = $('#modalDetailTutorial');
 
     $('.tutorial-title').click(function(){
         $('#modalDetailTutorial').css("display", "block");
-        // $(".detail-tutorial").append(" <b>Appended text</b>.");
-        let title = $("<p></p>").text($(this).find('a').text());
-        let createdBy = $("<p></p>").text($(this).parent().next().find('span').text());
-        let createdDate = $("<p></p>").text($(this).parent().next().find('small').text());
-        let prize = $("<p></p>").text($(this).parent().parent().next().find('.tutorial-cost').children('span').text());
-        let likes = $("<p></p>").text($(this).parent().parent().next().find('.tutorial-like').children('span').text());
-        let imgCoverSrc = $(this).parent().parent().prev().find('img').attr("src");
-        let imgCover = $('<img>', {src: imgCoverSrc} );
-        // $(".detail-tutorial").text(title);
-        $(".detail-tutorial").append(title);
-        $(".detail-tutorial").append(createdBy);
-        $(".detail-tutorial").append(createdDate);
-        $(".detail-tutorial").append(prize);
-        $(".detail-tutorial").append(likes);
-        $(".detail-tutorial").append(imgCover);
+        let id = $(this).prev().text();
+        let url = $(this).prev().prev().text();
+        $.post(url,{ id:id }, function(data, status){
+            let tutorial = JSON.parse(data);
+
+            let title = $("<p></p>").text('Title: ' .concat(tutorial.title));
+            let desc = $("<p></p>").text('Desc: ' .concat(tutorial.description));
+            let videoDuration = $("<p></p>").text('Duration: ' .concat(tutorial.video_duration));
+            let createdBy = $("<p></p>").text('By: ' .concat(tutorial.created_by));
+            let createdDate = $("<p></p>").text('Created on: ' .concat(tutorial.created_date));
+            let prize = $("<p></p>").text('Prize: ' .concat(tutorial.prize));
+            let likes = $("<p></p>").text('Total likes: ' .concat(tutorial.total_like));
+            let level = $("<p></p>").text('Level: ' .concat(tutorial.level));
+            let subtitle = $("<p></p>").text(tutorial.subtitle === null ? 'No for subtitle' : 'Yes for subtitle' );
+            let imgCover = $('<img>', {src: '../app/core/videos/cover-img/' .concat(tutorial.img_cover)} );
+
+            $(".detail-tutorial").append(title);
+            $(".detail-tutorial").append(desc);
+            $(".detail-tutorial").append(videoDuration);
+            $(".detail-tutorial").append(createdBy);
+            $(".detail-tutorial").append(createdDate);
+            $(".detail-tutorial").append(prize);
+            $(".detail-tutorial").append(likes);
+            $(".detail-tutorial").append(level);
+            $(".detail-tutorial").append(subtitle);
+            $(".detail-tutorial").append(imgCover);
+        });
     });
 
     $('.close-detail-tutorial').click(function(){
@@ -28,12 +37,12 @@ $(function(){
     });
 
     // When the user clicks anywhere outside of the modal, close it
-    // window.onclick = function(event) {
-    //     if (event.target == modal) {
-    //         modal.style.display = "none";
-            
-    //     }
-    //     // $('#modalDetailTutorial').css("display", "none");
-    // }
+    const modalDetailTutorial = $("#modalDetailTutorial")[0];
+    $(window).click(function(event){
+        if (event.target == modalDetailTutorial) {
+            $('#modalDetailTutorial').css("display", "none");
+            $('.detail-tutorial').empty();
+        }
+    });
 
 });
