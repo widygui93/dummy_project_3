@@ -19,7 +19,4 @@ $(function(){
 		$source.parent()[0].load();
 	});
 
-	// let title = $(".tutorial-title");
-	// console.log(title);
-
 });

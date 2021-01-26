@@ -3,13 +3,13 @@ class Dashboard_teacher extends Controller{
     public function index(){
         if( $this->model('Verify_model')->isLoginAsTeacher() ) {
             $data['style'] = BASEURL.'/css/dashboard-teacher-style.css';
-            $data['style-modal-detail-tutorial'] = BASEURL.'/css/modal-detail-tutorial-style.css';
+            $data['style-tutorial'] = BASEURL.'/css/tutorial-style.css';
             $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
             $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
             $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username-teacher"]);
             $this->view('templates/header', $data);
-            $this->view('dashboard-teacher/index', $data);
-            $this->view('templates/modal-detail-tutorial');
+            $this->view('dashboard-teacher/index');
+            $this->view('tutorial/index', $data);
             $this->view('templates/footer', $data);
         } else {
             return $this->model('Verify_model')->goHome();
