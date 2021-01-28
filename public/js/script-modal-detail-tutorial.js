@@ -14,6 +14,7 @@ $(function(){
             let createdDate = $("<p></p>").text('Created on: ' .concat(tutorial.created_date));
             let prize = $("<p></p>").text('Prize: ' .concat(tutorial.prize));
             let likes = $("<p></p>").text('Total likes: ' .concat(tutorial.total_like));
+            let purchased = $("<p></p>").text('Total purchased: ' .concat(tutorial.total_purchased));
             let level = $("<p></p>").text('Level: ' .concat(tutorial.level));
             let subtitle = $("<p></p>").text(tutorial.subtitle === null ? 'No for subtitle' : 'Yes for subtitle' );
             let imgCover = $('<img>', {src: '../app/core/videos/cover-img/' .concat(tutorial.img_cover)} );
@@ -25,6 +26,7 @@ $(function(){
             $(".detail-tutorial").append(createdDate);
             $(".detail-tutorial").append(prize);
             $(".detail-tutorial").append(likes);
+            $(".detail-tutorial").append(purchased);
             $(".detail-tutorial").append(level);
             $(".detail-tutorial").append(subtitle);
             $(".detail-tutorial").append(imgCover);
