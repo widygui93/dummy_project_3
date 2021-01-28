@@ -47,7 +47,6 @@ $(function(){
         }
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
-    // cari query utk purchase_by ada brp
     // tentukan tag dan definisi masing2 tag
 
 });
