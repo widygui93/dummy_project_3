@@ -7,6 +7,18 @@ class Detail_tutorial_model {
     }
 
     public function getDetailTutorialBy(string $id):array {
+        $detailTutorial = $this->getDetail($id);
+        $totalPurchased = $this->getTotalPurchased($id);
+        $totalLiked = $this->getTotalLiked($id);
+
+        $detailTutorial['total_purchased'] = $totalPurchased['total_purchased'];
+        $detailTutorial['total_like'] = $totalLiked['total_like'];
+
+        return $detailTutorial;
+
+    }
+
+    private function getDetail(string $id): array{
         $query = 
             "SELECT title, 
                 img_cover,
@@ -19,18 +31,17 @@ class Detail_tutorial_model {
                 tutorial.desc AS description 
             FROM tutorial WHERE id = :id
         ";
-        $detailTutorial = $this->retrieveData($query,$id);
+        return $this->retrieveData($query,$id);
+    }
 
+    private function getTotalPurchased(string $id): array{
         $query = "SELECT COUNT(id) AS total_purchased FROM purchased_tutorial WHERE id_tutorial = :id";
-        $totalPurchased = $this->retrieveData($query,$id);
-        $detailTutorial['total_purchased'] = $totalPurchased['total_purchased'];
+        return $this->retrieveData($query,$id);
+    }
 
+    private function getTotalLiked(string $id): array {
         $query = "SELECT COUNT(id) AS total_like FROM liked_tutorial WHERE id_tutorial = :id";
-        $totalLiked = $this->retrieveData($query,$id);
-        $detailTutorial['total_like'] = $totalLiked['total_like'];
-
-        return $detailTutorial;
-
+        return $this->retrieveData($query,$id);
     }
 
     private function retrieveData(string $queryStmt, string $id): array{
