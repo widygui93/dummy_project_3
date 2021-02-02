@@ -54,7 +54,7 @@ class Dashboard_teacher_model extends Model {
                 'text' => 'You upload incorrect video extention'
             ];
 
-        } elseif( $this->isViolateFileExtention($_FILES['subtitle']['name'], ['vtt']) ){
+        } elseif( $this->isViolateFileExtention($_FILES['subtitle']['name'], ['vtt', '']) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -106,13 +106,16 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
-            $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
-            if( !$subtitle ){
-                return [
-                    'icon' => 'error',
-                    'title' => 'Failed',
-                    'text' => 'Failed to upload subtitle'
-                ];
+            $subtitle = null;
+            if( $_FILES['subtitle']['error'] !== 4 ){
+                $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
+                if( !$subtitle ){
+                    return [
+                        'icon' => 'error',
+                        'title' => 'Failed',
+                        'text' => 'Failed to upload subtitle'
+                    ];
+                }
             }
 
             $video = $this->upload("../app/core/videos/", $_FILES['video']['tmp_name'], $_FILES['video']['name']);
@@ -149,7 +152,7 @@ class Dashboard_teacher_model extends Model {
 
     public function getTutorialsBy(string $username): array{
         $query = "
-            SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date
+            SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date
                 FROM (
                     SELECT tutorial.id,
                         tutorial.title,
@@ -157,13 +160,14 @@ class Dashboard_teacher_model extends Model {
                         tutorial.created_by,
                         to_char(tutorial.prize, '999,999,999') AS prize,
                         to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                        tutorial.created_date AS tutorial_date,
                         liked_tutorial.liked_by
                     FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.id_tutorial
                     WHERE tutorial.created_by = :username
                 ) AS tbl_tutorial
-            GROUP BY id,title, img_cover, created_by , prize,created_date
+            GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date
             UNION
-            SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date
+            SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date
                 FROM (
                     SELECT tutorial.id,
                         tutorial.title,
@@ -171,11 +175,12 @@ class Dashboard_teacher_model extends Model {
                         tutorial.created_by,
                         to_char(tutorial.prize, '999,999,999') AS prize,
                         to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                        tutorial.created_date AS tutorial_date,
                         liked_tutorial.liked_by
                     FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.id_tutorial
                     WHERE tutorial.created_by = :username AND liked_by IS NULL
                 ) AS tbl_tutorial
-            ORDER BY created_date DESC
+            ORDER BY tutorial_date DESC
         ";
         $this->db->query($query);
         $this->db->bind(':username', $username);

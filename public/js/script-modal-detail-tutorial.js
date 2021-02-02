@@ -6,6 +6,8 @@ $(function(){
         let url = $(this).prev().prev().text();
         $.post(url,{ id:id }, function(data, status){
             let tutorial = JSON.parse(data);
+            console.log(tutorial.tags);
+            console.log(tutorial.tags.length);
 
             let title = $("<p></p>").text('Title: ' .concat(tutorial.title));
             let desc = $("<p></p>").text('Desc: ' .concat(tutorial.description));
@@ -46,6 +48,8 @@ $(function(){
             $('.detail-tutorial').empty();
         }
     });
-    
+    // coba buat agar performance detail tutorial tidak delay karena ajax
+    // tentukan tag dan definisi masing2 tag
+    // buat penjagaan utk controller detail_tutorial.php dari di akses di browser atau di source yg di devtool
 
 });

@@ -16,7 +16,7 @@ class Model {
     }
     
     public function getDate(): string {
-        return date("Y-m-d",strtotime(date("Y-m-d")));
+        return date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")));
     }
 
     /*untuk cek jika user langsung ketik 
