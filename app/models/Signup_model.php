@@ -100,7 +100,6 @@ class Signup_model extends Model {
         $reg_date = $this->getDate();
         $coin = 0;
         $profile_pic = 'default.png';
-        $id = $this->createRandomID();
         if( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
@@ -167,18 +166,17 @@ class Signup_model extends Model {
             // enkripsi password
             $password = password_hash($data['password'], PASSWORD_DEFAULT);
 
-            $query = "INSERT INTO teacher VALUES (:id, :nama, :username, :email, :expert, :reg_date, :coin, :password, :profile_pic)";
-            $this->db->query($query);
-            $this->db->bind(':id', $id);
-            $this->db->bind(':nama', strtolower(stripslashes($data['name'])));
-            $this->db->bind(':username', strtolower(stripslashes($data['username'])));
-            $this->db->bind(':email', strtolower(stripslashes($data['email'])));
-            $this->db->bind(':reg_date', $reg_date);
-            $this->db->bind(':coin', $coin);
-            $this->db->bind(':password', $password);
-            $this->db->bind(':profile_pic', $profile_pic);
-            $this->db->bind(':expert', strtolower(stripslashes($data['expert'])));
-            $this->db->execute();
+            $teacher = R::dispense('teacher');
+            $teacher->name = strtolower(stripslashes($data['name']));
+            $teacher->username = strtolower(stripslashes($data['username']));
+            $teacher->email = strtolower(stripslashes($data['email']));
+            $teacher->reg_date = $reg_date;
+            $teacher->coin = $coin;
+            $teacher->password = $password;
+            $teacher->profile_pic = $profile_pic;
+            $teacher->expert = strtolower(stripslashes($data['expert']));
+            $teacher->expert = $data['expert'];
+            R::store($teacher);
 
             return [
                 'icon' => 'success',
