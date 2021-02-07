@@ -19,7 +19,7 @@ class Database {
         ];
 
         try{
-            $this->dbh = new PDO($dsn, $this->user, $this->pass, $option);
+			R::setup( $dsn,$this->user, $this->pass );
         } catch(PDOException $e){
             echo "gagal connect";
             die($e->getMessage());

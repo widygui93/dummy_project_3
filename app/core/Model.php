@@ -16,7 +16,7 @@ class Model {
     }
     
     public function getDate(): string {
-        return date("Y-m-d H:i:s",strtotime(date("Y-m-d H:i:s")));
+        return date("Y-m-d H:i:s");
     }
 
     /*untuk cek jika user langsung ketik 
@@ -41,11 +41,8 @@ class Model {
     }
 
     public function isUsernameExist(string $username, string $table): bool{
-        $this->db = new Database;
-        $query = "SELECT * FROM  " . $table . " WHERE username = '" . strtolower(stripslashes($username)) . "'";
-        $this->db->query($query);
-        $this->db->execute();
-        return $this->db->rowCount() > 0 ? true : false;
+        $numOfUser = R::count( $table, ' username = ? ' , [ $username ] );
+        return $numOfUser > 0 ? true : false;
     }
 
     public function isBreak(string $data, string $pattern): bool{
