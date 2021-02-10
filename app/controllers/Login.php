@@ -18,8 +18,6 @@ class Login extends Controller {
 		if( $this->model('Verify_model')->isUserLogin() ) return $this->model('Verify_model')->goHome();
 		if( $this->model('Verify_model')->isDataEmpty($_POST) ) return $this->model('Verify_model')->goHome();
 		$result = $this->model('Login_model')->login($_POST, 'student');
-		if( $result['title'] == 'Failed' ) return $this->model('Login_model')->setFlash($result, 'student');
-		$this->model('Login_model')->setSession($_POST["username"], 'student');
 		$this->model('Verify_model')->goHome();
 	}
 	public function teacher(){

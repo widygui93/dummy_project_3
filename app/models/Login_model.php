@@ -22,44 +22,43 @@ class Login_model extends Model {
             $data["username"] = $this->purify($data["username"]);
             $data['password'] = $this->purify($data['password']);
 
-            $query = "SELECT * FROM $table WHERE username=:username";
-            $this->db->query($query);
-            $this->db->bind(':username', strtolower(stripslashes($data['username'])));
-            $this->db->execute();
+            $numOfRecord = R::count( $table, ' username = ? ' , [ strtolower(stripslashes($data['username'])) ] );
 
 		    // cek username ada di db atau tidak
-            if( $this->db->rowCount() === 1 ){
+            if( $numOfRecord === 1 ){
                 // cek password sama atau tidak
-                $row = $this->db->single();
-                if( password_verify($data['password'], $row["password"]) ){
+                $row = R::getAll('SELECT password FROM '. $table. ' WHERE username = ? ',[ strtolower(stripslashes($data['username'])) ] );
+                if( password_verify($data['password'], $row[0]['password']) ){
+                    R::close();
 
-                    return [
-                        'icon' => 'success',
-                        'title' => 'Success',
-                        'text' => 'Login successfully'
-                    ];
+                    $this->setSession(strtolower(stripslashes($data["username"])), $table);
+
                 } else {
-                    return [
+                    R::close();
+                    $result = [
                         'icon' => 'error',
                         'title' => 'Failed',
                         'text' => 'Username or Password are invalid'
                     ];
+                    $this->setFlash($result ,$table);
                 }
             } else {
-                return [
+                R::close();
+                $result = [
                     'icon' => 'error',
                     'title' => 'Failed',
                     'text' => 'Username or Password are invalid'
                 ];
+                $this->setFlash($result ,$table);
             }
         }
     }
-    public function setFlash($result, $method){
+    private function setFlash($result, $method){
         Flasher::setFlash($result['icon'], $result['title'], $result['text']);
         header('Location: ' . BASEURL . '/login/' . $method . '');
 		exit;
     }
-    public function setSession($username, $user){
+    private function setSession($username, $user){
         if( $user == 'teacher' ){
             $_SESSION["login-teacher"] = true;
 		    $_SESSION["username-teacher"] = strtolower(stripslashes($username));
