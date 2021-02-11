@@ -27,11 +27,13 @@ class Login_model extends Model {
 		    // cek username ada di db atau tidak
             if( $numOfRecord === 1 ){
                 // cek password sama atau tidak
-                $row = R::getAll('SELECT password FROM '. $table. ' WHERE username = ? ',[ strtolower(stripslashes($data['username'])) ] );
-                if( password_verify($data['password'], $row[0]['password']) ){
+                $userName = strtolower(stripslashes($data['username']));
+                $record = R::findOne( $table, ' username = ? ', [ $userName ] );
+                $passwd = $record->export()['password'];
+                if( password_verify($data['password'], $passwd) ){
                     R::close();
 
-                    $this->setSession(strtolower(stripslashes($data["username"])), $table);
+                    $this->setSession($userName, $table);
 
                 } else {
                     R::close();
