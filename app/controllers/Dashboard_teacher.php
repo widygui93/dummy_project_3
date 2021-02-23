@@ -9,7 +9,7 @@ class Dashboard_teacher extends Controller{
             $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username-teacher"]);
             $this->view('templates/header', $data);
             $this->view('dashboard-teacher/index');
-            $this->view('tutorial/index', $data);
+            empty( $data['tutorials'] ) ? $this->view('tutorial/no-tutorial') : $this->view('tutorial/index', $data);
             $this->view('templates/footer', $data);
         } else {
             return $this->model('Verify_model')->goHome();
