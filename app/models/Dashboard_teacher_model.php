@@ -88,7 +88,6 @@ class Dashboard_teacher_model extends Model {
         }
         else {
             $createdDate = $this->getDate();
-            $id = $this->createRandomID();
             $createdBy = $_SESSION["username-teacher"];
             $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
 
@@ -127,20 +126,18 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
-            $query = "INSERT INTO tutorial VALUES (:id, :title, :createdBy, :prize, :createdDate, :level, :desc, :video, :imgCover, :videoDuration, :subtitle)";
-            $this->db->query($query);
-            $this->db->bind(':id', $id);
-            $this->db->bind(':title', stripslashes($data['title']));
-            $this->db->bind(':createdBy', $createdBy);
-            $this->db->bind(':prize', stripslashes($data['prize']));
-            $this->db->bind(':createdDate', $createdDate);
-            $this->db->bind(':level', stripslashes($data['level']));
-            $this->db->bind(':desc', stripslashes($data['desc']));
-            $this->db->bind(':video', $video);
-            $this->db->bind(':imgCover', $imgCover);
-            $this->db->bind(':videoDuration', $videoDuration);
-            $this->db->bind(':subtitle', $subtitle);
-            $this->db->execute();
+            $tutorial = R::dispense( 'tutorial' );
+            $tutorial->title = stripslashes($data['title']);
+            $tutorial->created_by = $createdBy;
+            $tutorial->prize = stripslashes($data['prize']);
+            $tutorial->created_date = $createdDate;
+            $tutorial->level = stripslashes($data['level']);
+            $tutorial->desc = stripslashes($data['desc']);
+            $tutorial->video = $video;
+            $tutorial->img_cover = $imgCover;
+            $tutorial->video_duration = $videoDuration;
+            $tutorial->subtitle = $subtitle;
+            R::store($tutorial);
 
             return [
                 'icon' => 'success',
