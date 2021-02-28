@@ -6,6 +6,7 @@ class Dashboard_teacher extends Controller{
             $data['style-tutorial'] = BASEURL.'/css/tutorial-style.css';
             $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
             $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
+            $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
             $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username-teacher"]);
             $this->view('templates/header', $data);
             $this->view('dashboard-teacher/index');

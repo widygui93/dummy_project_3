@@ -7,7 +7,6 @@
                 </div>
                 <div class="tutorial-info">
                     <div class="info-1">
-                        <span style="display: none;"><?= BASEURL; ?>/Detail_tutorial</span>
                         <span style="display: none;"><?= $tutorial['id'] ?></span>
                         <span class="tutorial-title"><a><?= $tutorial['title'] ?></a></span>
                         <span class="tooltiptext">Click for details</span>

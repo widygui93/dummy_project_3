@@ -58,6 +58,7 @@
 	</div>
 <script src="<?= BASEURL; ?>/js/jquery-3.4.1.min.js"></script>
 <script src="<?= BASEURL; ?>/js/script-header.js"></script>
+<script src="<?= $data['script-axios'] ?? '' ?>"></script>
 <script src="<?= $data['script'] ?? '' ?>" ></script>
 <script src="<?= $data['script-modal-detail-tutorial'] ?? '' ?>" ></script>
 </body>
