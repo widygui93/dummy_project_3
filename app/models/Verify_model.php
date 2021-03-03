@@ -17,4 +17,8 @@ class Verify_model {
         return empty($_SESSION["login-teacher"]) ? false : true;
     }
 
+    public function isRequestDataEmpty(string $reqData): bool{
+        return empty($reqData) ? true : false;
+    }
+
 }

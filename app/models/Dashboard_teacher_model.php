@@ -67,7 +67,7 @@ class Dashboard_teacher_model extends Model {
                 'title' => 'Failed',
                 'text' => 'Title Format: Combination of letters and numbers, Length: 6 - 50'
             ];
-        } elseif( $this->isBreak($data['level'], "/^[a-zA-Z_]*$/") ){
+        } elseif( $this->isBreak($data['level'], "/^[a-zA-Z ]*$/") ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -132,7 +132,7 @@ class Dashboard_teacher_model extends Model {
             $tutorial->prize = stripslashes($data['prize']);
             $tutorial->created_date = $createdDate;
             $tutorial->level = stripslashes($data['level']);
-            $tutorial->desc = stripslashes($data['desc']);
+            $tutorial->description = stripslashes($data['desc']);
             $tutorial->video = $video;
             $tutorial->img_cover = $imgCover;
             $tutorial->video_duration = $videoDuration;

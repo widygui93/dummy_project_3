@@ -20,7 +20,7 @@ class Detail_tutorial_model {
 
     }
 
-    private function getDetail(int $id): array{
+    private function getDetail(string $id): array{
 
         $query = "
             SELECT title,
@@ -32,7 +32,7 @@ class Detail_tutorial_model {
                     level,
                     video_duration,
                     subtitle,
-                    tutorial.desc AS description 
+                    description 
             FROM tutorial WHERE id = :id
         ";
         return R::getAll( $query, [ ':id' => $id ] );
@@ -62,6 +62,10 @@ class Detail_tutorial_model {
 
         return $possibleTags;
 
+    }
+
+    public function isIdNotAvailable($id){
+        return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
     }
 
 }

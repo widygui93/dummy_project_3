@@ -1,20 +1,18 @@
 <?php
 class Dashboard_teacher extends Controller{
     public function index(){
-        if( $this->model('Verify_model')->isLoginAsTeacher() ) {
-            $data['style'] = BASEURL.'/css/dashboard-teacher-style.css';
-            $data['style-tutorial'] = BASEURL.'/css/tutorial-style.css';
-            $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
-            $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
-            $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
-            $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username-teacher"]);
-            $this->view('templates/header', $data);
-            $this->view('dashboard-teacher/index');
-            empty( $data['tutorials'] ) ? $this->view('tutorial/no-tutorial') : $this->view('tutorial/index', $data);
-            $this->view('templates/footer', $data);
-        } else {
-            return $this->model('Verify_model')->goHome();
-        }
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome(); 
+
+        $data['style'] = BASEURL.'/css/dashboard-teacher-style.css';
+        $data['style-tutorial'] = BASEURL.'/css/tutorial-style.css';
+        $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
+        $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
+        $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
+        $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username-teacher"]);
+        $this->view('templates/header', $data);
+        $this->view('dashboard-teacher/index');
+        empty( $data['tutorials'] ) ? $this->view('tutorial/no-tutorial') : $this->view('tutorial/index', $data);
+        $this->view('templates/footer', $data);
     }
     public function upload(){
         if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();

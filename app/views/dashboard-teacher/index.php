@@ -23,7 +23,7 @@
             <div class="form-group item-level">
                 <label for="level">Level</label>
                 <select name="level" id="level">
-                    <option value="all_level">All Level</option>
+                    <option value="all level">All Level</option>
                     <option value="beginner">Beginner</option>
                     <option value="intermediate">Intermediate</option>
                     <option value="advance">Advance</option>
