@@ -14,7 +14,12 @@ $(function(){
             
             tutorial => {
 
-                if( tutorial.data == 'Tutorial is not available' ){
+                if( tutorial.data == 'ID is invalid data type' ){
+
+                    let msg = $("<p></p>").text('ID is invalid data type');
+                    $(".detail-tutorial").append(msg);
+
+                } else if( tutorial.data == 'Tutorial is not available' ){
 
                     let msg = $("<p></p>").text('Tutorial is not available');
                     $(".detail-tutorial").append(msg);
