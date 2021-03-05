@@ -24,6 +24,11 @@ $(function(){
                     let msg = $("<p></p>").text('Tutorial is not available');
                     $(".detail-tutorial").append(msg);
 
+                } else if( tutorial.data == 'Tutorial is not authorized to access' ){
+
+                    let msg = $("<p></p>").text('Tutorial is not authorized to access');
+                    $(".detail-tutorial").append(msg);
+
                 } else {
 
                     let title = $("<p></p>").text('Title: ' .concat(tutorial.data[0].title));
@@ -78,8 +83,6 @@ $(function(){
         }
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
-    // buat penjagaan utk controller detail_tutorial.php dari di akses di browser atau di source yg di devtool
-    // ubah value dari all_level jadi all level (done)
     // ubah nilai pembanding utk latest tutorial, best seller dan most liked jadi konstanta di detail_tutorial_model
     // semua id mesti uuid agar random jadi g bisa muncul detail tutorial yg berbeda saat di klik title nya (done)
 });

@@ -72,4 +72,9 @@ class Detail_tutorial_model {
         return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
     }
 
+    public function isIneligibleTutorial(string $id): bool {
+        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username-teacher"] ]);
+        return empty($tutorials) ? true : false;
+    }
+
 }

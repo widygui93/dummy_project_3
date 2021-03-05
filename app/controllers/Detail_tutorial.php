@@ -8,11 +8,9 @@ class Detail_tutorial extends Controller{
         if( $this->model('Detail_tutorial_model')->isIDNotUUID($id) ) echo "ID is invalid data type";
 
         elseif( $this->model('Detail_tutorial_model')->isIdNotAvailable($id) ) echo "Tutorial is not available"; 
-        // elseif(){
+        
+        elseif( $this->model('Detail_tutorial_model')->isIneligibleTutorial($id) ) echo "Tutorial is not authorized to access";
 
-            // cek jika tutorial yg mau di view detail ny bukan milik si session teacher yg login
-
-        // } 
         else {
             $responseArrayData = $this->model('Detail_tutorial_model')->getDetailTutorialBy($id);
             $responseJsonData = json_encode($responseArrayData);
