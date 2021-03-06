@@ -8,8 +8,8 @@ class Signup_model extends Model {
 
     public function signupStudent($data){
         $reg_date = $this->getDate();
-        $coin = 100;
-        $profile_pic = 'default.png';
+        $coin = INITIAL_STUDENT_COIN;
+        $profile_pic = DEFAULT_PROFILE_PIC;
         if( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
@@ -98,8 +98,8 @@ class Signup_model extends Model {
     }
     public function signupTeacher($data){
         $reg_date = $this->getDate();
-        $coin = 0;
-        $profile_pic = 'default.png';
+        $coin = INITIAL_TEACHER_COIN;
+        $profile_pic = DEFAULT_PROFILE_PIC;
         if( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
@@ -175,7 +175,6 @@ class Signup_model extends Model {
             $teacher->password = $password;
             $teacher->profile_pic = $profile_pic;
             $teacher->expert = strtolower(stripslashes($data['expert']));
-            $teacher->expert = $data['expert'];
             R::store($teacher);
 
             return [
