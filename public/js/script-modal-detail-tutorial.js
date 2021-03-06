@@ -83,6 +83,5 @@ $(function(){
         }
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
-    // ubah nilai pembanding utk latest tutorial, best seller dan most liked jadi konstanta di detail_tutorial_model
     // semua id mesti uuid agar random jadi g bisa muncul detail tutorial yg berbeda saat di klik title nya (done)
 });

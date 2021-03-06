@@ -56,9 +56,9 @@ class Detail_tutorial_model {
         // ubah detik ke hari
         $selisihDalamHari = $selisihDalamTimestamp / 86400;
         
-        if( $selisihDalamHari < 1 ) $possibleTags[] = 'Latest Tutorial';
-        if( $totalPurchased > 0 ) $possibleTags[] = 'Best Seller';
-        if( $totalLiked > 0 ) $possibleTags[] = 'Most Liked';
+        if( $selisihDalamHari < MAX_DAYS_LATEST_TUTORIAL ) $possibleTags[] = 'Latest Tutorial';
+        if( $totalPurchased > BEST_SELLER_THRESHOLD )      $possibleTags[] = 'Best Seller';
+        if( $totalLiked > MOST_LIKED_THRESHOLD )           $possibleTags[] = 'Most Liked';
 
         return $possibleTags;
 
