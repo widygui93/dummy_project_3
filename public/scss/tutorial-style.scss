@@ -164,8 +164,18 @@
                         margin: 0;
                     }
                 }
-                img{
-                    width: 50%;
+                .like-container{
+                    display: flex;
+                    flex-direction: row;
+                    align-items: center;
+                    .like-logo{
+                        @include icon-size;
+                        margin: 0;
+                        padding-right: 2px;
+                    }
+                }
+                .img-cover{
+                    max-width: 100%;
                     display: block;
                     margin: 25px auto;
                 }

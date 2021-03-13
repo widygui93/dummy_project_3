@@ -36,14 +36,16 @@ $(function(){
                     let videoDuration = $("<p></p>").text('Duration: ' + tutorial.data[0].video_duration);
                     let createdBy = $("<a href='#' class='created-by'></a>").text(tutorial.data[0].created_by);
                     let createdDate = $("<p></p>").text('Created on: ' + tutorial.data[0].created_date);
-                    let dollarLogo = $("<img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='like'></img>");
+                    let dollarLogo = $("<img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='cost'>");
                     let prize = $("<span class='prize'></span>").text(tutorial.data[0].prize);
                     let prizeContainer = $("<div class='prize-container'></div>").append(dollarLogo).append(prize);
-                    let likes = $("<p></p>").text('Total likes: ' + tutorial.data[0].total_like);
+                    let logoLikes = $("<img src='http://localhost/widy/project/dummy_project_3/public/svg/Green_Heart_Icon.svg' class='like-logo' alt='like'>");
+                    let likes = $("<p></p>").text(tutorial.data[0].total_like + ' Likes');
+                    let likeContainer = $("<div class='like-container'></div>").append(logoLikes).append(likes);
                     let purchased = $("<p></p>").text('Purchased By: ' + tutorial.data[0].total_purchased + ' Students');
                     let level = $("<p></p>").text('Level: ' + tutorial.data[0].level);
                     let subtitle = $("<span></span>").text('Subtitle').addClass(tutorial.data[0].subtitle === null ? 'without-subtitle' : 'with-subtitle' );
-                    let imgCover = $('<img>', {src: '../app/core/videos/cover-img/' + tutorial.data[0].img_cover} );
+                    let imgCover = $('<img>', {src: '../app/core/videos/cover-img/' + tutorial.data[0].img_cover} ).addClass('img-cover');
 
                     $(".detail-tutorial").append(imgCover);
                     $(".detail-tutorial").append(title);
@@ -51,7 +53,7 @@ $(function(){
                     $(".detail-tutorial").append(createdBy);
                     $(".detail-tutorial").append(prizeContainer);
                     $(".detail-tutorial").append(level);
-                    $(".detail-tutorial").append(likes);
+                    $(".detail-tutorial").append(likeContainer);
                     $(".detail-tutorial").append(purchased);
                     $(".detail-tutorial").append(createdDate);
                     $(".detail-tutorial").append(videoDuration);
