@@ -46,7 +46,7 @@
             <li><a href="#">8</a></li>
         </ul>
     </div>
-    <div id="modalDetailTutorial" class="modal">
+    <div class="modalDetailTutorial">
         <div class="modal-content">
             <span class="close-detail-tutorial">&times;</span>
             <h3>Tutorial Detail</h3>

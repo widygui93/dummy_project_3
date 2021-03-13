@@ -108,7 +108,7 @@
             }
         }
     }
-    .modal {
+    .modalDetailTutorial {
         display: none; /* Hidden by default */
         position: fixed; /* Stay in place */
         z-index: 1; /* Sit on top */
@@ -121,23 +121,92 @@
         background-color: rgb(0,0,0); /* Fallback color */
         background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
         .modal-content{
-            background-color: #fefefe;
+            background-color: $light-grey;
             margin: auto;
             padding: 20px;
             border: 1px solid #888;
+            border-radius: 5px;
             width: 80%;
-        }
-        .close-detail-tutorial {
-            color: #aaaaaa;
-            float: right;
-            font-size: 28px;
-            font-weight: bold;
-            &:hover{
-                color: #000;
-                text-decoration: none;
-                cursor: pointer;
+            .close-detail-tutorial {
+                color: #aaaaaa;
+                float: right;
+                font-size: 28px;
+                font-weight: bold;
+                &:hover{
+                    color: #000;
+                    text-decoration: none;
+                    cursor: pointer;
+                }
+            }
+            h3{
+                text-align: center;
+            }
+            .detail-tutorial{
+                line-height: 1.8;
+                max-height: 450px;
+                overflow-y: scroll;
+                .title{
+                    text-align: center;
+                    color: $dark-primary-col;
+                    margin-bottom: 25px;
+                }
+                .prize-container{
+                    display: flex;
+                    flex-direction: row;
+                    justify-content: flex-end;
+                    align-items: center;
+                    float: right;
+                    .prize{
+                        font-weight: bold;
+                    }
+                    .dollar-logo{
+                        @include icon-size;
+                        margin: 0;
+                    }
+                }
+                img{
+                    width: 50%;
+                    display: block;
+                    margin: 25px auto;
+                }
+                .created-by{
+                    border-bottom: 0px solid $secondary-col;
+                    transition: border-bottom 0.3s, color 0.5s;
+                    &:hover{
+                        border-bottom: 5px solid $secondary-col;
+                        color: $secondary-col;
+                    }
+                }
+                .with-subtitle{
+                    font-size: 0.9em;
+                    border-radius: 3px;
+                    background-color: $light-primary-col;
+                    padding: 2px;
+                }
+                .without-subtitle{
+                    font-size: 0.9em;
+                    color: rgb(100, 99, 99);
+                    border-radius: 3px;
+                    background-color: rgb(172, 169, 169);
+                    padding: 2px;
+                    text-decoration: line-through;
+                }
+                .tags li{
+                    display: inline-block;
+                    margin: 0 2px;
+                    background-color: $secondary-col;
+                    padding: 2px 4px;
+                    font-size: 0.7em;
+                    border-radius: 30px;
+                }
+                .description{
+                    padding-left: 3px;
+                    border-left: 3px solid $dark-primary-col;
+                }
+                
             }
         }
+        
     }
 }
 .no-tutorial{
