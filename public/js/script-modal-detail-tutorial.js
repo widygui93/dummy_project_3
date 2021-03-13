@@ -52,8 +52,8 @@ $(function(){
                     $(".detail-tutorial").append('<span>By </span>');
                     $(".detail-tutorial").append(createdBy);
                     $(".detail-tutorial").append(prizeContainer);
-                    $(".detail-tutorial").append(level);
                     $(".detail-tutorial").append(likeContainer);
+                    $(".detail-tutorial").append(level);
                     $(".detail-tutorial").append(purchased);
                     $(".detail-tutorial").append(createdDate);
                     $(".detail-tutorial").append(videoDuration);
