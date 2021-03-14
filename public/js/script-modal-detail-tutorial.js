@@ -62,7 +62,11 @@ $(function(){
                     if( tutorial.data[0].tags.length > 0 ){
                         let tags = $("<ul class='tags'></ul>");
                         tutorial.data[0].tags.forEach(
-                            tag => $(tags).append($("<li></li>").text(tag))
+                            tag => {
+                                if( tag == "Latest Tutorial" ) $(tags).append("<li><a href='#'>Latest Tutorial</a></li>")
+                                if( tag == "Best Seller" )     $(tags).append("<li><a href='#'>Best Seller</a></li>")
+                                if( tag == "Most Liked" )      $(tags).append("<li><a href='#'>Most Liked</a></li>")
+                            }
                         );
                         $(".detail-tutorial").append('<p>Tags:</p>');
                         $(".detail-tutorial").append(tags);
