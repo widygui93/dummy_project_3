@@ -201,13 +201,22 @@
                     padding: 2px;
                     text-decoration: line-through;
                 }
-                .tags li{
-                    display: inline-block;
-                    margin: 0 2px;
-                    background-color: $secondary-col;
-                    padding: 2px 4px;
-                    font-size: 0.7em;
-                    border-radius: 30px;
+                .tags{
+                    li {
+                        display: inline-block;
+                        margin: 0 2px;
+                        background-color: $dark-primary-col;
+                        padding: 2px 4px;
+                        font-size: 0.7em;
+                        border-radius: 30px;
+                        a{
+                            text-decoration: none;
+                            color: $light-grey;
+                            &:hover{
+                                color: $secondary-col;
+                            }
+                        }
+                    }
                 }
                 .description{
                     padding-left: 3px;
