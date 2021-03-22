@@ -7,3 +7,15 @@
 	width: 15px;
 	height: 15px;
 }
+
+@mixin shown-detail-content{
+	opacity: 0;
+	animation-name: show-content;
+	animation-duration: 2.5s;
+	animation-fill-mode: forwards;
+
+	@keyframes show-content {
+		from {opacity: 0;}
+		to {opacity: 1;}
+	}
+}

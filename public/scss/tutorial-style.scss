@@ -127,6 +127,7 @@
             border: 1px solid #888;
             border-radius: 5px;
             width: 80%;
+            opacity: 0;
             .close-detail-tutorial {
                 color: #aaaaaa;
                 float: right;
@@ -145,6 +146,7 @@
                 line-height: 1.8;
                 max-height: 450px;
                 overflow-y: scroll;
+                opacity: 0;
                 .title{
                     text-align: center;
                     color: $dark-primary-col;
@@ -224,6 +226,12 @@
                 }
                 
             }
+            .shown-detail-tutorial {
+                @include shown-detail-content;
+            }
+        }
+        .shown-modal-content {
+            @include shown-detail-content;
         }
         
     }

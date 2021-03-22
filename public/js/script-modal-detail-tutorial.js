@@ -2,6 +2,8 @@ $(function(){
 
     $('.tutorial-title').click(function(){
         $('.modalDetailTutorial').css("display", "block");
+        $('.modal-content').addClass("shown-modal-content");
+        $('.detail-tutorial').addClass("shown-detail-tutorial");
         let id = $(this).prev().text();
         axios({
             method: 'post',
@@ -82,6 +84,8 @@ $(function(){
 
     $('.close-detail-tutorial').click(function(){
         $('.modalDetailTutorial').css("display", "none");
+        $('.modal-content').removeClass("shown-modal-content");
+        $('.detail-tutorial').removeClass("shown-detail-tutorial");
         $('.detail-tutorial').empty();
     });
 
