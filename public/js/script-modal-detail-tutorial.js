@@ -94,6 +94,8 @@ $(function(){
     $(window).click(function(event){
         if (event.target == modalDetailTutorial) {
             $('.modalDetailTutorial').css("display", "none");
+            $('.modal-content').removeClass("shown-modal-content");
+            $('.detail-tutorial').removeClass("shown-detail-tutorial");
             $('.detail-tutorial').empty();
         }
     });
