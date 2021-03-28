@@ -128,6 +128,7 @@
             border-radius: 5px;
             width: 80%;
             opacity: 0;
+            position: relative;
             .close-detail-tutorial {
                 color: #aaaaaa;
                 float: right;
@@ -146,7 +147,6 @@
                 line-height: 1.8;
                 max-height: 450px;
                 overflow-y: scroll;
-                opacity: 0;
                 .title{
                     text-align: center;
                     color: $dark-primary-col;
@@ -181,12 +181,15 @@
                     display: block;
                     margin: 25px auto;
                 }
-                .created-by{
-                    border-bottom: 0px solid $secondary-col;
-                    transition: border-bottom 0.3s, color 0.5s;
-                    &:hover{
-                        border-bottom: 5px solid $secondary-col;
-                        color: $secondary-col;
+                .createdby-container{
+                    display: inline-block;
+                    .created-by{
+                        border-bottom: 0px solid $secondary-col;
+                        transition: border-bottom 0.3s, color 0.5s;
+                        &:hover{
+                            border-bottom: 5px solid $secondary-col;
+                            color: $secondary-col;
+                        }
                     }
                 }
                 .with-subtitle{
@@ -203,31 +206,32 @@
                     padding: 2px;
                     text-decoration: line-through;
                 }
-                .tags{
-                    li {
-                        display: inline-block;
-                        margin: 0 2px;
-                        background-color: $dark-primary-col;
-                        padding: 2px 4px;
-                        font-size: 0.7em;
-                        border-radius: 30px;
-                        a{
-                            text-decoration: none;
-                            color: $light-grey;
-                            &:hover{
-                                color: $secondary-col;
+                .tags-container{
+                    .tags{
+                        li {
+                            display: inline-block;
+                            margin: 0 2px;
+                            background-color: $dark-primary-col;
+                            padding: 2px 4px;
+                            font-size: 0.7em;
+                            border-radius: 30px;
+                            a{
+                                text-decoration: none;
+                                color: $light-grey;
+                                &:hover{
+                                    color: $secondary-col;
+                                }
                             }
                         }
                     }
                 }
-                .description{
-                    padding-left: 3px;
-                    border-left: 3px solid $dark-primary-col;
+                .desc-container{
+                    .description{
+                        padding-left: 3px;
+                        border-left: 3px solid $dark-primary-col;
+                    }
                 }
                 
-            }
-            .shown-detail-tutorial {
-                @include shown-detail-content;
             }
         }
         .shown-modal-content {
@@ -242,5 +246,44 @@
         font-size: 2em;
         text-align: center;
         padding: 1em 0;
+    }
+}
+
+@media screen and (min-width: 748px){
+    .modalDetailTutorial{
+        .modal-content{
+            .detail-tutorial{
+                display: grid;
+                grid-template-areas: 
+                    'img-cover img-cover img-cover title title title'
+                    'img-cover img-cover img-cover createdby-container createdby-container prize-container'
+                    'img-cover img-cover img-cover like-container like-container like-container'
+                    'img-cover img-cover img-cover level level level'
+                    'img-cover img-cover img-cover purchased-by purchased-by purchased-by'
+                    'img-cover img-cover img-cover created-dt created-dt created-dt'
+                    'img-cover img-cover img-cover duration duration duration'
+                    'img-cover img-cover img-cover without-subtitle without-subtitle without-subtitle'
+                    'img-cover img-cover img-cover with-subtitle with-subtitle with-subtitle'
+                    'tags-container tags-container tags-container tags-container tags-container tags-container'
+                    'desc-container desc-container desc-container desc-container desc-container desc-container'
+                ;
+                grid-gap: 3px;
+
+
+                .img-cover          { grid-area: img-cover; height: 100%; margin: auto auto !important; }
+                .title              { grid-area: title; }
+                .createdby-container{ grid-area: createdby-container; }
+                .prize-container    { grid-area: prize-container; }
+                .like-container     { grid-area: like-container; }
+                .level              { grid-area: level; }
+                .purchased-by       { grid-area: purchased-by; }
+                .created-dt         { grid-area: created-dt; }
+                .duration           { grid-area: duration; }
+                .without-subtitle   { grid-area: without-subtitle; width: 50px; }
+                .with-subtitle      { grid-area: with-subtitle; width: 50px; }
+                .tags-container     { grid-area: tags-container; display: flex; flex-direction: row; }
+                .desc-container     { grid-area: desc-container; }
+            }
+        }
     }
 }

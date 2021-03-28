@@ -3,7 +3,6 @@ $(function(){
     $('.tutorial-title').click(function(){
         $('.modalDetailTutorial').css("display", "block");
         $('.modal-content').addClass("shown-modal-content");
-        $('.detail-tutorial').addClass("shown-detail-tutorial");
         let id = $(this).prev().text();
         axios({
             method: 'post',
@@ -35,24 +34,25 @@ $(function(){
 
                     let title = $("<h3 class='title'></h3>").text(tutorial.data[0].title);
                     let desc = $("<p class='description'></p>").text(tutorial.data[0].description);
-                    let videoDuration = $("<p></p>").text('Duration: ' + tutorial.data[0].video_duration);
-                    let createdBy = $("<a href='#' class='created-by'></a>").text(tutorial.data[0].created_by);
-                    let createdDate = $("<p></p>").text('Created on: ' + tutorial.data[0].created_date);
-                    let dollarLogo = $("<img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='cost'>");
-                    let prize = $("<span class='prize'></span>").text(tutorial.data[0].prize);
-                    let prizeContainer = $("<div class='prize-container'></div>").append(dollarLogo).append(prize);
-                    let logoLikes = $("<img src='http://localhost/widy/project/dummy_project_3/public/svg/Green_Heart_Icon.svg' class='like-logo' alt='like'>");
-                    let likes = $("<p></p>").text(tutorial.data[0].total_like + ' Likes');
-                    let likeContainer = $("<div class='like-container'></div>").append(logoLikes).append(likes);
-                    let purchased = $("<p></p>").text('Purchased By: ' + tutorial.data[0].total_purchased + ' Students');
-                    let level = $("<p></p>").text('Level: ' + tutorial.data[0].level);
+                    let videoDuration = $("<p class='duration'></p>").text('Duration: ' + tutorial.data[0].video_duration);
+                    let createdByContainer = $("<div class='createdby-container'></div>")
+                                                .append('<span class="label-by">By </span>')
+                                                .append( $("<a href='#' class='created-by'></a>").text(tutorial.data[0].created_by) );
+                    let createdDate = $("<p class='created-dt'></p>").text('Created on: ' + tutorial.data[0].created_date);
+                    let prizeContainer = $("<div class='prize-container'></div>")
+                                                .append("<img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='cost'>")
+                                                .append( $("<span class='prize'></span>").text(tutorial.data[0].prize) );
+                    let likeContainer = $("<div class='like-container'></div>")
+                                                .append("<img src='http://localhost/widy/project/dummy_project_3/public/svg/Green_Heart_Icon.svg' class='like-logo' alt='like'>")
+                                                .append( $("<p></p>").text(tutorial.data[0].total_like + ' Likes') );
+                    let purchased = $("<p class='purchased-by'></p>").text('Purchased By: ' + tutorial.data[0].total_purchased + ' Students');
+                    let level = $("<p class='level'></p>").text('Level: ' + tutorial.data[0].level);
                     let subtitle = $("<span></span>").text('Subtitle').addClass(tutorial.data[0].subtitle === null ? 'without-subtitle' : 'with-subtitle' );
                     let imgCover = $('<img>', {src: '../app/core/videos/cover-img/' + tutorial.data[0].img_cover} ).addClass('img-cover');
 
                     $(".detail-tutorial").append(imgCover);
                     $(".detail-tutorial").append(title);
-                    $(".detail-tutorial").append('<span>By </span>');
-                    $(".detail-tutorial").append(createdBy);
+                    $(".detail-tutorial").append(createdByContainer);
                     $(".detail-tutorial").append(prizeContainer);
                     $(".detail-tutorial").append(likeContainer);
                     $(".detail-tutorial").append(level);
@@ -70,11 +70,15 @@ $(function(){
                                 if( tag == "Most Liked" )      $(tags).append("<li><a href='#'>Most Liked</a></li>")
                             }
                         );
-                        $(".detail-tutorial").append('<p>Tags:</p>');
-                        $(".detail-tutorial").append(tags);
+                        let tagsContainer = $("<div class='tags-container'></div>")
+                                                .append('<p class="label-tags">Tags:</p>')
+                                                .append(tags);
+                        $(".detail-tutorial").append(tagsContainer);
                     }
-                    $(".detail-tutorial").append('<p>Desc:</p>');
-                    $(".detail-tutorial").append(desc);
+                    let descContainer = $("<div class='desc-container'></div>")
+                                            .append('<p class="label-desc">Desc:</p>')
+                                            .append(desc);
+                    $(".detail-tutorial").append(descContainer);
                 }
             } 
         )
@@ -85,7 +89,6 @@ $(function(){
     $('.close-detail-tutorial').click(function(){
         $('.modalDetailTutorial').css("display", "none");
         $('.modal-content').removeClass("shown-modal-content");
-        $('.detail-tutorial').removeClass("shown-detail-tutorial");
         $('.detail-tutorial').empty();
     });
 
@@ -95,13 +98,12 @@ $(function(){
         if (event.target == modalDetailTutorial) {
             $('.modalDetailTutorial').css("display", "none");
             $('.modal-content').removeClass("shown-modal-content");
-            $('.detail-tutorial').removeClass("shown-detail-tutorial");
             $('.detail-tutorial').empty();
         }
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
     // buat pagination
-    // kasih style utk data detail tutorial
+    // kasih style utk data detail tutorial(done)
     // buat limit karakter di field description dan kasih live counting down saat typing
     // buat pake twig
 });
