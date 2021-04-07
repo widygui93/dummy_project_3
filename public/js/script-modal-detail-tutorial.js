@@ -103,5 +103,4 @@ $(function(){
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
     // buat pagination
-    // buat limit karakter di field description dan kasih live counting down saat typing (done)
 });
