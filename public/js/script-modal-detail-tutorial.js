@@ -103,7 +103,5 @@ $(function(){
     });
     // coba buat agar performance detail tutorial tidak delay karena ajax
     // buat pagination
-    // kasih style utk data detail tutorial(done)
-    // buat limit karakter di field description dan kasih live counting down saat typing
-    // buat pake twig (done)
+    // buat limit karakter di field description dan kasih live counting down saat typing (done)
 });

@@ -19,4 +19,10 @@ $(function(){
 		$source.parent()[0].load();
 	});
 
+	$("#desc").val("");
+	
+	$("#desc").keyup(function(){
+		$(".length-desc").text( $("#desc").val().length );
+	});
+
 });
