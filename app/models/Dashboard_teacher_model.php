@@ -88,7 +88,7 @@ class Dashboard_teacher_model extends Model {
         }
         else {
             $createdDate = $this->getDate();
-            $createdBy = $_SESSION["username-teacher"];
+            $createdBy = $_SESSION["username_teacher"];
             $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
 
             $data['title'] = $this->purify($data['title']);

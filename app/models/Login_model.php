@@ -62,11 +62,11 @@ class Login_model extends Model {
     }
     private function setSession($username, $user){
         if( $user == 'teacher' ){
-            $_SESSION["login-teacher"] = true;
-		    $_SESSION["username-teacher"] = strtolower(stripslashes($username));
+            $_SESSION["login_teacher"] = true;
+		    $_SESSION["username_teacher"] = strtolower(stripslashes($username));
         } else{
-            $_SESSION["login-student"] = true;
-		    $_SESSION["username-student"] = strtolower(stripslashes($username));
+            $_SESSION["login_student"] = true;
+		    $_SESSION["username_student"] = strtolower(stripslashes($username));
         }
         
     }

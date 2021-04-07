@@ -13,15 +13,7 @@ class Flasher {
 			$icon = $_SESSION['flash']['icon'];
 			$title = $_SESSION['flash']['title'];
 			$text = $_SESSION['flash']['text'];
-			// echo "<script>
-					
-			// 		swal({
-			// 			icon: '";echo "$icon";echo"',
-			// 			title: '";echo "$title";echo"',
-			// 			text: '";echo "$text";echo"'
-			// 		});
-
-			// 	</script>";
+			
 			echo <<< SWEET_ALERT
 			<script>	
 				swal({

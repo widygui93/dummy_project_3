@@ -73,7 +73,7 @@ class Detail_tutorial_model {
     }
 
     public function isIneligibleTutorial(string $id): bool {
-        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username-teacher"] ]);
+        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
         return empty($tutorials) ? true : false;
     }
 

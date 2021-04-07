@@ -105,5 +105,5 @@ $(function(){
     // buat pagination
     // kasih style utk data detail tutorial(done)
     // buat limit karakter di field description dan kasih live counting down saat typing
-    // buat pake twig
+    // buat pake twig (done)
 });

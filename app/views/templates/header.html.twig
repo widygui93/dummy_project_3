@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Unemi</title>
+	<link rel="stylesheet" href="{{ BASEURL }}/css/header-style.css">
+	<link rel="stylesheet" href="{{ style }}">
+	<link rel="stylesheet" href="{{ style_tutorial ?? '#' }}">
+	<link rel="stylesheet" href="{{ BASEURL }}/css/footer-style.css">
+	<!-- CDN sweetalert -->
+	<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+</head>
+<body>
+	<div class="grid-container">
+		<header class="header">
+			<div class="header-wrapper">
+				<div class="logo-wrapper">
+					<a href="{{ BASEURL }}">
+						<img src="{{ BASEURL }}/img/logo.png" alt="logo-img" class="logo">
+					</a>
+				</div>
+				<div class="search-bar">
+					<form action="" method="get">
+						<input type="search" placeholder="Search Tutorial" name="q" autocomplete="off">
+					</form>
+				</div>
+				<div class="login-signup-logout-wrapper">
+					{% if login_teacher or login_student %}
+						<div class="logout-wrapper">
+							<a href="{{ BASEURL }}/Logout">Log out</a>
+						</div>
+					{% else %}
+						<div class="login-signup-wrapper">
+							<div class="login-wrapper">
+								<a href="{{ BASEURL }}/Login">Log in</a>
+							</div>
+							<div class="signup-wrapper">
+								<a href="{{ BASEURL }}/Signup">Sign Up</a>
+							</div>
+						</div>
+					{% endif %}
+				</div>
+				<div class="menu-btn-wrapper">
+					<div class="menu-btn">
+						<div class="menu-btn__burger"></div>
+					</div>
+				</div>
+				<div class="menu-navbar">
+					<ul>
+						<li><a href="">Latest Tutorial</a></li>
+						<li><a href="">Best Seller Tutorial</a></li>
+						<li><a href="">Most Liked Tutorial</a></li>
+						{% if login_teacher %}
+							<li><a href="{{ BASEURL }}/Dashboard_teacher">Dashboard</a></li>
+							<li><a href="">{{ username_teacher }}</a></li>
+						{% endif %}
+						{% if login_student %}
+							<li><a href="{{ BASEURL }}/Dashboard_student">Dashboard</a></li>
+							<li><a href="">{{ username_student }}</a></li>
+						{% endif %}
+					</ul>
+				</div>
+				{% if login_teacher or login_student %}
+					<div class="notif-coin">
+						<div class="notif">
+							<img src="{{ BASEURL }}/svg/notification-bell.svg" alt="notif">
+							<a href="">999</a>
+						</div>
+						<div class="coin">
+							<img src="{{ BASEURL }}/svg/coin.svg" alt="coin">
+							<span>600K</span>
+						</div>
+					</div>
+				{% endif %}
+    		</div>
+		</header>

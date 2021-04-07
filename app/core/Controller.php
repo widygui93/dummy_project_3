@@ -1,8 +1,9 @@
 <?php
 
 class Controller {
-	public function view($view, $data = []){
-		require_once '../app/views/' . $view . '.php';
+	public function view(){
+		$loader = new \Twig\Loader\FilesystemLoader('../app/views');
+		return new \Twig\Environment($loader);
 	}
 	public function model($model){
 		require_once '../app/models/' . $model . '.php';
