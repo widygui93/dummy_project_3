@@ -9,6 +9,7 @@ class Dashboard_teacher extends Controller{
         $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
         $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
         $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username_teacher"]);
+        $data['total-tutorials'] = $this->model('Dashboard_teacher_model')->getTotalTutorialsBy($_SESSION["username_teacher"]);
         $twig = $this->view();
 		echo $twig->render('/templates/header.html.twig', 
 			[
@@ -32,6 +33,7 @@ class Dashboard_teacher extends Controller{
               $twig->render('/tutorial/index.html.twig', 
                 [
                     'tutorials' => $data['tutorials'], 
+                    'total_tutorials' => $data['total-tutorials'],
                     'BASEURL' => BASEURL
                 ]
               );
