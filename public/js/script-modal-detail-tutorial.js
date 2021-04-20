@@ -103,25 +103,18 @@ $(function(){
     });
 
     $('.load-more').click(function(){
-        let row = Number($('#row').val());
-        let allcount = Number($('#all').val());
+        let currentDisplayTotalTutorial = Number($('#current-display-total-tutorial').val());
+        let allTutorials = Number($('#all-tutorials').val());
         let tutorialsperpage = 4;
-        row = row + tutorialsperpage;
+        currentDisplayTotalTutorial = currentDisplayTotalTutorial + tutorialsperpage;
 
-        if(row < allcount){
-            $("#row").val(row);
-
-            // Add a request interceptor
-            // axios.interceptors.request.use(function () {
-            //     $(".load-more").text("Loading...");
-            // }, function (error) {
-            //     return Promise.reject(error);
-            // });
+        if(currentDisplayTotalTutorial < allTutorials){
+            $("#current-display-total-tutorial").val(currentDisplayTotalTutorial);
 
             axios({
                 method: 'post',
                 url: 'http://localhost/widy/project/dummy_project_3/public/More_tutorial',
-                data: { row: row }
+                data: { currentDisplayTotalTutorial: currentDisplayTotalTutorial }
             })
             .then(
 
@@ -178,10 +171,10 @@ $(function(){
                         
                         );
 
-                        let rowno = row + tutorialsperpage;
+                        let totalTutorialsAfterMore = currentDisplayTotalTutorial + tutorialsperpage;
 
                         // checking row value is greater than allcount or not
-                        if(rowno >= allcount){
+                        if(totalTutorialsAfterMore >= allTutorials){
 
                             // Change the text and background
                             $('.load-more').text("Hide");
@@ -201,7 +194,7 @@ $(function(){
                 // When row is greater than allcount then remove all class='tutorial' element after 4 element
                 $('.tutorial:nth-child(4)').nextAll('.tutorial').remove();
 
-                $("#row").val(0);
+                $("#current-display-total-tutorial").val(0);
 
                 $('.load-more').text("More");
                 

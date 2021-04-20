@@ -6,7 +6,7 @@ class More_tutorial_model extends Model {
         $this->db = new Database;
     }
 
-    public function getMoreTutorial(string $username, int $row): array{
+    public function getMoreTutorial(string $username, int $startIndexOfMoreTutorials): array{
         $tutorialsPerPage = 4;
         $numOfTutorials = R::count( 'tutorial', ' created_by = ? ', [ $username ] );
         if( $numOfTutorials > 0 ){
@@ -40,7 +40,7 @@ class More_tutorial_model extends Model {
                         WHERE tutorial.created_by = '" . $username . "' AND liked_by IS NULL
                     ) AS tbl_tutorial
                 ORDER BY tutorial_date DESC
-                LIMIT " . $tutorialsPerPage . " OFFSET " . $row . "
+                LIMIT " . $tutorialsPerPage . " OFFSET " . $startIndexOfMoreTutorials . "
             ";
 
             $tutorials = R::getAll( $query );
