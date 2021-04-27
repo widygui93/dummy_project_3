@@ -8,6 +8,7 @@ class Dashboard_teacher extends Controller{
         $data['script'] = BASEURL.'/js/script-dashboard-teacher.js';
         $data['script-modal-detail-tutorial'] = BASEURL.'/js/script-modal-detail-tutorial.js';
         $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
+        $data['script-load-more'] = BASEURL.'/js/script-load-more.js';
         $data['tutorials'] = $this->model('Dashboard_teacher_model')->getTutorialsBy($_SESSION["username_teacher"]);
         $data['total-tutorials'] = $this->model('Dashboard_teacher_model')->getTotalTutorialsBy($_SESSION["username_teacher"]);
         $twig = $this->view();
@@ -30,10 +31,11 @@ class Dashboard_teacher extends Controller{
 		);
         echo empty( $data['tutorials'] ) 
             ? $twig->render('/tutorial/no-tutorial.html.twig') : 
-              $twig->render('/tutorial/index.html.twig', 
+              $twig->render('/tutorial/teacher.html.twig', 
                 [
                     'tutorials' => $data['tutorials'], 
                     'total_tutorials' => $data['total-tutorials'],
+                    // 'login_teacher' => $_SESSION['login_teacher'],
                     'BASEURL' => BASEURL
                 ]
               );
@@ -42,6 +44,7 @@ class Dashboard_teacher extends Controller{
 				'script' => $data['script'],
                 'script_axios' => $data['script-axios'],
                 'script_modal_detail_tutorial' => $data['script-modal-detail-tutorial'],
+                'script_load_more' => $data['script-load-more'],
 				'BASEURL' => BASEURL 
 			]
 		);

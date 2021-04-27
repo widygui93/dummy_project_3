@@ -18,14 +18,14 @@
                        -2px -2px 5px rgba(116,116,106,.75);
                 transform: scale(1.05);
             }
-            .tutorial-video{
+            .tutorial-head{
                 height: 10em;
                 img{
                     width: 288px;
                     height: 150px;
                 }
             }
-            .tutorial-info{
+            .tutorial-body{
                 .info-1{
                     margin: 1em 0 1em 1em;
                     font-weight: bold;
@@ -62,7 +62,7 @@
                     margin: 0 1em 1em;
                 }
             }
-            .tutorial-play {
+            .tutorial-foot {
                 border-top: 1px solid $light-primary-col;
                 display: flex;
                 justify-content: space-between;
@@ -82,8 +82,25 @@
                         background-color: $dark-primary-col;
                     }
                 }
-                .play-info {
-                    line-height: 2.8;
+                .update-revoke-wrapper{
+                    .update-button, .revoke-button{
+                        background-color: $light-primary-col;
+                        border-radius: 5px;
+                        line-height: 2.7;
+                        a{
+                            text-decoration: none;
+                            color: black;
+                            padding: 12px 10px 12px 12px;
+                        }
+                        &:hover{
+                            background-color: $dark-primary-col;
+                        }
+                    }
+                }
+                .like-cost-wrapper {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: space-around;
                     .tutorial-like,
                     .tutorial-cost{
                         img{
