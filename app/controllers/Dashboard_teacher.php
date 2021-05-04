@@ -77,4 +77,23 @@ class Dashboard_teacher extends Controller{
         } 
     }
 
+    public function restore(){
+        if( $this->model('Verify_model')->isRequestDataEmpty(file_get_contents('php://input')) ) return $this->model('Verify_model')->goHome();
+        $requestJsonData = file_get_contents('php://input'); // data from axios request in json
+        $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
+        $id = $requestArrayData['id'];
+
+        if( $this->model('Dashboard_teacher_model')->isIDNotUUID($id) ) echo "ID is invalid data type";
+
+        elseif( $this->model('Dashboard_teacher_model')->isIdNotAvailable($id) ) echo "Tutorial is not available"; 
+        
+        elseif( $this->model('Dashboard_teacher_model')->isIneligibleTutorial($id) ) echo "Tutorial is not authorized to access";
+
+        else {
+            $responseArrayData = $this->model('Dashboard_teacher_model')->restoreTutorial($id);
+            $responseJsonData = json_encode($responseArrayData);
+            echo $responseJsonData;
+        } 
+    }
+
 }

@@ -219,6 +219,19 @@ class Dashboard_teacher_model extends Model {
         ];
     }
 
+    public function restoreTutorial(string $id){
+
+        $restoredTutorial = R::load('tutorial', $id);
+        $restoredTutorial->is_revoke = 'N';
+        R::store($restoredTutorial);
+
+        return [
+            'icon' => 'success',
+            'title' => 'Success',
+            'text' => 'Restore Tutorial successfully'
+        ];
+    }
+
     public function isIdNotAvailable(string $id): bool{
         return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
     }

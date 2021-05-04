@@ -26,8 +26,37 @@ $(function(){
 	});
 
 	$('.restore-button').click(function(e){
-        console.log('this is restore button');
-        swal("this is restore button");
+        // console.log('this is restore button');
+        // swal("this is restore button");
+		let idTut = $(this).parent().parent().prev().children(".info-1").children('span:first').text();
+		
+		swal({
+            title: "Are you sure to restore?",
+            text: "Once restore, Students can find this tutorial.",
+            icon: "warning",
+            buttons: [true, "Yeah"]
+          })
+		.then((willRestore) => {
+			if (willRestore) {
+				axios({
+					method: 'post',
+					url: 'http://localhost/widy/project/dummy_project_3/public/Dashboard_teacher/restore',
+					data: { id: idTut }
+				})
+				.then(
+					response => {
+						swal({
+							title: response.data.title,
+							text: response.data.text,
+							icon: response.data.icon,
+							buttons: [false, true]
+						})
+						.then( () => location.reload() );
+					}
+				)
+				.catch(err => console.error(err));
+			}
+		});
         e.preventDefault();
 
     });
