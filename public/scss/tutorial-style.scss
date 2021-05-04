@@ -83,7 +83,7 @@
                     }
                 }
                 .update-revoke-wrapper{
-                    .update-button, .revoke-button{
+                    .update-button, .revoke-button, .restore-button{
                         background-color: $light-primary-col;
                         border-radius: 5px;
                         line-height: 2.7;
@@ -94,6 +94,12 @@
                         }
                         &:hover{
                             background-color: $dark-primary-col;
+                        }
+                    }
+                    .restore-button{
+                        background-color: $secondary-col;
+                        &:hover{
+                            background-color: darken($secondary-col, 10%);
                         }
                     }
                 }

@@ -137,6 +137,7 @@ class Dashboard_teacher_model extends Model {
             $tutorial->img_cover = $imgCover;
             $tutorial->video_duration = $videoDuration;
             $tutorial->subtitle = $subtitle;
+            $tutorial->is_revoke = 'N';
             R::store($tutorial);
 
             return [
@@ -152,7 +153,7 @@ class Dashboard_teacher_model extends Model {
         $numOfTutorials = R::count( 'tutorial', ' created_by = ? ', [ $username ] );
         if( $numOfTutorials > 0 ){
             $query = "
-                SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date
+                SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
                 FROM (
                     SELECT tutorial.id,
                         tutorial.title,
@@ -161,13 +162,14 @@ class Dashboard_teacher_model extends Model {
                         to_char(tutorial.prize, '999,999,999') AS prize,
                         to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
                         tutorial.created_date AS tutorial_date,
+                        tutorial.is_revoke,
                         liked_tutorial.liked_by
                     FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
                     WHERE tutorial.created_by = '" . $username . "'
                 ) AS tbl_tutorial
-                GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date
+                GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                 UNION
-                SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date
+                SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                     FROM (
                         SELECT tutorial.id,
                             tutorial.title,
@@ -176,6 +178,7 @@ class Dashboard_teacher_model extends Model {
                             to_char(tutorial.prize, '999,999,999') AS prize,
                             to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
                             tutorial.created_date AS tutorial_date,
+                            tutorial.is_revoke,
                             liked_tutorial.liked_by
                         FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
                         WHERE tutorial.created_by = '" . $username . "' AND liked_by IS NULL
@@ -201,5 +204,31 @@ class Dashboard_teacher_model extends Model {
     public function getTotalTutorialsBy(string $username):int{
         return R::count( 'tutorial', ' created_by = ? ', [ $username ] );
 
+    }
+
+    public function revokeTutorial(string $id){
+
+        $revokedTutorial = R::load('tutorial', $id);
+        $revokedTutorial->is_revoke = 'Y';
+        R::store($revokedTutorial);
+
+        return [
+            'icon' => 'success',
+            'title' => 'Success',
+            'text' => 'Revoke Tutorial successfully'
+        ];
+    }
+
+    public function isIdNotAvailable(string $id): bool{
+        return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
+    }
+
+    public function isIDNotUUID(string $id): bool{
+        return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
+    }
+
+    public function isIneligibleTutorial(string $id): bool {
+        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
+        return empty($tutorials) ? true : false;
     }
 }

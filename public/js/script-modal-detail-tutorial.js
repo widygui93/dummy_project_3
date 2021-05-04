@@ -104,7 +104,7 @@ $(function(){
 
 
     // ganti pagination dgn load more button (done)
-    // delete tutorial 
+    // revoke/restore tutorial 
     //  (mesti tambahkan field is_revoke utk table tutorial agar bisa soft delete)
     //  (jika student sdh beli tutorial tsb maka tutorial tsb tidak terdelete di dashboard student)
     //  (tutorial tidak muncul di home,search view, dashboard teacher, latest, best seller dan most like tut)
