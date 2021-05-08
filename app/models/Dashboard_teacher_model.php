@@ -209,27 +209,43 @@ class Dashboard_teacher_model extends Model {
     public function revokeTutorial(string $id){
 
         $revokedTutorial = R::load('tutorial', $id);
-        $revokedTutorial->is_revoke = 'Y';
-        R::store($revokedTutorial);
+        if( $revokedTutorial->is_revoke == 'Y' ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial have been revoked'
+            ];
+        } else {
+            $revokedTutorial->is_revoke = 'Y';
+            R::store($revokedTutorial);
 
-        return [
-            'icon' => 'success',
-            'title' => 'Success',
-            'text' => 'Revoke Tutorial successfully'
-        ];
+            return [
+                'icon' => 'success',
+                'title' => 'Success',
+                'text' => 'Revoke Tutorial successfully'
+            ];
+        }
     }
 
     public function restoreTutorial(string $id){
 
         $restoredTutorial = R::load('tutorial', $id);
-        $restoredTutorial->is_revoke = 'N';
-        R::store($restoredTutorial);
+        if( $restoredTutorial->is_revoke == 'N' ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial have been restored'
+            ];
+        } else {
+            $restoredTutorial->is_revoke = 'N';
+            R::store($restoredTutorial);
 
-        return [
-            'icon' => 'success',
-            'title' => 'Success',
-            'text' => 'Restore Tutorial successfully'
-        ];
+            return [
+                'icon' => 'success',
+                'title' => 'Success',
+                'text' => 'Restore Tutorial successfully'
+            ];
+        }
     }
 
     public function isIdNotAvailable(string $id): bool{
