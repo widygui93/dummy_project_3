@@ -25,9 +25,7 @@ $(function(){
 		$(".length-desc").text( $("#desc").val().length );
 	});
 
-	$('.restore-button').click(function(e){
-        // console.log('this is restore button');
-        // swal("this is restore button");
+	$(document).on("click", ".restore-button", function (e) {
 		let idTut = $(this).parent().parent().prev().children(".info-1").children('span:first').text();
 		
 		swal({
@@ -61,7 +59,7 @@ $(function(){
 
     });
 
-    $('.revoke-button').click(function(e){
+    $(document).on("click", ".revoke-button", function (e) {
 		let idTut = $(this).parent().parent().prev().children(".info-1").children('span:first').text();
 
         swal({

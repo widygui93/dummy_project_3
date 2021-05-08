@@ -6,9 +6,15 @@
         <div class="update-button">
             <a href="#">Update</a>
         </div>
-        <div class="revoke-button">
-            <a href="#">Revoke</a>
-        </div>
+        {% if tutorial.is_revoke == 'N' %}
+            <div class="revoke-button">
+                <a href="">Revoke</a>
+            </div>
+        {% else %}
+            <div class="restore-button">
+                <a href="">Restore</a>
+            </div>
+        {% endif %}
     </div>
 
 {% endblock %}
