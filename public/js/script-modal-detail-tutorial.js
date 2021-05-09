@@ -114,4 +114,7 @@ $(function(){
     //  (mesti tambahkan field purchase_amount di table purchased_tutorial agar tau pas beli di harga berapa)
     // perbaikan list dari tutorial di home dgn data dari DB
     // buat contact us berfungsi dgn phpmailer
+    // jika teacher update, revoke dan restore tutorial maka student yg membeli tutorial tsb dpt notif
+    // jika student beli dan like suatu tutorial. maka teacher yg buat itu tutorial dpt notif
+    // terapkan fuzzy algoritma di fitur search
 });

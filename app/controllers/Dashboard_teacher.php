@@ -64,13 +64,31 @@ class Dashboard_teacher extends Controller{
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
         $id = $requestArrayData['id'];
 
-        if( $this->model('Dashboard_teacher_model')->isIDNotUUID($id) ) echo "ID is invalid data type";
-
-        elseif( $this->model('Dashboard_teacher_model')->isIdNotAvailable($id) ) echo "Tutorial is not available"; 
-        
-        elseif( $this->model('Dashboard_teacher_model')->isIneligibleTutorial($id) ) echo "Tutorial is not authorized to access";
-
-        else {
+        if( $this->model('Dashboard_teacher_model')->isIDNotUUID($id) ){
+            echo json_encode(
+                [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'ID is invalid data type'
+                ]
+            );
+        } elseif( $this->model('Dashboard_teacher_model')->isIdNotAvailable($id) ){
+            echo json_encode(
+                [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Tutorial is not available'
+                ]
+            );
+        } elseif( $this->model('Dashboard_teacher_model')->isIneligibleTutorial($id) ){
+            echo json_encode(
+                [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Tutorial is not authorized to access'
+                ]
+            );
+        } else {
             $responseArrayData = $this->model('Dashboard_teacher_model')->revokeTutorial($id);
             $responseJsonData = json_encode($responseArrayData);
             echo $responseJsonData;
