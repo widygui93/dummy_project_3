@@ -10,7 +10,13 @@ class Signup_model extends Model {
         $reg_date = $this->getDate();
         $coin = INITIAL_STUDENT_COIN;
         $profile_pic = DEFAULT_PROFILE_PIC;
-        if( !$this->doesMandatoryDataFilled(array(
+        if( $this->isDataEmpty($data) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data must be sent'
+            ];
+        } elseif( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
             "email" => $data['email'],
@@ -100,7 +106,13 @@ class Signup_model extends Model {
         $reg_date = $this->getDate();
         $coin = INITIAL_TEACHER_COIN;
         $profile_pic = DEFAULT_PROFILE_PIC;
-        if( !$this->doesMandatoryDataFilled(array(
+        if( $this->isDataEmpty($data) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data must be sent'
+            ];
+        } elseif( !$this->doesMandatoryDataFilled(array(
             "name" => $data['name'],
             "username" => $data['username'],
             "email" => $data['email'],

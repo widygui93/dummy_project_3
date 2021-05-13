@@ -7,9 +7,7 @@ class Verify_model {
         header('Location: ' . BASEURL );
 		exit;
     }
-    public function isDataEmpty(array $data): bool{
-        return empty($data) ? true : false;
-    }
+
     public function isLoginAsStudent(){
         return empty($_SESSION["login_student"]) ? false : true;
     }
@@ -20,5 +18,6 @@ class Verify_model {
     public function isRequestDataEmpty(string $reqData): bool{
         return empty($reqData) ? true : false;
     }
+
 
 }

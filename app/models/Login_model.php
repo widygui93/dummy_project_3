@@ -7,17 +7,25 @@ class Login_model extends Model {
     }
 
     public function login($data, $table){
-        if( !$this->doesMandatoryDataFilled(
+        if( $this->isDataEmpty($data) ){
+            $result = [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data must be sent'
+            ];
+            $this->setFlash($result ,$table);
+        }elseif( !$this->doesMandatoryDataFilled(
             array(
                 "username" => $data["username"],
                 "password" => $data["password"]
             )
         ) ){
-            return [
+            $result = [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data username and password are mandatory'
             ];
+            $this->setFlash($result ,$table);
         } else{
             $data["username"] = $this->purify($data["username"]);
             $data['password'] = $this->purify($data['password']);

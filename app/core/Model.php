@@ -2,7 +2,7 @@
 
 class Model {
     private $db;
-    public function createRandomID(): string {
+    public function createRandomString(): string {
         $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
         $randomID = '';
 
@@ -25,6 +25,10 @@ class Model {
     // public function isDataEmpty(array $data): bool {
     //     return empty($data) ? true : false;
     // }
+
+    public function isDataEmpty(array $data): bool{
+        return empty($data) ? true : false;
+    }
 
     public function doesMandatoryDataFilled(array $data): bool {
         foreach ($data as $val){
@@ -53,42 +57,19 @@ class Model {
         return $password !== $password_confirm ? true : false;
     }
 
-    public function isViolateMaxSize(int $fileSize, int $maxSize): bool{
-        return $fileSize > $maxSize ? true : false;
+    public function isIdNotAvailable(string $id): bool{
+        return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
     }
 
-    public function isViolateFileExtention(string $namaFile, array $validExtention): bool{
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        return in_array($ekstensiGambar, $validExtention) ? false : true;
+    public function isIDNotUUID(string $id): bool{
+        return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
     }
 
-    public function upload($folder, $tmpName, $namaFile){
-        $ekstensiGambar = explode('.', $namaFile);
-		$ekstensiGambar = strtolower(end($ekstensiGambar));
-		// generate nama gambar baru
-		$namaFileBaru = $this->createRandomID();
-		$namaFileBaru .= '.';
-		$namaFileBaru .= $ekstensiGambar;
-
-		move_uploaded_file($tmpName, $folder . $namaFileBaru);
-
-		return $namaFileBaru;
-
+    public function isIneligibleTutorial(string $id): bool {
+        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
+        return empty($tutorials) ? true : false;
     }
 
-    public function getVideoDuration($vidTmpName){
-        $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
-        $output = shell_exec($ffmpeg);
-        $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
-        if (preg_match($regex_duration, $output, $regs)) {
-            $hours = $regs [1] ? $regs [1] : null;
-            $mins = $regs [2] ? $regs [2] : null;
-            $secs = $regs [3] ? $regs [3] : null;
-        }
-        $video_duration = $hours . ':' . $mins . ':' . $secs;
-        return $video_duration;
-    }
 
     public function shortenTitle(array $tutorialSets): array{
         $maxChars = 23; // max jumlah karakter yang di tampilkan di browser

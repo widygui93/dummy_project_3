@@ -49,7 +49,6 @@ class Login extends Controller {
 	}
 	public function loginStudent(){
 		if( $this->model('Verify_model')->isUserLogin() ) return $this->model('Verify_model')->goHome();
-		if( $this->model('Verify_model')->isDataEmpty($_POST) ) return $this->model('Verify_model')->goHome();
 		$result = $this->model('Login_model')->login($_POST, 'student');
 		$this->model('Verify_model')->goHome();
 	}
@@ -82,7 +81,6 @@ class Login extends Controller {
 	}
 	public function loginTeacher(){
 		if( $this->model('Verify_model')->isUserLogin() ) return $this->model('Verify_model')->goHome();
-		if( $this->model('Verify_model')->isDataEmpty($_POST) ) return $this->model('Verify_model')->goHome();
 		$result = $this->model('Login_model')->login($_POST, 'teacher');
 		$this->model('Verify_model')->goHome();
 		

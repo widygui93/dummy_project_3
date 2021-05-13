@@ -7,7 +7,13 @@ class Dashboard_teacher_model extends Model {
     }
 
     public function createTutorial($data){
-        if( !$this->doesMandatoryDataFilled(array(
+        if( $this->isDataEmpty($data) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data must be sent'
+            ];
+        } elseif( !$this->doesMandatoryDataFilled(array(
             "title" => $data['title'],
             "level" => $data['level'],
             "prize" => $data['prize'],
@@ -148,6 +154,44 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
+
+    private function isViolateMaxSize(int $fileSize, int $maxSize): bool{
+        return $fileSize > $maxSize ? true : false;
+    }
+
+    private function isViolateFileExtention(string $namaFile, array $validExtention): bool{
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        return in_array($ekstensiGambar, $validExtention) ? false : true;
+    }
+
+    private function getVideoDuration($vidTmpName){
+        $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
+        $output = shell_exec($ffmpeg);
+        $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
+        if (preg_match($regex_duration, $output, $regs)) {
+            $hours = $regs [1] ? $regs [1] : null;
+            $mins = $regs [2] ? $regs [2] : null;
+            $secs = $regs [3] ? $regs [3] : null;
+        }
+        $video_duration = $hours . ':' . $mins . ':' . $secs;
+        return $video_duration;
+    }
+
+    private function upload($folder, $tmpName, $namaFile){
+        $ekstensiGambar = explode('.', $namaFile);
+		$ekstensiGambar = strtolower(end($ekstensiGambar));
+		// generate nama gambar baru
+		$namaFileBaru = $this->createRandomString();
+		$namaFileBaru .= '.';
+		$namaFileBaru .= $ekstensiGambar;
+
+		move_uploaded_file($tmpName, $folder . $namaFileBaru);
+
+		return $namaFileBaru;
+
+    }
+
     public function getTutorialsBy(string $username): array{
         $tutorialsPerPage = 4;
         $numOfTutorials = R::count( 'tutorial', ' created_by = ? ', [ $username ] );
@@ -207,15 +251,32 @@ class Dashboard_teacher_model extends Model {
     }
 
     public function revokeTutorial(string $id){
-
-        $revokedTutorial = R::load('tutorial', $id);
-        if( $revokedTutorial->is_revoke == 'Y' ){
+        if( $this->isIDNotUUID($id) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Tutorial have been revoked'
+                'text' => 'ID is invalid data type'
+            ];
+        } elseif( $this->isIdNotAvailable($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not available'
+            ];
+        } elseif( $this->isIneligibleTutorial($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not authorized to access'
+            ];
+        } elseif( $this->isAlreadyRevoke($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial has already been revoked'
             ];
         } else {
+            $revokedTutorial = R::load('tutorial', $id);
             $revokedTutorial->is_revoke = 'Y';
             R::store($revokedTutorial);
 
@@ -228,15 +289,32 @@ class Dashboard_teacher_model extends Model {
     }
 
     public function restoreTutorial(string $id){
-
-        $restoredTutorial = R::load('tutorial', $id);
-        if( $restoredTutorial->is_revoke == 'N' ){
+        if( $this->isIDNotUUID($id) ){
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
-                'text' => 'Tutorial have been restored'
+                'text' => 'ID is invalid data type'
+            ];
+        } elseif( $this->isIdNotAvailable($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not available'
+            ];
+        } elseif( $this->isIneligibleTutorial($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not authorized to access'
+            ];
+        } elseif( $this->isAlreadyRestore($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial has already been restore'
             ];
         } else {
+            $restoredTutorial = R::load('tutorial', $id);
             $restoredTutorial->is_revoke = 'N';
             R::store($restoredTutorial);
 
@@ -248,16 +326,14 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
-    public function isIdNotAvailable(string $id): bool{
-        return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
+    private function isAlreadyRevoke(string $id): bool{
+        $revokedTutorial = R::load('tutorial', $id);
+        return $revokedTutorial->is_revoke == 'Y' ? true : false;
     }
 
-    public function isIDNotUUID(string $id): bool{
-        return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
+    private function isAlreadyRestore(string $id): bool{
+        $restoredTutorial = R::load('tutorial', $id);
+        return $restoredTutorial->is_revoke == 'N' ? true : false;
     }
 
-    public function isIneligibleTutorial(string $id): bool {
-        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
-        return empty($tutorials) ? true : false;
-    }
 }

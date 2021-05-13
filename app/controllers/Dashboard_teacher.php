@@ -51,7 +51,6 @@ class Dashboard_teacher extends Controller{
     }
     public function upload(){
         if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
-        if( $this->model('Verify_model')->isDataEmpty($_POST) ) return $this->model('Verify_model')->goHome();
         $result = $this->model('Dashboard_teacher_model')->createTutorial($_POST);
 		Flasher::setFlash($result['icon'], $result['title'], $result['text']);
 		header('Location: ' . BASEURL . '/Dashboard_teacher');
@@ -64,35 +63,10 @@ class Dashboard_teacher extends Controller{
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
         $id = $requestArrayData['id'];
 
-        if( $this->model('Dashboard_teacher_model')->isIDNotUUID($id) ){
-            echo json_encode(
-                [
-                    'icon' => 'error',
-                    'title' => 'Failed',
-                    'text' => 'ID is invalid data type'
-                ]
-            );
-        } elseif( $this->model('Dashboard_teacher_model')->isIdNotAvailable($id) ){
-            echo json_encode(
-                [
-                    'icon' => 'error',
-                    'title' => 'Failed',
-                    'text' => 'Tutorial is not available'
-                ]
-            );
-        } elseif( $this->model('Dashboard_teacher_model')->isIneligibleTutorial($id) ){
-            echo json_encode(
-                [
-                    'icon' => 'error',
-                    'title' => 'Failed',
-                    'text' => 'Tutorial is not authorized to access'
-                ]
-            );
-        } else {
-            $responseArrayData = $this->model('Dashboard_teacher_model')->revokeTutorial($id);
-            $responseJsonData = json_encode($responseArrayData);
-            echo $responseJsonData;
-        } 
+        $responseArrayData = $this->model('Dashboard_teacher_model')->revokeTutorial($id);
+        $responseJsonData = json_encode($responseArrayData);
+        echo $responseJsonData;
+ 
     }
 
     public function restore(){
@@ -101,17 +75,10 @@ class Dashboard_teacher extends Controller{
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
         $id = $requestArrayData['id'];
 
-        if( $this->model('Dashboard_teacher_model')->isIDNotUUID($id) ) echo "ID is invalid data type";
+        $responseArrayData = $this->model('Dashboard_teacher_model')->restoreTutorial($id);
+        $responseJsonData = json_encode($responseArrayData);
+        echo $responseJsonData;
 
-        elseif( $this->model('Dashboard_teacher_model')->isIdNotAvailable($id) ) echo "Tutorial is not available"; 
-        
-        elseif( $this->model('Dashboard_teacher_model')->isIneligibleTutorial($id) ) echo "Tutorial is not authorized to access";
-
-        else {
-            $responseArrayData = $this->model('Dashboard_teacher_model')->restoreTutorial($id);
-            $responseJsonData = json_encode($responseArrayData);
-            echo $responseJsonData;
-        } 
     }
 
 }
