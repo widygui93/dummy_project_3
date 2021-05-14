@@ -1,22 +1,78 @@
 <?php
-class Detail_tutorial_model {
+class Detail_tutorial_model extends Model {
     private $db;
 
     public function __construct(){
         $this->db = new Database;
     }
 
-    public function getDetailTutorialBy(string $id):array {
-        $detailTutorial = $this->getDetail($id);
-        $totalPurchased = $this->getTotalPurchased($id);
-        $totalLiked = $this->getTotalLiked($id);
-        $tags = $this->getTags($detailTutorial[0]['tutorial_date'], $totalPurchased, $totalLiked);
+    public function getDetailTutorialBy(string $id):string {
+        if( $this->isIDNotUUID($id) ){
+            return <<< RESULT_TEMPLATE
+			<p>ID is invalid data type</p>
+			RESULT_TEMPLATE;
 
-        $detailTutorial[0]['total_purchased'] = $totalPurchased;
-        $detailTutorial[0]['total_like'] = $totalLiked;
-        $detailTutorial[0]['tags'] = $tags;
+        } elseif( $this->isIdNotAvailable($id) ){
+            return <<< RESULT_TEMPLATE
+			<p>Tutorial is not available</p>
+			RESULT_TEMPLATE;
 
-        return $detailTutorial;
+        } elseif( $this->isIneligibleTutorial($id) ){
+            return <<< RESULT_TEMPLATE
+			<p>Tutorial is not authorized to access</p>
+			RESULT_TEMPLATE;
+
+        } else {
+            $detailTutorial = $this->getDetail($id);
+            $totalPurchased = $this->getTotalPurchased($id);
+            $totalLiked = $this->getTotalLiked($id);
+            $tags = $this->getTags($detailTutorial[0]['tutorial_date'], $totalPurchased, $totalLiked);
+
+            $detailTutorial[0]['total_purchased'] = $totalPurchased;
+            $detailTutorial[0]['total_like'] = $totalLiked;
+            $detailTutorial[0]['tags'] = $tags;
+
+            $subtitleClass = isset($detailTutorial[0]['subtitle']) ? 'with-subtitle' : 'without-subtitle';
+
+            $tagTemplates = '';
+
+            if( count($detailTutorial[0]['tags']) > 0 ){
+                $tagsList = "<ul class='tags'>";
+                foreach ($detailTutorial[0]['tags'] as $tag) {
+                    if($tag == "Latest Tutorial") $tagsList = $tagsList .  "<li><a href='#'>Latest Tutorial</a></li>";
+                    if($tag == "Best Seller")     $tagsList = $tagsList .  "<li><a href='#'>Best Seller</a></li>";
+                    if($tag == "Most Liked")      $tagsList = $tagsList .  "<li><a href='#'>Most Liked</a></li>";
+                }
+                $tagsList = $tagsList . "</ul>";
+                $tagTemplates = "<div class='tags-container'><p class='label-tags'>Tags:</p>" . $tagsList . "</div>";
+            }
+
+            return <<< RESULT_TEMPLATE
+            <img src='../app/core/videos/cover-img/{$detailTutorial[0]['img_cover']}' class='img-cover'>
+            <h3 class='title'>{$detailTutorial[0]['title']}</h3>
+            <div class='createdby-container'>
+                <span class="label-by">By <a href='#' class='created-by'>{$detailTutorial[0]['created_by']}</a></span>
+            </div>
+            <div class='prize-container'>
+                <img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='cost'>
+                <span class='prize'>{$detailTutorial[0]['prize']}</span>
+            </div>
+            <div class='like-container'>
+                <img src='http://localhost/widy/project/dummy_project_3/public/svg/Green_Heart_Icon.svg' class='like-logo' alt='like'>
+                <p>{$detailTutorial[0]['total_like']} Likes</p>
+            </div>
+            <p class='level'>Level: {$detailTutorial[0]['level']}</p>
+            <p class='purchased-by'>Purchased By: {$detailTutorial[0]['total_purchased']} Students</p>
+            <p class='created-dt'>Created on: {$detailTutorial[0]['created_date']}</p>
+            <p class='duration'>Duration: {$detailTutorial[0]['video_duration']}</p>
+            <span class='{$subtitleClass}'>Subtitle</span>
+            {$tagTemplates}
+            <div class='desc-container'>
+                <p class="label-desc">Desc:</p>
+                <p class='description'>{$detailTutorial[0]['description']}</p>
+            </div>
+            RESULT_TEMPLATE;
+        }
 
     }
 
@@ -64,17 +120,5 @@ class Detail_tutorial_model {
 
     }
 
-    public function isIdNotAvailable(string $id): bool{
-        return R::count( 'tutorial', ' id = :id ', [ ':id' => $id ] ) > 0  ? false : true;
-    }
-
-    public function isIDNotUUID(string $id): bool{
-        return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
-    }
-
-    public function isIneligibleTutorial(string $id): bool {
-        $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
-        return empty($tutorials) ? true : false;
-    }
 
 }
