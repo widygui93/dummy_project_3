@@ -58,6 +58,7 @@ class Dashboard_teacher extends Controller{
     }
 
     public function revoke(){
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
         if( $this->model('Verify_model')->isRequestDataEmpty(file_get_contents('php://input')) ) return $this->model('Verify_model')->goHome();
         $requestJsonData = file_get_contents('php://input'); // data from axios request in json
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
@@ -70,6 +71,7 @@ class Dashboard_teacher extends Controller{
     }
 
     public function restore(){
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
         if( $this->model('Verify_model')->isRequestDataEmpty(file_get_contents('php://input')) ) return $this->model('Verify_model')->goHome();
         $requestJsonData = file_get_contents('php://input'); // data from axios request in json
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array

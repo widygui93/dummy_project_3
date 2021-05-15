@@ -22,13 +22,22 @@ class More_tutorial extends Controller{
                     ]
                 );
             } else {
+                // nanti di sini muncul view kumpulan tutorial yg tidak ada tombol apapun
                 echo "ini view bukan di dashboard";
             }
         } elseif(isset( $_SESSION['login_student'] )){
+            if( $currentController == "Dashboard_student" ){
+                // di sini nanti student punya tombol play di dashboard student
+
+            } else {
+                // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
+            }
 
             echo "ini view student";
 
         } else {
+            // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
+            // klu tombol purchase di klik nanti minta login dulu sebagai student
             echo "ini view kosong";
             
         }

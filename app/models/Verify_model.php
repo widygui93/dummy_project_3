@@ -15,6 +15,7 @@ class Verify_model {
         return empty($_SESSION["login_teacher"]) ? false : true;
     }
 
+    // ini untuk menjaga agar tidak bisa sembarang akses dari url tanpa memberikan data
     public function isRequestDataEmpty(string $reqData): bool{
         return empty($reqData) ? true : false;
     }
