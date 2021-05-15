@@ -274,6 +274,21 @@
     }
 }
 
+.swal-modal {
+    background-color: $light-primary-col;
+    border: 1px solid $secondary-col;
+    .swal-text {
+        padding: 17px;
+        display: block;
+        margin: 22px;
+        text-align: center;
+        color: $light-grey;
+    }
+    .swal-title {
+        color: $light-grey;
+    }
+}
+
 @media screen and (min-width: 748px){
     .modalDetailTutorial{
         .modal-content{
