@@ -83,4 +83,31 @@ class Dashboard_teacher extends Controller{
 
     }
 
+    public function getDataToDisplayBeforeUpdate(){
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
+        if( $this->model('Verify_model')->isRequestDataEmpty(file_get_contents('php://input')) ) return $this->model('Verify_model')->goHome();
+        $requestJsonData = file_get_contents('php://input'); // data from axios request in json
+        $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
+        $id = $requestArrayData['id'];
+
+        $responseArrayData = $this->model('Dashboard_teacher_model')->getDataTutorialToDisplayBeforeUpdate($id);
+        $responseJsonData = json_encode($responseArrayData);
+        echo $responseJsonData;
+
+    }
+    
+    public function update(){
+        if( !$this->model('Verify_model')->isLoginAsTeacher() ) return $this->model('Verify_model')->goHome();
+        if( $this->model('Verify_model')->isRequestDataEmpty(file_get_contents('php://input')) ) return $this->model('Verify_model')->goHome();
+        $requestJsonData = file_get_contents('php://input'); // data from axios request in json
+        $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
+        $id = $requestArrayData['id'];
+        $prize = (int)$requestArrayData['prize'];
+        $desc = $requestArrayData['desc'];
+
+        $responseArrayData = $this->model('Dashboard_teacher_model')->updateTutorial($id, $prize, $desc);
+        $responseJsonData = json_encode($responseArrayData);
+        echo $responseJsonData;
+    }
+
 }

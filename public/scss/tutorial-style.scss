@@ -281,12 +281,40 @@
         margin: 22px;
         text-align: center;
     }
-    .swal-button--confirm{
-        background-color: $light-primary-col;
-        &:hover{
-            background-color: $dark-primary-col;
+    .swal-content{
+        .update-tutorial-wrapper{
+            padding: 1em;
+            div{
+                border-left: 3px solid $dark-primary-col;
+                margin: 1em 0;
+                padding: .5em;
+                input, textarea {
+                    width: 100%;
+                    padding: 12px;
+                    border: 1px solid #ccc;
+                    border-radius: 4px;
+                    box-sizing: border-box;
+                    margin-top: 6px;
+                    margin-bottom: 16px;
+                    resize: vertical;
+                    &:focus{
+                        background-color: $light-grey;
+                        outline: none;
+                    }
+                }
+            }
+        }
+
+    }
+    .swal-footer{
+        .swal-button--confirm{
+            background-color: $light-primary-col;
+            &:hover{
+                background-color: $dark-primary-col;
+            }
         }
     }
+    
 }
 
 @media screen and (min-width: 748px){

@@ -336,4 +336,75 @@ class Dashboard_teacher_model extends Model {
         return $restoredTutorial->is_revoke == 'N' ? true : false;
     }
 
+    public function getDataTutorialToDisplayBeforeUpdate(string $id): array{
+        if( $this->isIDNotUUID($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'ID is invalid data type'
+            ];
+        } elseif( $this->isIdNotAvailable($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not available'
+            ];
+        } elseif( $this->isIneligibleTutorial($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not authorized to access'
+            ];
+        } else {
+
+            $query = "
+                SELECT to_char(prize, '999,999,999') AS prize,
+                        description 
+                FROM tutorial WHERE id = :id
+            ";
+
+            $DataTutorialToDisplayBeforeUpdate = R::getAll( $query, [ ':id' => $id ] );
+
+            return [
+                'icon' => 'info',
+                'title' => 'Update This Tutorial',
+                'dataTutorial' => $DataTutorialToDisplayBeforeUpdate
+            ];
+
+        }
+
+    }
+    
+    public function updateTutorial(string $id, string $prize, string $desc): array {
+        if( $this->isIDNotUUID($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'ID is invalid data type'
+            ];
+        } elseif( $this->isIdNotAvailable($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not available'
+            ];
+        } elseif( $this->isIneligibleTutorial($id) ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not authorized to access'
+            ];
+        } else {
+            $updatedTutorial = R::load('tutorial', $id);
+            $updatedTutorial->prize = $prize;
+            $updatedTutorial->description = $desc;
+            R::store($updatedTutorial);
+
+            return [
+                'icon' => 'success',
+                'title' => 'Success',
+                'text' => 'Update Tutorial successfully'
+            ];
+        }
+    }
 }
