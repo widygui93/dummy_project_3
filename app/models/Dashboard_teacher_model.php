@@ -358,7 +358,7 @@ class Dashboard_teacher_model extends Model {
         } else {
 
             $query = "
-                SELECT to_char(prize, '999,999,999') AS prize,
+                SELECT  prize,
                         description 
                 FROM tutorial WHERE id = :id
             ";

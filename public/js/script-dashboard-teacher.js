@@ -114,9 +114,6 @@ $(function(){
 					})
 					.then( () => location.reload() );
 				} else {
-
-					// let prizeValueForUpdate = response.data.dataTutorial[0].prize.trim();
-					// let descValueForUpdate = response.data.dataTutorial[0].description;
 					
 					let updateWrapper = document.createElement("div");
 					let prizeWrapper = document.createElement("div");
@@ -127,7 +124,7 @@ $(function(){
 					let descTextAreaUpdate = document.createElement("textarea");
 
 					$(updateWrapper).addClass("update-tutorial-wrapper");
-					$(prizeInputUpdate).val(response.data.dataTutorial[0].prize.trim());
+					$(prizeInputUpdate).val(response.data.dataTutorial[0].prize);
 					$(descTextAreaUpdate).val(response.data.dataTutorial[0].description);
 					$(prizeInputUpdate).addClass("update-prize");
 					$(descTextAreaUpdate).addClass("update-desc");
@@ -150,8 +147,7 @@ $(function(){
 						buttons: [true, "Update"]
 					})
 					.then((willUpdate) => {
-						// console.log($(".update-prize").val());
-						// console.log($(".update-desc").val());
+						
 						if (willUpdate) {
 							axios({
 								method: 'post',

@@ -102,7 +102,7 @@ class Dashboard_teacher extends Controller{
         $requestJsonData = file_get_contents('php://input'); // data from axios request in json
         $requestArrayData = json_decode($requestJsonData, true); // convert json into php array
         $id = $requestArrayData['id'];
-        $prize = (int)$requestArrayData['prize'];
+        $prize = $requestArrayData['prize'];
         $desc = $requestArrayData['desc'];
 
         $responseArrayData = $this->model('Dashboard_teacher_model')->updateTutorial($id, $prize, $desc);
