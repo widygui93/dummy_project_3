@@ -275,6 +275,7 @@
 }
 
 .swal-modal {
+    width: 70%;
     .swal-text {
         padding: 17px;
         display: block;
@@ -288,6 +289,11 @@
                 border-left: 3px solid $dark-primary-col;
                 margin: 1em 0;
                 padding: .5em;
+                display: flex;
+                flex-direction: column;
+                label{
+                    text-align: left;
+                }
                 input, textarea {
                     width: 100%;
                     padding: 12px;
