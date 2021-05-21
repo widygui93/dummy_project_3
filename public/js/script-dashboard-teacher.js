@@ -92,6 +92,11 @@ $(function(){
         e.preventDefault();
     });
 
+	$(document).on("keyup", ".update-desc", function(e){
+		$(".length-desc-update").text( $(".update-desc").val().length );
+		e.preventDefault();
+	})
+
 	$(document).on("click", ".update-button", function(e){
 
 		let idTut = $(this).parent().parent().prev().children(".info-1").children('span:first').text();
@@ -128,6 +133,7 @@ $(function(){
 					$(descTextAreaUpdate).val(response.data.dataTutorial[0].description);
 					$(prizeInputUpdate).addClass("update-prize");
 					$(descTextAreaUpdate).addClass("update-desc");
+					$(descTextAreaUpdate).attr("maxlength", "300");
 					$(prizeLabel).text("Prize");
 					$(descLabel).text("Description");
 
@@ -136,6 +142,7 @@ $(function(){
 
 					$(descWrapper).append(descLabel);
 					$(descWrapper).append(descTextAreaUpdate);
+					$(descWrapper).append("<small><span class='length-desc-update'>" + response.data.dataTutorial[0].description.length + "</span>/300</small>");
 
 					$(updateWrapper).append(prizeWrapper);
 					$(updateWrapper).append(descWrapper);
