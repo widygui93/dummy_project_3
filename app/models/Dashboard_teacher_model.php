@@ -394,10 +394,31 @@ class Dashboard_teacher_model extends Model {
                 'title' => 'Failed',
                 'text' => 'Tutorial is not authorized to access'
             ];
+        } elseif( !$this->doesMandatoryDataFilled(array(
+            "prize" => $prize,
+            "desc" => $desc
+        ) ) ) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Data prize and desc are mandatory'
+            ];
+        } elseif( $this->isBreak($prize, "/^[0-9]*$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Prize Format: number only'
+            ];
+        } elseif( $this->isBreak($desc, "/^[\w -.,!?\n\t\r]{10,300}$/") ){
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Desc Format: Combination of letters and numbers, Length: 10 - 300 characters'
+            ];
         } else {
             $updatedTutorial = R::load('tutorial', $id);
-            $updatedTutorial->prize = $prize;
-            $updatedTutorial->description = $desc;
+            $updatedTutorial->prize = $this->purify($prize);
+            $updatedTutorial->description = $this->purify($desc);
             R::store($updatedTutorial);
 
             return [
