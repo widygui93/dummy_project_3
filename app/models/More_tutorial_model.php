@@ -6,7 +6,7 @@ class More_tutorial_model extends Model {
         $this->db = new Database;
     }
 
-    public function getMoreTutorial(string $username, int $startIndexOfMoreTutorials): array{
+    public function getMoreTutorialsBy(string $username, int $startIndexOfMoreTutorials): array{
         $tutorialsPerPage = 4;
         $numOfTutorials = R::count( 'tutorial', ' created_by = ? ', [ $username ] );
         if( $numOfTutorials > 0 ){
@@ -56,6 +56,11 @@ class More_tutorial_model extends Model {
             $tutorials = array();
             return $tutorials;
         }
+
+    }
+
+    public function getMoreTutorials(int $startIndexOfMoreTutorials): array{
+        return $this->getMoreTutorialsFromModelClass($startIndexOfMoreTutorials);
 
     }
 }

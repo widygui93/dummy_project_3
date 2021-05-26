@@ -1,0 +1,10 @@
+<main class="main">
+	<div class="call-to-action">
+		<div class="cta-content">
+			<h1>Welcome to Unemi</h1>
+			<h3>Your Learing Platform</h3>
+			{% if not (login_teacher or login_student) %}
+				<div><a href="{{ BASEURL }}/Signup">Sign Up</a></div>
+			{% endif %}
+		</div>
+	</div>

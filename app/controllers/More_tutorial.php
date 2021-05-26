@@ -12,7 +12,7 @@ class More_tutorial extends Controller{
 
         if(isset( $_SESSION['login_teacher'] )){
             if( $currentController == "Dashboard_teacher" ){
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorial($_SESSION['username_teacher'],$startIndexOfMoreTutorials);
+                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsBy($_SESSION['username_teacher'],$startIndexOfMoreTutorials);
                 
                 $twig = $this->view();
                 echo $twig->render('/tutorial/more-tutorial-teacher.html.twig', 
@@ -23,7 +23,16 @@ class More_tutorial extends Controller{
                 );
             } else {
                 // nanti di sini muncul view kumpulan tutorial yg tidak ada tombol apapun
-                echo "ini view bukan di dashboard";
+                // echo "ini view bukan di dashboard";
+                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
+                
+                $twig = $this->view();
+                echo $twig->render('/tutorial/tutorials.html.twig', 
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
             }
         } elseif(isset( $_SESSION['login_student'] )){
             if( $currentController == "Dashboard_student" ){
