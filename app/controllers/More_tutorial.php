@@ -47,7 +47,16 @@ class More_tutorial extends Controller{
         } else {
             // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
             // klu tombol purchase di klik nanti minta login dulu sebagai student
-            echo "ini view kosong";
+            // echo "ini view kosong";
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
+                
+            $twig = $this->view();
+            echo $twig->render('/tutorial/more-tutorial.html.twig', 
+                [
+                    'tutorials' => $moreTutorials,
+                    'BASEURL' => BASEURL
+                ]
+            );
             
         }
 
