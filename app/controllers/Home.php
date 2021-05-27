@@ -46,7 +46,14 @@ class Home extends Controller{
         } else {
             // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
             // klu tombol purchase di klik nanti minta login dulu sebagai student
-            echo "ini view kosong";
+            // echo "ini view kosong";
+			echo $twig->render('/tutorial/student-non-dashboard.html.twig',
+				[
+					'tutorials' => $data['tutorials'], 
+					'total_tutorials' => $data['total-tutorials'],
+					'BASEURL' => BASEURL
+				]
+			);
             
         }
 

@@ -66,6 +66,9 @@ class Model {
     }
 
     public function isIneligibleTutorial(string $id): bool {
+        if( !isset($_SESSION["login_teacher"]) && !isset($_SESSION["login_student"]) ){
+            return false;
+        }
         $tutorials = R::find( 'tutorial', ' id = :id and created_by = :created_by ', [ ':id' => $id, ':created_by' => $_SESSION["username_teacher"] ]);
         return empty($tutorials) ? true : false;
     }
