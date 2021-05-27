@@ -41,6 +41,12 @@
 	}
 }
 
+.row-header{
+	h3{
+		@include section-header;
+	}
+}
+
 // .latest-tutorial {
 // 	h3{
 // 		@include section-header;
