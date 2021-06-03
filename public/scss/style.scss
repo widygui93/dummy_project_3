@@ -1,323 +1,353 @@
 @import "variables";
 @import "mixins";
-@import "tutorial-style";
-
-
-
-
 
 .call-to-action {
-	background-image: url("../img/patrick-tomasso-IDN8NVELy0E-unsplash.jpg");
-	height: 700px;
-	background-position: center;
-	background-repeat: no-repeat;
-	background-size: cover;
-	color: $light-grey;
-	.cta-content {
-		position: relative;
-		top: 20em;
-		height: 100px;
-		margin-left: 10%;
-	
-		div {
-			background-color: $dark-primary-col;
-			width: 100px;
-			height: 50px;
-			margin-top: 10px;
-			border-radius: 5px;
-			text-align: center;
-			line-height: 1.8;
-		}
-		
-		a {
-			text-decoration: none;
-			color: $light-grey;
-			font-size: 25px;
-		}
-		
-		a:hover {
-			color: $secondary-col;
-		}
-	}
+  background-image: url("../img/patrick-tomasso-IDN8NVELy0E-unsplash.jpg");
+  height: 700px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: $light-grey;
+  .cta-content {
+    position: relative;
+    top: 20em;
+    height: 100px;
+    margin-left: 10%;
+
+    div {
+      background-color: $dark-primary-col;
+      width: 100px;
+      height: 50px;
+      margin-top: 10px;
+      border-radius: 5px;
+      text-align: center;
+      line-height: 1.8;
+    }
+
+    a {
+      text-decoration: none;
+      color: $light-grey;
+      font-size: 25px;
+    }
+
+    a:hover {
+      color: $secondary-col;
+    }
+  }
 }
 
-.row-header{
-	h3{
-		@include section-header;
-	}
+.row-header {
+  h3 {
+    @include section-header;
+  }
 }
 
 .student-testi {
-	background-image: linear-gradient(to bottom right, $dark-primary-col, $light-primary-col);
-	padding: .3em 0 1em;
+  background-image: linear-gradient(
+    to bottom right,
+    $dark-primary-col,
+    $light-primary-col
+  );
+  padding: 0.3em 0 1em;
 }
-.student-testi , .list-teacher{
-	h3{
-		@include section-header;
-	}
-	.student-testi-wrap , .list-teacher-wrap{
-		width: 300px;
-		margin: 0 auto;
-		position: relative;
-		.testi , .teacher{
-			padding-top: 10px;
-			display: none;
-			position: relative;
-			.numbertext{
-				color: #000;
-				font-size: 12px;
-				position: absolute;
-				left: 1em;
-			}
-			.testi-head , .teacher-head{
-				display: flex;
-				justify-content: center;
-			}
-			.testi-main , .teacher-main{
-				color: #000;
-				font-size: 15px;
-				text-align: center;
-				.student-name , .teacher-name{
-					font-weight: bold;
-				}
-				.student-name{
-					color: $light-grey;
-				}
-				.teacher-name{
-					color: $dark-primary-col;
-				}
-				.testi-text{
-					margin-top: 3px;
-				}
-				.teacher-specialist{
-					display: block;
-				}
-			}
-		}
-		.fade {
-			-webkit-animation-name: fade;
-			-webkit-animation-duration: 1.5s;
-			animation-name: fade;
-			animation-duration: 1.5s;
-		}
-		@-webkit-keyframes fade {
-			from {opacity: .4} 
-			to {opacity: 1}
-		}
-		@keyframes fade {
-			from {opacity: .4} 
-			to {opacity: 1}
-		}
-		.prev, .next , .prev-teacher, .next-teacher {
-			cursor: pointer;
-			position: absolute;
-			top: 50%;
-			width: auto;
-			padding: 16px;
-			margin-top: -22px;
-			font-weight: bold;
-			font-size: 18px;
-			transition: 0.6s ease;
-			user-select: none;
-		}
-		.prev , .next {
-			color: $light-grey;
-		}
-		.prev-teacher, .next-teacher {
-			color: $dark-primary-col;
-		}
-		.next , .next-teacher {
-			right: 0;
-			border-radius: 0 3px 3px 0;
-		}
-		.prev , .prev-teacher {
-			border-radius: 3px 0 0 3px;
-		}
-		.prev:hover, .next:hover , .prev-teacher:hover, .next-teacher:hover {
-			background-color: $secondary-col;
-		}
-	}
+.student-testi,
+.list-teacher {
+  h3 {
+    @include section-header;
+  }
+  .student-testi-wrap,
+  .list-teacher-wrap {
+    width: 300px;
+    margin: 0 auto;
+    position: relative;
+    .testi,
+    .teacher {
+      padding-top: 10px;
+      display: none;
+      position: relative;
+      .numbertext {
+        color: #000;
+        font-size: 12px;
+        position: absolute;
+        left: 1em;
+      }
+      .testi-head,
+      .teacher-head {
+        display: flex;
+        justify-content: center;
+      }
+      .testi-main,
+      .teacher-main {
+        color: #000;
+        font-size: 15px;
+        text-align: center;
+        .student-name,
+        .teacher-name {
+          font-weight: bold;
+        }
+        .student-name {
+          color: $light-grey;
+        }
+        .teacher-name {
+          color: $dark-primary-col;
+        }
+        .testi-text {
+          margin-top: 3px;
+        }
+        .teacher-specialist {
+          display: block;
+        }
+      }
+    }
+    .fade {
+      -webkit-animation-name: fade;
+      -webkit-animation-duration: 1.5s;
+      animation-name: fade;
+      animation-duration: 1.5s;
+    }
+    @-webkit-keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    @keyframes fade {
+      from {
+        opacity: 0.4;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+    .prev,
+    .next,
+    .prev-teacher,
+    .next-teacher {
+      cursor: pointer;
+      position: absolute;
+      top: 50%;
+      width: auto;
+      padding: 16px;
+      margin-top: -22px;
+      font-weight: bold;
+      font-size: 18px;
+      transition: 0.6s ease;
+      user-select: none;
+    }
+    .prev,
+    .next {
+      color: $light-grey;
+    }
+    .prev-teacher,
+    .next-teacher {
+      color: $dark-primary-col;
+    }
+    .next,
+    .next-teacher {
+      right: 0;
+      border-radius: 0 3px 3px 0;
+    }
+    .prev,
+    .prev-teacher {
+      border-radius: 3px 0 0 3px;
+    }
+    .prev:hover,
+    .next:hover,
+    .prev-teacher:hover,
+    .next-teacher:hover {
+      background-color: $secondary-col;
+    }
+  }
 }
 
-.comparison{
-	background-image: linear-gradient(to bottom right, $dark-primary-col, lighten($dark-primary-col, 50%));
-	padding: .3em 0 1em;
-	h3{
-		@include section-header;
-	}
-	.comparison-table{
-		.comparison-table-head{
-			margin-top: 20px;
-			padding: 10px;
-			display: flex;
-			button{
-				cursor: pointer;
-				width: 100%;
-				font-size: 20px;
-				font-weight: bold;
-				padding: 20px 0;
-				border-bottom: none;
-				border-right: none;
-				border-left: none;
-				border-top: none;
-				transition: border-bottom .5s , color .5s;
-				&:hover{
-					color: $dark-primary-col;
-				}
-				&:focus{
-					color: $dark-primary-col;
-					border-bottom: 10px solid $secondary-col;
-					outline: none;
-					box-shadow: none;
-				}
-			}
-		}
-		.comparison-table-main{
-			table{
-				margin: auto;
-				text-align: center;
-				padding: 10px;
-				font-size: 20px;
-				background-color: $light-grey;
-				border-radius: 10px;
-				opacity: 0.8;
-				transition: 0.5s;
-				&:hover{
-					opacity: 1;
-					box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
-					-2px -2px 5px rgba(116,116,106,.75);
-				}
-				td{
-					padding: 10px;
-				}
-			}
-			.conven-feature, .unemi-feature{
-				border-radius: 10px;
-			}
-			.conven-feature{
-				display: none;
-				background-color: lighten($dark-primary-col, 50%);
-			}
-			.unemi-feature{
-				background-color: lighten($secondary-col, 20%);
-			}
-			.conven-feature.open{
-				display: block;
-			}
-			.conven-feature.close{
-				display: none;
-			}
-			.unemi-feature.open{
-				display: block;
-			}
-			.unemi-feature.close{
-				display: none;
-			}
-		}
-	}
+.comparison {
+  background-image: linear-gradient(
+    to bottom right,
+    $dark-primary-col,
+    lighten($dark-primary-col, 50%)
+  );
+  padding: 0.3em 0 1em;
+  h3 {
+    @include section-header;
+  }
+  .comparison-table {
+    .comparison-table-head {
+      margin-top: 20px;
+      padding: 10px;
+      display: flex;
+      button {
+        cursor: pointer;
+        width: 100%;
+        font-size: 20px;
+        font-weight: bold;
+        padding: 20px 0;
+        border-bottom: none;
+        border-right: none;
+        border-left: none;
+        border-top: none;
+        transition: border-bottom 0.5s, color 0.5s;
+        &:hover {
+          color: $dark-primary-col;
+        }
+        &:focus {
+          color: $dark-primary-col;
+          border-bottom: 10px solid $secondary-col;
+          outline: none;
+          box-shadow: none;
+        }
+      }
+    }
+    .comparison-table-main {
+      table {
+        margin: auto;
+        text-align: center;
+        padding: 10px;
+        font-size: 20px;
+        background-color: $light-grey;
+        border-radius: 10px;
+        opacity: 0.8;
+        transition: 0.5s;
+        &:hover {
+          opacity: 1;
+          box-shadow: 2px 2px 5px rgba(116, 116, 106, 0.75),
+            -2px -2px 5px rgba(116, 116, 106, 0.75);
+        }
+        td {
+          padding: 10px;
+        }
+      }
+      .conven-feature,
+      .unemi-feature {
+        border-radius: 10px;
+      }
+      .conven-feature {
+        display: none;
+        background-color: lighten($dark-primary-col, 50%);
+      }
+      .unemi-feature {
+        background-color: lighten($secondary-col, 20%);
+      }
+      .conven-feature.open {
+        display: block;
+      }
+      .conven-feature.close {
+        display: none;
+      }
+      .unemi-feature.open {
+        display: block;
+      }
+      .unemi-feature.close {
+        display: none;
+      }
+    }
+  }
 }
 
 @media screen and (min-width: 748px) {
-	
-	.student-testi{
-		.student-testi-wrap{
-			position: static !important;
-			width: auto !important;
-			display: flex;
-			flex-wrap: wrap;
-			justify-content: center;
-			.testi{
-				display: block !important;
-				position: static !important;
-				width: 25em;
-				.testi-text{
-					width: 20em;
-					margin: 0 auto !important;
-				}
-			}
-			.numbertext, .prev, .next{
-				display: none !important;
-			}
-		}
-	}
+  .student-testi {
+    .student-testi-wrap {
+      position: static !important;
+      width: auto !important;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      .testi {
+        display: block !important;
+        position: static !important;
+        width: 25em;
+        .testi-text {
+          width: 20em;
+          margin: 0 auto !important;
+        }
+      }
+      .numbertext,
+      .prev,
+      .next {
+        display: none !important;
+      }
+    }
+  }
 
-	.list-teacher{
-		.list-teacher-wrap{
-			position: static !important;
-			width: auto !important;
-			display: flex;
-			flex-direction: column;
-			.teacher:nth-child(odd){
-				flex-direction: row-reverse;
-			}
-			.teacher:nth-child(even){
-				flex-direction: row;
-			}
-			.teacher{
-				position: static !important;
-				display: flex !important;
-				// justify-content: space-around;
-				margin-top: 10px;
-				margin-right: 40px;
-				margin-left: 40px;
-				.teacher-head{
-					img{
-						width: 300px;
-						height: 400px;
-						box-shadow: 2px 2px 5px rgba(116,116,106,.75), 
-					   -2px -2px 5px rgba(116,116,106,.75);
-					}
-				}
-				.teacher-main{
-					display: flex;
-					flex-direction: column;
-					justify-content: center;
-					width: 100%;
-					.teacher-name, .teacher-specialist{
-						font-size: 40px;
-						background-color: $dark-primary-col;
-						padding-left: 30px;
-						padding-right: 30px;
-						margin-right: 10px;
-						margin-left: 10px;
-					}
-					.teacher-name{
-						padding-top: 30px;
-						color: $secondary-col !important;
-						border-top-left-radius: 10px;
-						border-top-right-radius: 10px;
-					}
-					.teacher-specialist{
-						padding-bottom: 30px;
-						border-bottom-left-radius: 10px;
-						border-bottom-right-radius: 10px;
-						box-shadow: 0px 10px 9px grey;
-					}
-				}
-			}
-			.numbertext, .prev-teacher, .next-teacher{
-				display: none !important;
-			}
-		}
-
-	}
-	.comparison{
-		.comparison-table-head{
-			display: none !important;
-		}
-		.comparison-table-main{
-			table{
-				width: 80%;
-				margin-top: 1em !important;
-				margin-bottom: 1em !important;
-				.conven-feature{
-					display: table-cell !important;
-				}
-				.unemi-feature{
-					display: table-cell !important;
-				}
-			}
-		}
-	}
-
+  .list-teacher {
+    .list-teacher-wrap {
+      position: static !important;
+      width: auto !important;
+      display: flex;
+      flex-direction: column;
+      .teacher:nth-child(odd) {
+        flex-direction: row-reverse;
+      }
+      .teacher:nth-child(even) {
+        flex-direction: row;
+      }
+      .teacher {
+        position: static !important;
+        display: flex !important;
+        // justify-content: space-around;
+        margin-top: 10px;
+        margin-right: 40px;
+        margin-left: 40px;
+        .teacher-head {
+          img {
+            width: 300px;
+            height: 400px;
+            box-shadow: 2px 2px 5px rgba(116, 116, 106, 0.75),
+              -2px -2px 5px rgba(116, 116, 106, 0.75);
+          }
+        }
+        .teacher-main {
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          width: 100%;
+          .teacher-name,
+          .teacher-specialist {
+            font-size: 40px;
+            background-color: $dark-primary-col;
+            padding-left: 30px;
+            padding-right: 30px;
+            margin-right: 10px;
+            margin-left: 10px;
+          }
+          .teacher-name {
+            padding-top: 30px;
+            color: $secondary-col !important;
+            border-top-left-radius: 10px;
+            border-top-right-radius: 10px;
+          }
+          .teacher-specialist {
+            padding-bottom: 30px;
+            border-bottom-left-radius: 10px;
+            border-bottom-right-radius: 10px;
+            box-shadow: 0px 10px 9px grey;
+          }
+        }
+      }
+      .numbertext,
+      .prev-teacher,
+      .next-teacher {
+        display: none !important;
+      }
+    }
+  }
+  .comparison {
+    .comparison-table-head {
+      display: none !important;
+    }
+    .comparison-table-main {
+      table {
+        width: 80%;
+        margin-top: 1em !important;
+        margin-bottom: 1em !important;
+        .conven-feature {
+          display: table-cell !important;
+        }
+        .unemi-feature {
+          display: table-cell !important;
+        }
+      }
+    }
+  }
 }
