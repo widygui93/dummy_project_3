@@ -1,8 +1,27 @@
 @import "variables";
 @import "mixins";
 
-.search-container{
-    height: 200px;
-    padding-top: 10em;
-    line-height: 1.6;
+.search-container {
+  padding-top: 7.5em;
+  padding-bottom: 1em;
+  padding-left: 12px;
+  margin-bottom: 1em;
+  div {
+    width: fit-content;
+    border-radius: 3px;
+    padding: 5px;
+    background-color: darken($light-grey, 3%);
+    span {
+      font-size: 13px;
+      b {
+        color: $dark-primary-col;
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 748px) {
+  .search-container {
+    padding-top: 9em !important;
+  }
 }

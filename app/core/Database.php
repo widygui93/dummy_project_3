@@ -1,33 +1,34 @@
 <?php
 
-class Database {
-    private $host = DB_HOST;
-    private $user = DB_USER;
-    private $pass = DB_PASS;
-    private $db_name = DB_NAME;
+class Database
+{
+	private $host = DB_HOST;
+	private $user = DB_USER;
+	private $pass = DB_PASS;
+	private $db_name = DB_NAME;
 
-    private $dbh; // database handler
-    private $stmt;
+	private $dbh; // database handler
+	private $stmt;
 
-    public function __construct(){
-        // data source name
-        $dsn = 'pgsql:host=' . $this->host . ';dbname=' . $this->db_name;
+	public function __construct()
+	{
+		// data source name
+		$dsn = 'pgsql:host=' . $this->host . ';dbname=' . $this->db_name;
 
-        $option = [
-            PDO::ATTR_PERSISTENT => true,
-            PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
-        ];
+		$option = [
+			PDO::ATTR_PERSISTENT => true,
+			PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
+		];
 
-        try{
-			if(!R::testConnection()) R::setup( $dsn,$this->user, $this->pass, $option );
-			
-        } catch(PDOException $e){
-            echo "gagal connect";
-            die($e->getMessage());
-        }
-    }
+		try {
+			if (!R::testConnection()) R::setup($dsn, $this->user, $this->pass, $option);
+		} catch (PDOException $e) {
+			echo "gagal connect";
+			die($e->getMessage());
+		}
+	}
 
-    // public function query($query){
+	// public function query($query){
 	// 	$this->stmt = $this->dbh->prepare($query);
 	// }
 
@@ -54,9 +55,9 @@ class Database {
 
 	// public function execute(){
 	// 	$this->stmt->execute();
-    // }
+	// }
 
-    // public function rowCount(){
+	// public function rowCount(){
 	// 	return $this->stmt->rowCount();
 	// }
 
@@ -69,5 +70,5 @@ class Database {
 	// 	$this->execute();
 	// 	return $this->stmt->fetch(PDO::FETCH_ASSOC);
 	// }
-    
+
 }
