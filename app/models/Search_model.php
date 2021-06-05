@@ -61,6 +61,6 @@ class Search_model extends Model
 
     public function getTotalOfSearchTutorials(string $keyword): int
     {
-        return R::count('tutorial', ' LOWER(title) LIKE ? ', ['%' . $keyword . '%']);
+        return R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . $keyword . '%', 'N']);
     }
 }

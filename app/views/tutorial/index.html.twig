@@ -32,11 +32,13 @@
             </div>
         {% endfor %}
     </div>
-    <div class="tutorial-more">
-        <button type="button" class="load-more">More</button>
-        <input type="hidden" id="current-display-total-tutorial" value="0">
-        <input type="hidden" id="all-tutorials" value="{{ total_tutorials }}">
-    </div>
+    {% if total_tutorials > 4 %}
+        <div class="tutorial-more">
+            <button type="button" class="load-more">More</button>
+            <input type="hidden" id="current-display-total-tutorial" value="0">
+            <input type="hidden" id="all-tutorials" value="{{ total_tutorials }}">
+        </div>
+    {% endif %}
     <div class="modalDetailTutorial">
         <div class="modal-content">
             <span class="close-detail-tutorial">&times;</span>

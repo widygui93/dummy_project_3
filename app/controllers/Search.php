@@ -57,14 +57,18 @@ class Search extends Controller
 			// nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
 			// klu tombol purchase di klik nanti minta login dulu sebagai student
 			// echo "ini view kosong";
-			echo $twig->render(
-				'/tutorial/student-non-dashboard.html.twig',
-				[
-					'tutorials' => $data['tutorials'],
-					'total_tutorials' => $data['total-tutorials'],
-					'BASEURL' => BASEURL
-				]
-			);
+			// jika setelah di lakukan fuzzy search tapi semua hasil nya dalam is_revoke = Y
+			// maka tampilkan no tutorial view
+			echo empty($data['tutorials'])
+				? $twig->render('/tutorial/no-tutorial.html.twig') :
+				$twig->render(
+					'/tutorial/student-non-dashboard.html.twig',
+					[
+						'tutorials' => $data['tutorials'],
+						'total_tutorials' => $data['total-tutorials'],
+						'BASEURL' => BASEURL
+					]
+				);
 		}
 
 		echo $twig->render(
