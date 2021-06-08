@@ -10,7 +10,7 @@ class Search extends Controller
 		$data['script-load-more'] = BASEURL . '/js/script-load-more.js';
 		$data['tutorials'] = $this->model('Search_model')->SearchTutorialsBy(strtolower($_POST['q']));
 		$data['total-tutorials'] = $this->model('Search_model')->getTotalOfSearchTutorials(strtolower($_POST['q']));
-		$cc = 12;
+
 
 
 		$twig = $this->view();
