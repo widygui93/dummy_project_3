@@ -22,7 +22,16 @@
 				</div>
 				<div class="search-bar">
 					<form action="{{ BASEURL }}/Search" method="POST">
-						<input type="search" placeholder="Search Tutorial" name="q" autocomplete="off">
+						<input 
+							type="search"
+							placeholder="Search Tutorial"
+							name="q"
+							minlength="6" 
+                    		maxlength="50"
+                    		pattern="^[a-zA-Z0-9 .,\-&]*$"
+							autocomplete="off"
+							required
+						>
 					</form>
 				</div>
 				<div class="login-signup-logout-wrapper">
