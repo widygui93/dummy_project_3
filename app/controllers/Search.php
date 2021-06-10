@@ -30,7 +30,7 @@ class Search extends Controller
 		echo $twig->render(
 			'/search/index.html.twig',
 			[
-				'q' => empty($_POST) ? '' : $_POST['q'],
+				'q' => empty($_POST) ? '' : $this->model('Search_model')->purifyKeyword($_POST['q']),
 				'flash' => Flasher::flash() ?? ''
 			]
 		);

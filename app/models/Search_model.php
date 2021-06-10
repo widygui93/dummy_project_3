@@ -16,6 +16,9 @@ class Search_model extends Model
         } elseif (!$this->doesMandatoryDataFilled($keyword)) {
             Flasher::setFlash('error', 'Failed', 'Keyword is mandatory');
             return array();
+        } elseif ($this->isBreak($keyword['q'], "/^[a-zA-Z0-9 .,\-&]{6,50}$/")) {
+            Flasher::setFlash('error', 'Failed', 'Search Format: Combination of letters and numbers, Length: 6 - 50');
+            return array();
         } else {
 
             $tutorialsPerPage = 4;
@@ -71,5 +74,10 @@ class Search_model extends Model
     public function getTotalOfSearchTutorials(array $keyword): int
     {
         return $this->isDataEmpty($keyword) ? 0 : R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
+    }
+
+    public function purifyKeyword(string $keyword): string
+    {
+        return $this->purify($keyword);
     }
 }
