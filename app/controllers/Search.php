@@ -8,9 +8,8 @@ class Search extends Controller
 		$data['script-modal-detail-tutorial'] = BASEURL . '/js/script-modal-detail-tutorial.js';
 		$data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
 		$data['script-load-more'] = BASEURL . '/js/script-load-more.js';
-		$data['tutorials'] = $this->model('Search_model')->SearchTutorialsBy(strtolower($_POST['q']));
-		$data['total-tutorials'] = $this->model('Search_model')->getTotalOfSearchTutorials(strtolower($_POST['q']));
-
+		$data['tutorials'] = $this->model('Search_model')->SearchTutorialsBy($_POST);
+		$data['total-tutorials'] = $this->model('Search_model')->getTotalOfSearchTutorials($_POST);
 
 
 		$twig = $this->view();
@@ -28,7 +27,13 @@ class Search extends Controller
 			]
 		);
 
-		echo $twig->render('/search/index.html.twig', ['q' => $_POST['q']]);
+		echo $twig->render(
+			'/search/index.html.twig',
+			[
+				'q' => empty($_POST) ? '' : $_POST['q'],
+				'flash' => Flasher::flash() ?? ''
+			]
+		);
 
 		// echo $twig->render(
 		// 	'/tutorial/student-non-dashboard.html.twig',
