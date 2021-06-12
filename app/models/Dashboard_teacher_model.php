@@ -1,98 +1,95 @@
 <?php
-class Dashboard_teacher_model extends Model {
+class Dashboard_teacher_model extends Model
+{
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database;
     }
 
-    public function createTutorial($data){
-        if( $this->isDataEmpty($data) ){
+    public function createTutorial($data)
+    {
+        if ($this->isDataEmpty($data)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data must be sent'
             ];
-        } elseif( !$this->doesMandatoryDataFilled(array(
+        } elseif (!$this->doesMandatoryDataFilled(array(
             "title" => $data['title'],
             "level" => $data['level'],
             "prize" => $data['prize'],
             "desc" => $data['desc'],
             "video" => $_FILES['video']['name'],
             "img-cover" => $_FILES['img-cover']['name']
-        ) ) ) {
+        ))) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data title, level, prize, desc, video and img-cover are mandatory'
             ];
-        } elseif( $this->isViolateMaxSize($_FILES['video']['size'], 200000) ){
+        } elseif ($this->isViolateMaxSize($_FILES['video']['size'], 200000)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Max video size is 200 KB'
             ];
-        } elseif( $this->isViolateMaxSize($_FILES['img-cover']['size'], 200000) ){
+        } elseif ($this->isViolateMaxSize($_FILES['img-cover']['size'], 200000)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Max image size is 200 KB'
             ];
-
-        } elseif( $this->isViolateMaxSize($_FILES['subtitle']['size'], 200000) ){
+        } elseif ($this->isViolateMaxSize($_FILES['subtitle']['size'], 200000)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Max file subtitle size is 200 KB'
             ];
-
-        } elseif( $this->isViolateFileExtention($_FILES['img-cover']['name'], ['jpg', 'jpeg', 'png']) ){
+        } elseif ($this->isViolateFileExtention($_FILES['img-cover']['name'], ['jpg', 'jpeg', 'png'])) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'You upload incorrect image extention'
             ];
-
-        } elseif( $this->isViolateFileExtention($_FILES['video']['name'], ['webm', 'mp4']) ){
+        } elseif ($this->isViolateFileExtention($_FILES['video']['name'], ['webm', 'mp4'])) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'You upload incorrect video extention'
             ];
-
-        } elseif( $this->isViolateFileExtention($_FILES['subtitle']['name'], ['vtt', '']) ){
+        } elseif ($this->isViolateFileExtention($_FILES['subtitle']['name'], ['vtt', ''])) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'You upload incorrect subtitle extention'
             ];
-
-        } elseif( $this->isBreak($data['title'], "/^[a-zA-Z0-9 .,\-&]{6,50}$/") ){
+        } elseif ($this->isBreak($data['title'], "/^[a-zA-Z0-9 .,\-&]{6,50}$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Title Format: Combination of letters and numbers, Length: 6 - 50'
             ];
-        } elseif( $this->isBreak($data['level'], "/^[a-zA-Z ]*$/") ){
+        } elseif ($this->isBreak($data['level'], "/^[a-zA-Z ]*$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Level Format: letters only'
             ];
-        } elseif( $this->isBreak($data['prize'], "/^[0-9]*$/") ){
+        } elseif ($this->isBreak($data['prize'], "/^[0-9]*$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Prize Format: number only'
             ];
-        } elseif( $this->isBreak($data['desc'], "/^[\w -.,!?\n\t\r]{10,300}$/") ){
+        } elseif ($this->isBreak($data['desc'], "/^[\w -.,!?\n\t\r]{10,300}$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Desc Format: Combination of letters and numbers, Length: 10 - 300 characters'
             ];
-        }
-        else {
+        } else {
             $createdDate = $this->getDate();
             $createdBy = $_SESSION["username_teacher"];
             $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
@@ -103,7 +100,7 @@ class Dashboard_teacher_model extends Model {
             $data['desc'] = $this->purify($data['desc']);
 
             $imgCover = $this->upload("../app/core/videos/cover-img/", $_FILES['img-cover']['tmp_name'], $_FILES['img-cover']['name']);
-            if( !$imgCover ){
+            if (!$imgCover) {
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
@@ -112,9 +109,9 @@ class Dashboard_teacher_model extends Model {
             }
 
             $subtitle = null;
-            if( $_FILES['subtitle']['error'] !== 4 ){
+            if ($_FILES['subtitle']['error'] !== 4) {
                 $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
-                if( !$subtitle ){
+                if (!$subtitle) {
                     return [
                         'icon' => 'error',
                         'title' => 'Failed',
@@ -124,7 +121,7 @@ class Dashboard_teacher_model extends Model {
             }
 
             $video = $this->upload("../app/core/videos/", $_FILES['video']['tmp_name'], $_FILES['video']['name']);
-            if( !$video ){
+            if (!$video) {
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
@@ -132,7 +129,7 @@ class Dashboard_teacher_model extends Model {
                 ];
             }
 
-            $tutorial = R::dispense( 'tutorial' );
+            $tutorial = R::dispense('tutorial');
             $tutorial->title = stripslashes($data['title']);
             $tutorial->created_by = $createdBy;
             $tutorial->prize = stripslashes($data['prize']);
@@ -155,47 +152,51 @@ class Dashboard_teacher_model extends Model {
     }
 
 
-    private function isViolateMaxSize(int $fileSize, int $maxSize): bool{
+    private function isViolateMaxSize(int $fileSize, int $maxSize): bool
+    {
         return $fileSize > $maxSize ? true : false;
     }
 
-    private function isViolateFileExtention(string $namaFile, array $validExtention): bool{
+    private function isViolateFileExtention(string $namaFile, array $validExtention): bool
+    {
         $ekstensiGambar = explode('.', $namaFile);
         $ekstensiGambar = strtolower(end($ekstensiGambar));
         return in_array($ekstensiGambar, $validExtention) ? false : true;
     }
 
-    private function getVideoDuration($vidTmpName){
+    private function getVideoDuration($vidTmpName)
+    {
         $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
         $output = shell_exec($ffmpeg);
         $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
         if (preg_match($regex_duration, $output, $regs)) {
-            $hours = $regs [1] ? $regs [1] : null;
-            $mins = $regs [2] ? $regs [2] : null;
-            $secs = $regs [3] ? $regs [3] : null;
+            $hours = $regs[1] ? $regs[1] : null;
+            $mins = $regs[2] ? $regs[2] : null;
+            $secs = $regs[3] ? $regs[3] : null;
         }
         $video_duration = $hours . ':' . $mins . ':' . $secs;
         return $video_duration;
     }
 
-    private function upload($folder, $tmpName, $namaFile){
+    private function upload($folder, $tmpName, $namaFile)
+    {
         $ekstensiGambar = explode('.', $namaFile);
-		$ekstensiGambar = strtolower(end($ekstensiGambar));
-		// generate nama gambar baru
-		$namaFileBaru = $this->createRandomString();
-		$namaFileBaru .= '.';
-		$namaFileBaru .= $ekstensiGambar;
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // generate nama gambar baru
+        $namaFileBaru = $this->createRandomString();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
 
-		move_uploaded_file($tmpName, $folder . $namaFileBaru);
+        move_uploaded_file($tmpName, $folder . $namaFileBaru);
 
-		return $namaFileBaru;
-
+        return $namaFileBaru;
     }
 
-    public function getTutorialsBy(string $username): array{
+    public function getTutorialsBy(string $username): array
+    {
         $tutorialsPerPage = 4;
-        $numOfTutorials = R::count( 'tutorial', ' created_by = ? ', [ $username ] );
-        if( $numOfTutorials > 0 ){
+        $numOfTutorials = R::count('tutorial', ' created_by = ? ', [$username]);
+        if ($numOfTutorials > 0) {
             $query = "
                 SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
                 FROM (
@@ -209,7 +210,7 @@ class Dashboard_teacher_model extends Model {
                         tutorial.is_revoke,
                         liked_tutorial.liked_by
                     FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
-                    WHERE tutorial.created_by = '" . $username . "'
+                    WHERE tutorial.created_by = :username
                 ) AS tbl_tutorial
                 GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                 UNION
@@ -225,51 +226,49 @@ class Dashboard_teacher_model extends Model {
                             tutorial.is_revoke,
                             liked_tutorial.liked_by
                         FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
-                        WHERE tutorial.created_by = '" . $username . "' AND liked_by IS NULL
+                        WHERE tutorial.created_by = :username AND liked_by IS NULL
                     ) AS tbl_tutorial
                 ORDER BY tutorial_date DESC
                 LIMIT " . $tutorialsPerPage . "
             ";
 
-            $tutorials = R::getAll( $query );
+            $tutorials = R::getAll($query, [':username' =>  $username]);
 
             $tutorials = $this->shortenTitle($tutorials);
 
             return $tutorials;
-            
-
         } else {
             $tutorials = array();
             return $tutorials;
         }
-
     }
 
-    public function getTotalTutorialsBy(string $username):int{
-        return R::count( 'tutorial', ' created_by = ? ', [ $username ] );
-
+    public function getTotalTutorialsBy(string $username): int
+    {
+        return R::count('tutorial', ' created_by = ? ', [$username]);
     }
 
-    public function revokeTutorial(string $id){
-        if( $this->isIDNotUUID($id) ){
+    public function revokeTutorial(string $id)
+    {
+        if ($this->isIDNotUUID($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'ID is invalid data type'
             ];
-        } elseif( $this->isIdNotAvailable($id) ){
+        } elseif ($this->isIdNotAvailable($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif( $this->isIneligibleTutorial($id) ){
+        } elseif ($this->isIneligibleTutorial($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not authorized to access'
             ];
-        } elseif( $this->isAlreadyRevoke($id) ){
+        } elseif ($this->isAlreadyRevoke($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -288,26 +287,27 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
-    public function restoreTutorial(string $id){
-        if( $this->isIDNotUUID($id) ){
+    public function restoreTutorial(string $id)
+    {
+        if ($this->isIDNotUUID($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'ID is invalid data type'
             ];
-        } elseif( $this->isIdNotAvailable($id) ){
+        } elseif ($this->isIdNotAvailable($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif( $this->isIneligibleTutorial($id) ){
+        } elseif ($this->isIneligibleTutorial($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not authorized to access'
             ];
-        } elseif( $this->isAlreadyRestore($id) ){
+        } elseif ($this->isAlreadyRestore($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -326,30 +326,33 @@ class Dashboard_teacher_model extends Model {
         }
     }
 
-    private function isAlreadyRevoke(string $id): bool{
+    private function isAlreadyRevoke(string $id): bool
+    {
         $revokedTutorial = R::load('tutorial', $id);
         return $revokedTutorial->is_revoke == 'Y' ? true : false;
     }
 
-    private function isAlreadyRestore(string $id): bool{
+    private function isAlreadyRestore(string $id): bool
+    {
         $restoredTutorial = R::load('tutorial', $id);
         return $restoredTutorial->is_revoke == 'N' ? true : false;
     }
 
-    public function getDataTutorialToDisplayBeforeUpdate(string $id): array{
-        if( $this->isIDNotUUID($id) ){
+    public function getDataTutorialToDisplayBeforeUpdate(string $id): array
+    {
+        if ($this->isIDNotUUID($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'ID is invalid data type'
             ];
-        } elseif( $this->isIdNotAvailable($id) ){
+        } elseif ($this->isIdNotAvailable($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif( $this->isIneligibleTutorial($id) ){
+        } elseif ($this->isIneligibleTutorial($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
@@ -363,53 +366,52 @@ class Dashboard_teacher_model extends Model {
                 FROM tutorial WHERE id = :id
             ";
 
-            $DataTutorialToDisplayBeforeUpdate = R::getAll( $query, [ ':id' => $id ] );
+            $DataTutorialToDisplayBeforeUpdate = R::getAll($query, [':id' => $id]);
 
             return [
                 'icon' => 'info',
                 'title' => 'Update This Tutorial',
                 'dataTutorial' => $DataTutorialToDisplayBeforeUpdate
             ];
-
         }
-
     }
-    
-    public function updateTutorial(string $id, string $prize, string $desc): array {
-        if( $this->isIDNotUUID($id) ){
+
+    public function updateTutorial(string $id, string $prize, string $desc): array
+    {
+        if ($this->isIDNotUUID($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'ID is invalid data type'
             ];
-        } elseif( $this->isIdNotAvailable($id) ){
+        } elseif ($this->isIdNotAvailable($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif( $this->isIneligibleTutorial($id) ){
+        } elseif ($this->isIneligibleTutorial($id)) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not authorized to access'
             ];
-        } elseif( !$this->doesMandatoryDataFilled(array(
+        } elseif (!$this->doesMandatoryDataFilled(array(
             "prize" => $prize,
             "desc" => $desc
-        ) ) ) {
+        ))) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Data prize and desc are mandatory'
             ];
-        } elseif( $this->isBreak($prize, "/^[0-9]*$/") ){
+        } elseif ($this->isBreak($prize, "/^[0-9]*$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Prize Format: number only'
             ];
-        } elseif( $this->isBreak($desc, "/^[\w -.,!?\n\t\r]{10,300}$/") ){
+        } elseif ($this->isBreak($desc, "/^[\w -.,!?\n\t\r]{10,300}$/")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
