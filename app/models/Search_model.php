@@ -22,7 +22,7 @@ class Search_model extends Model
         } else {
 
             $tutorialsPerPage = 4;
-            $numOfTutorials = R::count('tutorial', ' LOWER(title) LIKE ? ', ['%' . strtolower($keyword['q']) . '%']);
+            $numOfTutorials = R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
             if ($numOfTutorials > 0) {
                 $query = "
                     SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
@@ -37,7 +37,7 @@ class Search_model extends Model
                             tutorial.is_revoke,
                             liked_tutorial.liked_by
                         FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
-                        WHERE LOWER(tutorial.title) LIKE '%" . strtolower($keyword['q']) . "%' AND tutorial.is_revoke = 'N'
+                        WHERE LOWER(tutorial.title) LIKE :q AND tutorial.is_revoke = 'N'
                     ) AS tbl_tutorial
                     GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                     UNION
@@ -53,13 +53,13 @@ class Search_model extends Model
                                 tutorial.is_revoke,
                                 liked_tutorial.liked_by
                             FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
-                            WHERE LOWER(tutorial.title) LIKE '%" . strtolower($keyword['q']) . "%' AND tutorial.is_revoke = 'N' AND liked_by IS NULL
+                            WHERE LOWER(tutorial.title) LIKE :q AND tutorial.is_revoke = 'N' AND liked_by IS NULL
                         ) AS tbl_tutorial
                     ORDER BY tutorial_date DESC
                     LIMIT " . $tutorialsPerPage . "
                 ";
 
-                $tutorials = R::getAll($query);
+                $tutorials = R::getAll($query, [':q' => "%" . strtolower($keyword['q']) . "%"]);
 
                 $tutorials = $this->shortenTitle($tutorials);
 
@@ -80,4 +80,5 @@ class Search_model extends Model
     {
         return $this->purify($keyword);
     }
+    // kerjain fuzzy search
 }
