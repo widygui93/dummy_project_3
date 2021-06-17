@@ -66,7 +66,21 @@ class Search_model extends Model
                 return $tutorials;
             } else {
                 $tutorials = array();
-                return $tutorials;
+                $dataSources = explode(" ", $keyword['q']);
+                $tutorialTargets = array();
+                $tutorialTargets = R::getAll('SELECT title FROM tutorial WHERE is_revoke = ? ', ["N"]);
+                $dataTargets = array();
+
+                foreach ($tutorialTargets as $tutorialTarget) {
+                    $targets = explode(" ", $tutorialTarget["title"]);
+                    foreach ($targets as $target) {
+                        if (!in_array(strtolower($target), $dataTargets)) array_push($dataTargets, strtolower($target));
+                    }
+                }
+
+                foreach ($dataSources as $dataSource) {
+                }
+                // return $tutorials;
             }
         }
     }
