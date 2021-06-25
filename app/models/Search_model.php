@@ -66,20 +66,130 @@ class Search_model extends Model
                 return $tutorials;
             } else {
                 $tutorials = array();
-                $dataSources = explode(" ", $keyword['q']);
-                $tutorialTargets = array();
-                $tutorialTargets = R::getAll('SELECT title FROM tutorial WHERE is_revoke = ? ', ["N"]);
+                // $dataSources = explode(" ", $keyword['q']);
+                // $tutorialTargets = array();
+                // $tutorialTargets = R::getAll('SELECT title FROM tutorial WHERE is_revoke = ? ', ["N"]);
+                // $dataTargets = array();
+
+                // foreach ($tutorialTargets as $tutorialTarget) {
+                //     $targets = explode(" ", $tutorialTarget["title"]);
+                //     foreach ($targets as $target) {
+                //         if (!in_array(strtolower($target), $dataTargets)) array_push($dataTargets, strtolower($target));
+                //     }
+                // }
+
+                // foreach ($dataSources as $dataSource) {
+                //     // lakukan fuzzy search dengan algo levenshtein distance
+                //     // pake str_split() utk convert string into array
+                // }
+
+                $dataSources = strtolower($keyword['q']);
                 $dataTargets = array();
+                $dataTargets = R::getAll('SELECT LOWER(title) AS title, id FROM tutorial WHERE is_revoke = ? ', ["N"]);
 
-                foreach ($tutorialTargets as $tutorialTarget) {
-                    $targets = explode(" ", $tutorialTarget["title"]);
-                    foreach ($targets as $target) {
-                        if (!in_array(strtolower($target), $dataTargets)) array_push($dataTargets, strtolower($target));
+                $dataSourcesInArray = str_split($dataSources);
+                $listLevenshteinDistances = array();
+
+                foreach ($dataTargets as $targets) {
+
+                    $dataTargetsInArray = str_split($targets['title']);
+
+                    $map = array();
+                    for ($s = 0; $s < count($dataSourcesInArray) + 1; $s++) {
+                        $map[$s][0] = $s;
                     }
+
+                    for ($t = 0; $t < count($dataTargetsInArray) + 1; $t++) {
+                        $map[0][$t] = $t;
+                    }
+
+                    $idxSource = 1;
+                    $idxTarget = 1;
+
+                    foreach ($dataSourcesInArray as $valueSource) {
+                        foreach ($dataTargetsInArray as $valueTarget) {
+                            if ($valueSource == $valueTarget) {
+
+                                $map[$idxSource][$idxTarget] = (0 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
+                            } else {
+
+                                $map[$idxSource][$idxTarget] = (1 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
+                            }
+                            $idxTarget = $idxTarget + 1;
+                        }
+                        $idxSource = $idxSource + 1;
+                        $idxTarget = 1;
+                    }
+
+                    array_push(
+                        $listLevenshteinDistances,
+                        array(
+                            'id' => $targets['id'],
+                            'title' => $targets['title'],
+                            'Levenshtein_distance' => $map[count($dataSourcesInArray)][count($dataTargetsInArray)]
+                        )
+                    );
                 }
 
-                foreach ($dataSources as $dataSource) {
+                array_multisort(array_column($listLevenshteinDistances, 'Levenshtein_distance'), SORT_ASC, $listLevenshteinDistances);
+
+                // $listLevenshteinDistanceInString = "";
+                // foreach ($listLevenshteinDistance as $LD) {
+                //     $listLevenshteinDistanceInString = $listLevenshteinDistanceInString . $LD['id'] . ',';
+                // }
+                // $listLevenshteinDistance;
+                // $gg = 33;
+
+                foreach ($listLevenshteinDistances as $listLevenshteinDistance) {
+
+                    $query = "
+                    SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
+                    FROM (
+                        SELECT tutorial.id,
+                            tutorial.title,
+                            tutorial.img_cover,
+                            tutorial.created_by,
+                            to_char(tutorial.prize, '999,999,999') AS prize,
+                            to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                            tutorial.created_date AS tutorial_date,
+                            tutorial.is_revoke,
+                            liked_tutorial.liked_by
+                        FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
+                        WHERE tutorial.id = :id
+                    ) AS tbl_tutorial
+                    GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
+                    UNION
+                    SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
+                        FROM (
+                            SELECT tutorial.id,
+                                tutorial.title,
+                                tutorial.img_cover,
+                                tutorial.created_by,
+                                to_char(tutorial.prize, '999,999,999') AS prize,
+                                to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                                tutorial.created_date AS tutorial_date,
+                                tutorial.is_revoke,
+                                liked_tutorial.liked_by
+                            FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
+                            WHERE tutorial.id = :id AND liked_by IS NULL
+                        ) AS tbl_tutorial
+                    ORDER BY tutorial_date DESC
+                    LIMIT " . $tutorialsPerPage . "
+                    ";
+
+                    $tutorial = R::getAll($query, [':id' => $listLevenshteinDistance['id']]);
+                    array_push($tutorials, $tutorial[0]);
                 }
+                // $tutorials;
+                // $bb = 77;
+
+                $tutorials = $this->shortenTitle($tutorials);
+
+                return $tutorials;
+
+
+                // lakukan fuzzy search dengan algo levenshtein distance
+                // pake str_split() utk convert string into array
                 // return $tutorials;
             }
         }
