@@ -205,4 +205,59 @@ class Model
             return $tutorials;
         }
     }
+
+    public function searchWithLevenshteinDistance(string $keyword): array
+    {
+        $dataSources = strtolower($keyword);
+        $dataTargets = array();
+        $dataTargets = R::getAll('SELECT LOWER(title) AS title, id FROM tutorial WHERE is_revoke = ? ', ["N"]);
+
+        $dataSourcesInArray = str_split($dataSources);
+        $listLevenshteinDistances = array();
+
+        foreach ($dataTargets as $targets) {
+
+            $dataTargetsInArray = str_split($targets['title']);
+
+            $map = array();
+            for ($s = 0; $s < count($dataSourcesInArray) + 1; $s++) {
+                $map[$s][0] = $s;
+            }
+
+            for ($t = 0; $t < count($dataTargetsInArray) + 1; $t++) {
+                $map[0][$t] = $t;
+            }
+
+            $idxSource = 1;
+            $idxTarget = 1;
+
+            foreach ($dataSourcesInArray as $valueSource) {
+                foreach ($dataTargetsInArray as $valueTarget) {
+                    if ($valueSource == $valueTarget) {
+
+                        $map[$idxSource][$idxTarget] = (0 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
+                    } else {
+
+                        $map[$idxSource][$idxTarget] = (1 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
+                    }
+                    $idxTarget = $idxTarget + 1;
+                }
+                $idxSource = $idxSource + 1;
+                $idxTarget = 1;
+            }
+
+            array_push(
+                $listLevenshteinDistances,
+                array(
+                    'id' => $targets['id'],
+                    'title' => $targets['title'],
+                    'Levenshtein_distance' => $map[count($dataSourcesInArray)][count($dataTargetsInArray)]
+                )
+            );
+        }
+
+        array_multisort(array_column($listLevenshteinDistances, 'Levenshtein_distance'), SORT_ASC, $listLevenshteinDistances);
+
+        return $listLevenshteinDistances;
+    }
 }

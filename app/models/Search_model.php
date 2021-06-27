@@ -83,58 +83,7 @@ class Search_model extends Model
                 //     // pake str_split() utk convert string into array
                 // }
 
-                $dataSources = strtolower($keyword['q']);
-                $dataTargets = array();
-                $dataTargets = R::getAll('SELECT LOWER(title) AS title, id FROM tutorial WHERE is_revoke = ? ', ["N"]);
-
-                $dataSourcesInArray = str_split($dataSources);
-                $listLevenshteinDistances = array();
-
-                foreach ($dataTargets as $targets) {
-
-                    $dataTargetsInArray = str_split($targets['title']);
-
-                    $map = array();
-                    for ($s = 0; $s < count($dataSourcesInArray) + 1; $s++) {
-                        $map[$s][0] = $s;
-                    }
-
-                    for ($t = 0; $t < count($dataTargetsInArray) + 1; $t++) {
-                        $map[0][$t] = $t;
-                    }
-
-                    $idxSource = 1;
-                    $idxTarget = 1;
-
-                    foreach ($dataSourcesInArray as $valueSource) {
-                        foreach ($dataTargetsInArray as $valueTarget) {
-                            if ($valueSource == $valueTarget) {
-
-                                $map[$idxSource][$idxTarget] = (0 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
-                            } else {
-
-                                $map[$idxSource][$idxTarget] = (1 + (min($map[$idxSource - 1][$idxTarget - 1], $map[$idxSource][$idxTarget - 1], $map[$idxSource - 1][$idxTarget])));
-                            }
-                            $idxTarget = $idxTarget + 1;
-                        }
-                        $idxSource = $idxSource + 1;
-                        $idxTarget = 1;
-                    }
-
-                    array_push(
-                        $listLevenshteinDistances,
-                        array(
-                            'id' => $targets['id'],
-                            'title' => $targets['title'],
-                            'Levenshtein_distance' => $map[count($dataSourcesInArray)][count($dataTargetsInArray)]
-                        )
-                    );
-                }
-
-                array_multisort(array_column($listLevenshteinDistances, 'Levenshtein_distance'), SORT_ASC, $listLevenshteinDistances);
-
-                // mesti perbaiki balik lagi ke id = listLevenshteinDistances[id] 
-                //karean nanti urutan hasil dari listLevenshteinDistances jadi salah diakibatkan query like dan non like
+                $listLevenshteinDistances = $this->searchWithLevenshteinDistance($keyword['q']);
 
                 for ($i = 0; $i < $tutorialsPerPage; $i++) {
 
@@ -177,11 +126,6 @@ class Search_model extends Model
 
                 $tutorials = $this->shortenTitle($tutorials);
                 return $tutorials;
-
-
-                // lakukan fuzzy search dengan algo levenshtein distance // DONE
-                // pake str_split() utk convert string into array // DONE
-                // return $tutorials;
             }
         }
     }
