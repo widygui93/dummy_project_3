@@ -133,17 +133,17 @@ class Search_model extends Model
 
                 array_multisort(array_column($listLevenshteinDistances, 'Levenshtein_distance'), SORT_ASC, $listLevenshteinDistances);
 
-                $ids = "";
+                $IDs = "";
                 foreach ($listLevenshteinDistances as $listLevenshteinDistance) {
-                    $ids = $ids . '\'' . $listLevenshteinDistance['id'] . '\'' . ',';
+                    $IDs = $IDs . '\'' . $listLevenshteinDistance['id'] . '\'' . ',';
                 }
 
-                $ids = substr($ids, 0, -1);
+                $IDs = substr($IDs, 0, -1);
 
                 $queryForLikes = <<< QUERY_FOR_LIKES
                 SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
                 FROM (SELECT tutorial.id,tutorial.title,tutorial.img_cover,tutorial.created_by,to_char(tutorial.prize, '999,999,999') AS prize,to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,tutorial.created_date AS tutorial_date,tutorial.is_revoke,liked_tutorial.liked_by
-                FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($ids)
+                FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($IDs)
                 ) AS tbl_tutorial GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                 UNION
                 QUERY_FOR_LIKES;
@@ -151,7 +151,7 @@ class Search_model extends Model
                 $queryForNonLikes = <<< QUERY_FOR_NONLIKES
                 SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
                 FROM (SELECT tutorial.id,tutorial.title,tutorial.img_cover,tutorial.created_by,to_char(tutorial.prize, '999,999,999') AS prize,to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,tutorial.created_date AS tutorial_date,tutorial.is_revoke,liked_tutorial.liked_by
-                FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($ids) AND liked_by IS NULL
+                FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($IDs) AND liked_by IS NULL
                 ) AS tbl_tutorial ORDER BY tutorial_date DESC LIMIT $tutorialsPerPage
                 QUERY_FOR_NONLIKES;
 
@@ -171,7 +171,17 @@ class Search_model extends Model
 
     public function getTotalOfSearchTutorials(array $keyword): int
     {
-        return $this->isDataEmpty($keyword) ? 0 : R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
+        if ($this->isDataEmpty($keyword)) {
+            return 0;
+        } else {
+            $jlhTutorialBySearch = R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
+
+            if ($jlhTutorialBySearch == 0) {
+                return R::count('tutorial', 'is_revoke = ? ', ["N"]);
+            } else {
+                return $jlhTutorialBySearch;
+            }
+        }
     }
 
     public function purifyKeyword(string $keyword): string
