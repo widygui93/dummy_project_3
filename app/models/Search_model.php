@@ -133,37 +133,54 @@ class Search_model extends Model
 
                 array_multisort(array_column($listLevenshteinDistances, 'Levenshtein_distance'), SORT_ASC, $listLevenshteinDistances);
 
-                $IDs = "";
-                foreach ($listLevenshteinDistances as $listLevenshteinDistance) {
-                    $IDs = $IDs . '\'' . $listLevenshteinDistance['id'] . '\'' . ',';
+                // mesti perbaiki balik lagi ke id = listLevenshteinDistances[id] 
+                //karean nanti urutan hasil dari listLevenshteinDistances jadi salah diakibatkan query like dan non like
+
+                for ($i = 0; $i < $tutorialsPerPage; $i++) {
+
+                    $query = "
+                        SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
+                        FROM (
+                            SELECT tutorial.id,
+                                tutorial.title,
+                                tutorial.img_cover,
+                                tutorial.created_by,
+                                to_char(tutorial.prize, '999,999,999') AS prize,
+                                to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                                tutorial.created_date AS tutorial_date,
+                                tutorial.is_revoke,
+                                liked_tutorial.liked_by
+                            FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
+                            WHERE tutorial.id = :id
+                        ) AS tbl_tutorial
+                        GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
+                        UNION
+                        SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
+                            FROM (
+                                SELECT tutorial.id,
+                                    tutorial.title,
+                                    tutorial.img_cover,
+                                    tutorial.created_by,
+                                    to_char(tutorial.prize, '999,999,999') AS prize,
+                                    to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                                    tutorial.created_date AS tutorial_date,
+                                    tutorial.is_revoke,
+                                    liked_tutorial.liked_by
+                                FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id
+                                WHERE tutorial.id = :id AND liked_by IS NULL
+                            ) AS tbl_tutorial
+                    ";
+
+                    $tutorial = R::getAll($query, [':id' => $listLevenshteinDistances[$i]['id']]);
+                    array_push($tutorials, $tutorial[0]);
                 }
 
-                $IDs = substr($IDs, 0, -1);
-
-                $queryForLikes = <<< QUERY_FOR_LIKES
-                SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
-                FROM (SELECT tutorial.id,tutorial.title,tutorial.img_cover,tutorial.created_by,to_char(tutorial.prize, '999,999,999') AS prize,to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,tutorial.created_date AS tutorial_date,tutorial.is_revoke,liked_tutorial.liked_by
-                FROM tutorial JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($IDs)
-                ) AS tbl_tutorial GROUP BY id,title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
-                UNION
-                QUERY_FOR_LIKES;
-
-                $queryForNonLikes = <<< QUERY_FOR_NONLIKES
-                SELECT 0 AS total_like,id, title, img_cover, created_by , prize,created_date, tutorial_date, is_revoke
-                FROM (SELECT tutorial.id,tutorial.title,tutorial.img_cover,tutorial.created_by,to_char(tutorial.prize, '999,999,999') AS prize,to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,tutorial.created_date AS tutorial_date,tutorial.is_revoke,liked_tutorial.liked_by
-                FROM tutorial LEFT JOIN liked_tutorial ON tutorial.id = liked_tutorial.tutorial_id WHERE tutorial.id IN ($IDs) AND liked_by IS NULL
-                ) AS tbl_tutorial ORDER BY tutorial_date DESC LIMIT $tutorialsPerPage
-                QUERY_FOR_NONLIKES;
-
-                $tutorials = R::getAll($queryForLikes . " " . $queryForNonLikes);
-
                 $tutorials = $this->shortenTitle($tutorials);
-
                 return $tutorials;
 
 
-                // lakukan fuzzy search dengan algo levenshtein distance
-                // pake str_split() utk convert string into array
+                // lakukan fuzzy search dengan algo levenshtein distance // DONE
+                // pake str_split() utk convert string into array // DONE
                 // return $tutorials;
             }
         }
