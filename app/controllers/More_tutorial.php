@@ -12,82 +12,57 @@ class More_tutorial extends Controller
         $urlComponent = explode("/", $url);
         $currentController = end($urlComponent);
 
-        if (isset($_SESSION['login_teacher'])) {
-            if ($currentController == "Dashboard_teacher") {
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsBy($_SESSION['username_teacher'], $startIndexOfMoreTutorials);
+        if ($currentController == "Dashboard_teacher") {
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsBy($_SESSION['username_teacher'], $startIndexOfMoreTutorials);
 
-                $twig = $this->view();
-                echo $twig->render(
-                    '/tutorial/more-tutorial-teacher.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } elseif ($currentController == "Search") {
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
+            $twig = $this->view();
+            echo $twig->render(
+                '/tutorial/more-tutorial-teacher.html.twig',
+                [
+                    'tutorials' => $moreTutorials,
+                    'BASEURL' => BASEURL
+                ]
+            );
+        } elseif ($currentController == "Search") {
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
 
-                $twig = $this->view();
-                echo $twig->render(
-                    '/tutorial/more-tutorial.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } else {
-                // nanti di sini muncul view kumpulan tutorial yg tidak ada tombol apapun
-                // echo "ini view bukan di dashboard";
+            $twig = $this->view();
+            echo $twig->render(
+                '/tutorial/more-tutorial.html.twig',
+                [
+                    'tutorials' => $moreTutorials,
+                    'BASEURL' => BASEURL
+                ]
+            );
+        } elseif (isset($_SESSION['login_teacher']) && $currentController == "") {
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
-                // bugs jika login sbg teacher kemudian lakukan search "ruby learn"
-                // kemudian klik more maka hasil yg ditampilkan tidak diharapkan alias double2
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
+            $twig = $this->view();
+            echo $twig->render(
+                '/tutorial/tutorials.html.twig',
+                [
+                    'tutorials' => $moreTutorials,
+                    'BASEURL' => BASEURL
+                ]
+            );
+        } elseif ($currentController == "Dashboard_student") {
+            // di sini nanti student punya tombol play di dashboard student
 
-                $twig = $this->view();
-                echo $twig->render(
-                    '/tutorial/tutorials.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            }
-        } elseif (isset($_SESSION['login_student'])) {
-            if ($currentController == "Dashboard_student") {
-                // di sini nanti student punya tombol play di dashboard student
-
-            } else {
-                // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
-            }
-
-            echo "ini view student";
-        } else {
+        } elseif (isset($_SESSION['login_student']) && $currentController == "") {
             // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
+
+        } else {
             // klu tombol purchase di klik nanti minta login dulu sebagai student
-            // echo "ini view kosong";
-            if ($currentController == "Search") {
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
-                $twig = $this->view();
-                echo $twig->render(
-                    '/tutorial/more-tutorial.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } else {
-                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
-
-                $twig = $this->view();
-                echo $twig->render(
-                    '/tutorial/more-tutorial.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            }
+            $twig = $this->view();
+            echo $twig->render(
+                '/tutorial/more-tutorial.html.twig',
+                [
+                    'tutorials' => $moreTutorials,
+                    'BASEURL' => BASEURL
+                ]
+            );
         }
     }
 }
