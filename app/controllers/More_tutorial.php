@@ -24,9 +24,23 @@ class More_tutorial extends Controller
                         'BASEURL' => BASEURL
                     ]
                 );
+            } elseif ($currentController == "Search") {
+                $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
+
+                $twig = $this->view();
+                echo $twig->render(
+                    '/tutorial/more-tutorial.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
             } else {
                 // nanti di sini muncul view kumpulan tutorial yg tidak ada tombol apapun
                 // echo "ini view bukan di dashboard";
+
+                // bugs jika login sbg teacher kemudian lakukan search "ruby learn"
+                // kemudian klik more maka hasil yg ditampilkan tidak diharapkan alias double2
                 $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
                 $twig = $this->view();
