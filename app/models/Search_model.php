@@ -149,5 +149,4 @@ class Search_model extends Model
     {
         return $this->purify($keyword);
     }
-    // kerjain fuzzy search
 }
