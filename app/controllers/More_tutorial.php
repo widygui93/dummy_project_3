@@ -10,7 +10,7 @@ class More_tutorial extends Controller
 
         $url = $_SERVER["HTTP_REFERER"];
         $urlComponent = explode("/", $url);
-        $currentController = end($urlComponent);
+        $currentController = end($urlComponent) == "" ? "Latest_tutorial" : end($urlComponent);
 
         if ($currentController == "Dashboard_teacher") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsBy($_SESSION['username_teacher'], $startIndexOfMoreTutorials);
@@ -34,7 +34,7 @@ class More_tutorial extends Controller
                     'BASEURL' => BASEURL
                 ]
             );
-        } elseif (isset($_SESSION['login_teacher']) && $currentController == "") {
+        } elseif (isset($_SESSION['login_teacher']) && $currentController == "Latest_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
             $twig = $this->view();
@@ -48,10 +48,11 @@ class More_tutorial extends Controller
         } elseif ($currentController == "Dashboard_student") {
             // di sini nanti student punya tombol play di dashboard student
 
-        } elseif (isset($_SESSION['login_student']) && $currentController == "") {
+        } elseif (isset($_SESSION['login_student']) && $currentController == "Latest_tutorial") {
             // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
 
         } else {
+            // tidak login apa pun dan berada di home page
             // klu tombol purchase di klik nanti minta login dulu sebagai student
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
