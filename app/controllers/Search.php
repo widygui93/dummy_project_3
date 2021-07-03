@@ -47,7 +47,7 @@ class Search extends Controller
 		if (isset($_SESSION['login_teacher'])) {
 
 			echo $twig->render(
-				'/tutorial/index.html.twig',
+				'/tutorial/bases/tutorial-complete.html.twig',
 				[
 					'tutorials' => $data['tutorials'],
 					'total_tutorials' => $data['total-tutorials'],
@@ -67,7 +67,7 @@ class Search extends Controller
 			echo empty($data['tutorials'])
 				? $twig->render('/tutorial/no-tutorial.html.twig') :
 				$twig->render(
-					'/tutorial/student-non-dashboard.html.twig',
+					'/tutorial/main-tutorial.html.twig',
 					[
 						'tutorials' => $data['tutorials'],
 						'total_tutorials' => $data['total-tutorials'],
