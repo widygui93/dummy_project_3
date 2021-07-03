@@ -43,22 +43,28 @@ class More_tutorial extends Controller
                     ]
                 );
             }
-        } elseif (isset($_SESSION['login_teacher']) && $currentController == "Latest_tutorial") {
+        } elseif ($currentController == "Latest_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
-
             $twig = $this->view();
-            echo $twig->render(
-                '/tutorial/tutorials.html.twig',
-                [
-                    'tutorials' => $moreTutorials,
-                    'BASEURL' => BASEURL
-                ]
-            );
+            if (isset($_SESSION['login_teacher'])) {
+                echo $twig->render(
+                    '/tutorial/bases/tutorial-only.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            } else {
+                echo $twig->render(
+                    '/tutorial/student/more.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            }
         } elseif ($currentController == "Dashboard_student") {
             // di sini nanti student punya tombol play di dashboard student
-
-        } elseif (isset($_SESSION['login_student']) && $currentController == "Latest_tutorial") {
-            // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
 
         } else {
             // tidak login apa pun dan berada di home page
@@ -67,7 +73,7 @@ class More_tutorial extends Controller
 
             $twig = $this->view();
             echo $twig->render(
-                '/tutorial/more-tutorial.html.twig',
+                '/tutorial/student/more.html.twig',
                 [
                     'tutorials' => $moreTutorials,
                     'BASEURL' => BASEURL
