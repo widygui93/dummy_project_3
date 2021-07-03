@@ -10,7 +10,6 @@ class More_tutorial_model extends Model
 
     public function getMoreTutorialsBy(string $username, int $startIndexOfMoreTutorials): array
     {
-        $tutorialsPerPage = 4;
         $numOfTutorials = R::count('tutorial', ' created_by = ? ', [$username]);
         if ($numOfTutorials > 0) {
             $query = "
@@ -48,7 +47,7 @@ class More_tutorial_model extends Model
                 LIMIT :tutorialsPerPage OFFSET :startIndexOfMoreTutorials
             ";
 
-            $tutorials = R::getAll($query, [':username' => $username, ':tutorialsPerPage' => $tutorialsPerPage, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
+            $tutorials = R::getAll($query, [':username' => $username, ':tutorialsPerPage' => TUTORIALS_PER_PAGE, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
 
             $tutorials = $this->shortenTitle($tutorials);
 
@@ -66,7 +65,6 @@ class More_tutorial_model extends Model
 
     public function getMoreTutorialsForSearch(string $keyword, int $startIndexOfMoreTutorials): array
     {
-        $tutorialsPerPage = 4;
         $numOfTutorials = R::count('tutorial', ' LOWER(title) LIKE ? ', ['%' . $keyword . '%']);
         if ($numOfTutorials > 0) {
             $query = "
@@ -104,7 +102,7 @@ class More_tutorial_model extends Model
                 LIMIT :tutorialsPerPage OFFSET :startIndexOfMoreTutorials
             ";
 
-            $tutorials = R::getAll($query, [':q' => "%$keyword%", ':tutorialsPerPage' => $tutorialsPerPage, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
+            $tutorials = R::getAll($query, [':q' => "%$keyword%", ':tutorialsPerPage' => TUTORIALS_PER_PAGE, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
 
             $tutorials = $this->shortenTitle($tutorials);
 
@@ -114,8 +112,8 @@ class More_tutorial_model extends Model
             $listLevenshteinDistances = $this->searchWithLevenshteinDistance($keyword);
 
             $jlhIterasi = 0;
-            if (($tutorialsPerPage + $startIndexOfMoreTutorials) < count($listLevenshteinDistances)) {
-                $jlhIterasi = $tutorialsPerPage;
+            if ((TUTORIALS_PER_PAGE + $startIndexOfMoreTutorials) < count($listLevenshteinDistances)) {
+                $jlhIterasi = TUTORIALS_PER_PAGE;
             } else {
                 $jlhIterasi = count($listLevenshteinDistances) - $startIndexOfMoreTutorials;
             }

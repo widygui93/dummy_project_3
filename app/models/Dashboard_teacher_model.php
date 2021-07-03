@@ -194,7 +194,6 @@ class Dashboard_teacher_model extends Model
 
     public function getTutorialsBy(string $username): array
     {
-        $tutorialsPerPage = 4;
         $numOfTutorials = R::count('tutorial', ' created_by = ? ', [$username]);
         if ($numOfTutorials > 0) {
             $query = "
@@ -229,7 +228,7 @@ class Dashboard_teacher_model extends Model
                         WHERE tutorial.created_by = :username AND liked_by IS NULL
                     ) AS tbl_tutorial
                 ORDER BY tutorial_date DESC
-                LIMIT " . $tutorialsPerPage . "
+                LIMIT " . TUTORIALS_PER_PAGE . "
             ";
 
             $tutorials = R::getAll($query, [':username' =>  $username]);

@@ -101,7 +101,6 @@ class Model
 
     public function getTutorialsFromModelClass(): array
     {
-        $tutorialsPerPage = 4;
         $numOfTutorials = R::count('tutorial');
         if ($numOfTutorials > 0) {
             $query = "
@@ -136,7 +135,7 @@ class Model
                         WHERE tutorial.is_revoke = 'N' AND liked_by IS NULL
                     ) AS tbl_tutorial
                 ORDER BY tutorial_date DESC
-                LIMIT " . $tutorialsPerPage . "
+                LIMIT " . TUTORIALS_PER_PAGE . "
             ";
 
             $tutorials = R::getAll($query);
@@ -157,7 +156,6 @@ class Model
 
     public function getMoreTutorialsFromModelClass(int $startIndexOfMoreTutorials): array
     {
-        $tutorialsPerPage = 4;
         $numOfTutorials = R::count('tutorial');
         if ($numOfTutorials > 0) {
             $query = "
@@ -195,7 +193,7 @@ class Model
                 LIMIT :tutorialsPerPage OFFSET :startIndexOfMoreTutorials
             ";
 
-            $tutorials = R::getAll($query, [':tutorialsPerPage' => $tutorialsPerPage, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
+            $tutorials = R::getAll($query, [':tutorialsPerPage' => TUTORIALS_PER_PAGE, ':startIndexOfMoreTutorials' => $startIndexOfMoreTutorials]);
 
             $tutorials = $this->shortenTitle($tutorials);
 

@@ -21,7 +21,6 @@ class Search_model extends Model
             return array();
         } else {
 
-            $tutorialsPerPage = 4;
             $numOfTutorials = R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
             if ($numOfTutorials > 0) {
                 $query = "
@@ -56,7 +55,7 @@ class Search_model extends Model
                             WHERE LOWER(tutorial.title) LIKE :q AND tutorial.is_revoke = 'N' AND liked_by IS NULL
                         ) AS tbl_tutorial
                     ORDER BY tutorial_date DESC
-                    LIMIT " . $tutorialsPerPage . "
+                    LIMIT " . TUTORIALS_PER_PAGE . "
                 ";
 
                 $tutorials = R::getAll($query, [':q' => "%" . strtolower($keyword['q']) . "%"]);
@@ -85,7 +84,7 @@ class Search_model extends Model
 
                 $listLevenshteinDistances = $this->searchWithLevenshteinDistance($keyword['q']);
 
-                for ($i = 0; $i < $tutorialsPerPage; $i++) {
+                for ($i = 0; $i < TUTORIALS_PER_PAGE; $i++) {
 
                     $query = "
                         SELECT COUNT(id) AS total_like, id, title, img_cover, created_by, prize, created_date, tutorial_date, is_revoke
