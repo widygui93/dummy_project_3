@@ -17,7 +17,7 @@ class More_tutorial extends Controller
 
             $twig = $this->view();
             echo $twig->render(
-                '/tutorial/more-tutorial-teacher.html.twig',
+                '/tutorial/teacher/more.html.twig',
                 [
                     'tutorials' => $moreTutorials,
                     'BASEURL' => BASEURL
