@@ -38,7 +38,7 @@ class Home extends Controller
 		if (isset($_SESSION['login_teacher'])) {
 
 			echo $twig->render(
-				'/tutorial/index.html.twig',
+				'/tutorial/bases/tutorial-complete.html.twig',
 				[
 					'tutorials' => $data['tutorials'],
 					'total_tutorials' => $data['total-tutorials'],
