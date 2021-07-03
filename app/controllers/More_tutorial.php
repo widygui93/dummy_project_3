@@ -25,15 +25,24 @@ class More_tutorial extends Controller
             );
         } elseif ($currentController == "Search") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
-
             $twig = $this->view();
-            echo $twig->render(
-                '/tutorial/more-tutorial.html.twig',
-                [
-                    'tutorials' => $moreTutorials,
-                    'BASEURL' => BASEURL
-                ]
-            );
+            if (isset($_SESSION['login_teacher'])) {
+                echo $twig->render(
+                    '/tutorial/bases/tutorial-only.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            } else {
+                echo $twig->render(
+                    '/tutorial/student/more.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            }
         } elseif (isset($_SESSION['login_teacher']) && $currentController == "Latest_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
