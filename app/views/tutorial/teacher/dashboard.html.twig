@@ -1,0 +1,20 @@
+{% extends "/tutorial/bases/tutorial-complete.html.twig" %}
+
+{% block content %}
+
+    <div class="update-revoke-wrapper">
+        <div class="update-button">
+            <a href="">Update</a>
+        </div>
+        {% if tutorial.is_revoke == 'N' %}
+            <div class="revoke-button">
+                <a href="">Revoke</a>
+            </div>
+        {% else %}
+            <div class="restore-button">
+                <a href="">Restore</a>
+            </div>
+        {% endif %}
+    </div>
+
+{% endblock %}
