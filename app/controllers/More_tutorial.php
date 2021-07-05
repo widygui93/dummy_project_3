@@ -12,10 +12,11 @@ class More_tutorial extends Controller
         $urlComponent = explode("/", $url);
         $currentController = end($urlComponent) == "" ? "Latest_tutorial" : end($urlComponent);
 
+        $twig = $this->view();
+
         if ($currentController == "Dashboard_teacher") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsBy($_SESSION['username_teacher'], $startIndexOfMoreTutorials);
 
-            $twig = $this->view();
             echo $twig->render(
                 '/tutorial/teacher/more.html.twig',
                 [
@@ -25,7 +26,7 @@ class More_tutorial extends Controller
             );
         } elseif ($currentController == "Search") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
-            $twig = $this->view();
+
             if (isset($_SESSION['login_teacher'])) {
                 echo $twig->render(
                     '/tutorial/bases/tutorial-only.html.twig',
@@ -45,7 +46,7 @@ class More_tutorial extends Controller
             }
         } elseif ($currentController == "Latest_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
-            $twig = $this->view();
+
             if (isset($_SESSION['login_teacher'])) {
                 echo $twig->render(
                     '/tutorial/bases/tutorial-only.html.twig',
@@ -71,7 +72,6 @@ class More_tutorial extends Controller
             // klu tombol purchase di klik nanti minta login dulu sebagai student
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
-            $twig = $this->view();
             echo $twig->render(
                 '/tutorial/student/more.html.twig',
                 [
