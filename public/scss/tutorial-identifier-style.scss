@@ -1,0 +1,20 @@
+@import "variables";
+@import "mixins";
+
+.tutorial-identifier-container {
+  padding-top: 7.5em;
+  padding-bottom: 1em;
+  padding-left: 12px;
+  margin-bottom: 1em;
+  .row-header {
+    h3 {
+      @include section-header;
+    }
+  }
+}
+
+@media screen and (min-width: 748px) {
+  .tutorial-identifier-container {
+    padding-top: 9em !important;
+  }
+}
