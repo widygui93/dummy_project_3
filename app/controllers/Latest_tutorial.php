@@ -3,7 +3,7 @@ class Latest_tutorial extends Controller
 {
     public function index()
     {
-        $data['style'] = BASEURL . '/css/latest-tutorial-style.css';
+        $data['style'] = BASEURL . '/css/tutorial-identifier-style.css';
         $data['style-tutorial'] = BASEURL . '/css/tutorial-style.css';
         $data['script-modal-detail-tutorial'] = BASEURL . '/js/script-modal-detail-tutorial.js';
         $data['script-axios'] = 'https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js';
@@ -27,7 +27,10 @@ class Latest_tutorial extends Controller
             ]
         );
 
-        echo $twig->render('/latest-tutorial/index.html.twig');
+        echo $twig->render(
+            '/tutorial/bases/tutorial-identifier.html.twig',
+            ['tutorial_identifier' => 'Latest Tutorial']
+        );
 
         // echo $twig->render(
         // 	'/tutorial/student-non-dashboard.html.twig',
