@@ -45,7 +45,7 @@ class Best_seller_tutorial_model extends Model
                 prize,
                 created_date,
                 tutorial_date
-                ORDER BY total_purchase DESC
+                ORDER BY total_purchase DESC , tutorial_date DESC
                 LIMIT " . TUTORIALS_PER_PAGE . "
             ";
 
