@@ -64,7 +64,29 @@ class More_tutorial extends Controller
                     ]
                 );
             }
-        } elseif ($currentController == "Dashboard_student") {
+        } elseif ($currentController == "Best_seller_tutorial") {
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForBestSeller($startIndexOfMoreTutorials);
+
+            if (isset($_SESSION['login_teacher'])) {
+                echo $twig->render(
+                    '/tutorial/bases/tutorial-only.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            } else {
+                echo $twig->render(
+                    '/tutorial/student/more.html.twig',
+                    [
+                        'tutorials' => $moreTutorials,
+                        'BASEURL' => BASEURL
+                    ]
+                );
+            }
+        }
+        // buat method khusus utk render view bagi controller search, latest tutorial dan best seller karena berulang
+        elseif ($currentController == "Dashboard_student") {
             // di sini nanti student punya tombol play di dashboard student
 
         } else {
