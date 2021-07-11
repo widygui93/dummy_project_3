@@ -27,66 +27,16 @@ class More_tutorial extends Controller
         } elseif ($currentController == "Search") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForSearch(strtolower($requestArrayData['keyword']), $startIndexOfMoreTutorials);
 
-            if (isset($_SESSION['login_teacher'])) {
-                echo $twig->render(
-                    '/tutorial/bases/tutorial-only.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } else {
-                echo $twig->render(
-                    '/tutorial/student/more.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            }
+            echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
         } elseif ($currentController == "Latest_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorials($startIndexOfMoreTutorials);
 
-            if (isset($_SESSION['login_teacher'])) {
-                echo $twig->render(
-                    '/tutorial/bases/tutorial-only.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } else {
-                echo $twig->render(
-                    '/tutorial/student/more.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            }
+            echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
         } elseif ($currentController == "Best_seller_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForBestSeller($startIndexOfMoreTutorials);
 
-            if (isset($_SESSION['login_teacher'])) {
-                echo $twig->render(
-                    '/tutorial/bases/tutorial-only.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            } else {
-                echo $twig->render(
-                    '/tutorial/student/more.html.twig',
-                    [
-                        'tutorials' => $moreTutorials,
-                        'BASEURL' => BASEURL
-                    ]
-                );
-            }
-        }
-        // buat method khusus utk render view bagi controller search, latest tutorial dan best seller karena berulang
-        elseif ($currentController == "Dashboard_student") {
+            echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
+        } elseif ($currentController == "Dashboard_student") {
             // di sini nanti student punya tombol play di dashboard student
 
         } else {
@@ -102,5 +52,10 @@ class More_tutorial extends Controller
                 ]
             );
         }
+    }
+
+    private function getAppropriateView(): string
+    {
+        return isset($_SESSION['login_teacher']) ? '/tutorial/bases/tutorial-only.html.twig' : '/tutorial/student/more.html.twig';
     }
 }
