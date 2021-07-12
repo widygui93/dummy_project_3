@@ -1,27 +1,27 @@
 <?php
-class Detail_tutorial_model extends Model {
+class Detail_tutorial_model extends Model
+{
     private $db;
 
-    public function __construct(){
+    public function __construct()
+    {
         $this->db = new Database;
     }
 
-    public function getDetailTutorialBy(string $id):string {
-        if( $this->isIDNotUUID($id) ){
+    public function getDetailTutorialBy(string $id): string
+    {
+        if ($this->isIDNotUUID($id)) {
             return <<< RESULT_TEMPLATE
 			<p>ID is invalid data type</p>
 			RESULT_TEMPLATE;
-
-        } elseif( $this->isIdNotAvailable($id) ){
+        } elseif ($this->isIdNotAvailable($id)) {
             return <<< RESULT_TEMPLATE
 			<p>Tutorial is not available</p>
 			RESULT_TEMPLATE;
-
-        } elseif( $this->isIneligibleTutorial($id) ){
+        } elseif ($this->isIneligibleTutorial($id)) {
             return <<< RESULT_TEMPLATE
 			<p>Tutorial is not authorized to access</p>
 			RESULT_TEMPLATE;
-
         } else {
             $detailTutorial = $this->getDetail($id);
             $totalPurchased = $this->getTotalPurchased($id);
@@ -36,12 +36,12 @@ class Detail_tutorial_model extends Model {
 
             $tagTemplates = '';
 
-            if( count($detailTutorial[0]['tags']) > 0 ){
+            if (count($detailTutorial[0]['tags']) > 0) {
                 $tagsList = "<ul class='tags'>";
                 foreach ($detailTutorial[0]['tags'] as $tag) {
-                    if($tag == "Latest Tutorial") $tagsList = $tagsList .  "<li><a href='#'>Latest Tutorial</a></li>";
-                    if($tag == "Best Seller")     $tagsList = $tagsList .  "<li><a href='#'>Best Seller</a></li>";
-                    if($tag == "Most Liked")      $tagsList = $tagsList .  "<li><a href='#'>Most Liked</a></li>";
+                    if ($tag == "Latest Tutorial") $tagsList = $tagsList .  "<li><a href='" . BASEURL . "/Latest_tutorial'>Latest Tutorial</a></li>";
+                    if ($tag == "Best Seller")     $tagsList = $tagsList .  "<li><a href='" . BASEURL . "/Best_seller_tutorial'>Best Seller</a></li>";
+                    if ($tag == "Most Liked")      $tagsList = $tagsList .  "<li><a href='" . BASEURL . "/Most_liked_tutorial'>Most Liked</a></li>";
                 }
                 $tagsList = $tagsList . "</ul>";
                 $tagTemplates = "<div class='tags-container'><p class='label-tags'>Tags:</p>" . $tagsList . "</div>";
@@ -73,10 +73,10 @@ class Detail_tutorial_model extends Model {
             </div>
             RESULT_TEMPLATE;
         }
-
     }
 
-    private function getDetail(string $id): array{
+    private function getDetail(string $id): array
+    {
 
         $query = "
             SELECT title,
@@ -91,19 +91,21 @@ class Detail_tutorial_model extends Model {
                     description 
             FROM tutorial WHERE id = :id
         ";
-        return R::getAll( $query, [ ':id' => $id ] );
-        
+        return R::getAll($query, [':id' => $id]);
     }
 
-    private function getTotalPurchased(string $id): int{
-        return R::count( 'purchased_tutorial', ' tutorial_id = :id ', [ ':id' => $id ] );
+    private function getTotalPurchased(string $id): int
+    {
+        return R::count('purchased_tutorial', ' tutorial_id = :id ', [':id' => $id]);
     }
 
-    private function getTotalLiked(string $id): int {
-        return R::count( 'liked_tutorial', ' tutorial_id = :id ', [ ':id' => $id ] );
+    private function getTotalLiked(string $id): int
+    {
+        return R::count('liked_tutorial', ' tutorial_id = :id ', [':id' => $id]);
     }
 
-    private function getTags(string $tutorialDate, int $totalPurchased, int $totalLiked): array{
+    private function getTags(string $tutorialDate, int $totalPurchased, int $totalLiked): array
+    {
         $possibleTags = [];
 
         $createdTutorialTimestamp = strtotime($tutorialDate);
@@ -111,14 +113,11 @@ class Detail_tutorial_model extends Model {
         $selisihDalamTimestamp = $currentTimestamp - $createdTutorialTimestamp;
         // ubah detik ke hari
         $selisihDalamHari = $selisihDalamTimestamp / 86400;
-        
-        if( $selisihDalamHari < MAX_DAYS_LATEST_TUTORIAL ) $possibleTags[] = 'Latest Tutorial';
-        if( $totalPurchased > BEST_SELLER_THRESHOLD )      $possibleTags[] = 'Best Seller';
-        if( $totalLiked > MOST_LIKED_THRESHOLD )           $possibleTags[] = 'Most Liked';
+
+        if ($selisihDalamHari < MAX_DAYS_LATEST_TUTORIAL) $possibleTags[] = 'Latest Tutorial';
+        if ($totalPurchased > BEST_SELLER_THRESHOLD)      $possibleTags[] = 'Best Seller';
+        if ($totalLiked > MOST_LIKED_THRESHOLD)           $possibleTags[] = 'Most Liked';
 
         return $possibleTags;
-
     }
-
-
 }
