@@ -38,14 +38,15 @@ $(function () {
   //  (mesti tambahkan field is_revoke utk table tutorial agar bisa soft delete)
   //  (jika student sdh beli tutorial tsb maka tutorial tsb tidak terdelete di dashboard student)
   //  (tutorial tidak muncul di home,search view, dashboard teacher, latest, best seller dan most like tut)
-  // edit prize dan desc dari tutorial
+  // edit prize dan desc dari tutorial (done)
   //  (kasih notif ke student yg pernah purchase tutorial tsb)
   //  (prize dan desc berubah di  home,search view, dashboard teacher, latest, best seller dan most like tut)
   //  (prize dan desc juga berubah di dashboard student)
   //  (mesti tambahkan field purchase_amount di table purchased_tutorial agar tau pas beli di harga berapa,tidak jadi field ini karena di dashboard student juga berubah)
   // perbaikan list dari tutorial di home dgn data dari DB (done)
-  // buat contact us berfungsi dgn phpmailer
+  // buat contact us berfungsi dgn phpmailer (coba buat ini ya)
   // jika teacher update, revoke dan restore tutorial maka student yg membeli tutorial tsb dpt notif
   // jika student beli dan like suatu tutorial. maka teacher yg buat itu tutorial dpt notif
   // terapkan fuzzy algoritma di fitur search (done)
+  // di db table liked_tutorial dan purchased_tutorial ganti nilai field liked_by dan purchased_by jadi ID student
 });

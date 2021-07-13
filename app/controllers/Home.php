@@ -72,7 +72,8 @@ class Home extends Controller
 				'script_axios' => $data['script-axios'],
 				'script_modal_detail_tutorial' => $data['script-modal-detail-tutorial'],
 				'script_load_more' => $data['script-load-more'],
-				'BASEURL' => BASEURL
+				'BASEURL' => BASEURL,
+				'flash' => Flasher::flash() ?? ''
 			]
 		);
 	}
