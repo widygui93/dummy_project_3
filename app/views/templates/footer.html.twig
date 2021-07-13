@@ -1,4 +1,5 @@
 		<footer class="footer">
+			{{ flash }}
 			<div class="footer-main">
 				<div class="footer-links">
 					<ul>
@@ -11,14 +12,14 @@
 				</div>
 				<div class="footer-contact">
 					<h3>Contact Us</h3>
-					<form action="" method="post">
+					<form action="{{ BASEURL }}/Contact" method="post">
 						<input 
 							type="text" 
 							name="name" 
 							id="name-contact" 
 							minlength="6" 
 							maxlength="12" 
-							pattern="^[a-zA-Z0-9]*$" 
+							pattern="^[a-zA-Z .,]*$" 
 							class="form-control" 
 							placeholder="Name" 
 							autocomplete="off" 
@@ -27,7 +28,8 @@
 						<input 
 							type="email" 
 							name="email" 
-							id="email-contact" 
+							id="email-contact"
+							pattern="^([a-z\d\.-]+)@([a-z\d-]+)\.([a-z]{2,8})(\.[a-z]{2,8})?$" 
 							class="form-control" 
 							placeholder="Email" 
 							autocomplete="off" 
@@ -39,13 +41,19 @@
 							id="subject" 
 							minlength="6" 
 							maxlength="12" 
-							pattern="^[a-zA-Z0-9]*$" 
+							pattern="^[a-zA-Z0-9 .,]*$" 
 							class="form-control" 
 							placeholder="Subject" 
 							autocomplete="off" 
 							required
 						>
-						<textarea id="messages" name="messages" placeholder="Messages..." required></textarea>
+						<textarea 
+							id="messages" 
+							name="messages" 
+							maxlength="40" 
+							placeholder="Messages..." 
+							required
+						></textarea>
 						<button type="submit" name="submit">Submit</button>
 					</form>
 				</div>
