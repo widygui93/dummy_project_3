@@ -19,6 +19,9 @@ class Search_model extends Model
         } elseif ($this->isBreak($keyword['q'], "/^[a-zA-Z0-9 .,\-&]{6,50}$/")) {
             Flasher::setFlash('error', 'Failed', 'Search Format: Combination of letters and numbers, Length: 6 - 50');
             return array();
+        } elseif ($this->isTutorialRevoked($keyword['q'])) {
+            Flasher::setFlash('error', 'Failed', 'Tutorial has been revoked');
+            return array();
         } else {
 
             $numOfTutorials = R::count('tutorial', ' LOWER(title) LIKE ? AND is_revoke = ?', ['%' . strtolower($keyword['q']) . '%', 'N']);
@@ -147,5 +150,19 @@ class Search_model extends Model
     public function purifyKeyword(string $keyword): string
     {
         return $this->purify($keyword);
+    }
+
+    private function isTutorialRevoked(string $keyword): bool
+    {
+        $recordTutorials = R::getAll(
+            "SELECT is_revoke FROM tutorial where LOWER(title) LIKE :q",
+            [':q' => "%" . strtolower($keyword) . "%"]
+        );
+
+        if (count($recordTutorials) > 0) {
+            return in_array("N", array_column($recordTutorials, 'is_revoke')) ? false : true;
+        }
+
+        return false;
     }
 }
