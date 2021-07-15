@@ -1,12 +1,12 @@
 {% for tutorial in tutorials %}
             <div class="tutorial">
                 <div class="tutorial-head">
-                    <img src="../app/core/videos/cover-img/{{ tutorial.img_cover }}" alt="video-poster">
+                    <img src="../app/core/videos/cover-img/{{ tutorial.img_cover }}" alt="video-poster" {% if tutorial.is_revoke == 'Y' %}style="opacity:0.5;"{% endif %}>
                 </div>
                 <div class="tutorial-body">
                     <div class="info-1">
                         <span style="display: none;">{{ tutorial.id }}</span>
-                        <span class="tutorial-title"><a>{{ tutorial.title }}</a></span>
+                        <span class="tutorial-title" {% if tutorial.is_revoke == 'Y' %}style="opacity:0.5;"{% endif %}><a>{{ tutorial.title }}</a></span>
                         <span class="tooltiptext">Click for details</span>
                     </div>
                     <div class="info-2">
