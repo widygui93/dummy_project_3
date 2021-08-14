@@ -51,6 +51,6 @@ $(function () {
   // di db table liked_tutorial dan purchased_tutorial ganti nilai field liked_by dan purchased_by jadi ID student(done)
   // buat view utk user profile student dan teacher
   // utk tutorial yg kena revoke , buat view tutorial ny jadi grey out sehingga bisa kontras degn tutorial aktif
-  // buat icon loading ketika tekan tombol more
+  // buat icon loading ketika tekan tombol more(done)
   // BUGS: search django(yg kena revoke) klik tombol more tapi g muncul tutorial lagi(done)
 });
