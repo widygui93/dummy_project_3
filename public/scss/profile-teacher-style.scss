@@ -1,0 +1,16 @@
+@import "variables";
+@import "mixins";
+
+.profile-teacher {
+  height: 200px;
+  padding-top: 10em;
+  line-height: 1.6;
+  h3 {
+    @include section-header;
+  }
+  .container-profile-teacher {
+    p {
+      text-align: center;
+    }
+  }
+}
