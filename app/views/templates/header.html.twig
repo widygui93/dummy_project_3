@@ -62,7 +62,7 @@
 						<li><a href="{{ BASEURL }}/Most_liked_tutorial">Most Liked Tutorial</a></li>
 						{% if login_teacher %}
 							<li><a href="{{ BASEURL }}/Dashboard_teacher">Dashboard</a></li>
-							<li><a href="">{{ username_teacher }}</a></li>
+							<li><a href="{{ BASEURL }}/Profile_teacher/viewProfile/{{ username_teacher }}">{{ username_teacher }}</a></li>
 						{% endif %}
 						{% if login_student %}
 							<li><a href="{{ BASEURL }}/Dashboard_student">Dashboard</a></li>
