@@ -10,7 +10,7 @@ class Profile_teacher extends Controller
         }
 
         if (!$this->model('Verify_model')->isLoginAsTeacher()) return $this->model('Verify_model')->goHome();
-        if ($_SESSION["username_teacher"] != stripslashes(htmlspecialchars($username))) return $this->model('Verify_model')->goHome();
+        if ($_SESSION["username_teacher"] != stripslashes(htmlspecialchars(strtolower($username)))) return $this->model('Verify_model')->goHome();
 
         $data['profile-teacher'] = $this->model('Profile_teacher_model')->getProfileInfoBy($_SESSION["username_teacher"]);
         if (empty($data['profile-teacher'])) return $this->model('Verify_model')->goHome();
