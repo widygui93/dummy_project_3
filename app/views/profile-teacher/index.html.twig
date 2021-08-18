@@ -1,7 +1,26 @@
 <main class="profile-teacher">
     <h3>Profile Teacher</h3>
-    <div class="container-profile-teacher">
-        <p>{{ profile_teacher[0]['email'] }}</p>
-        <p>{{ BASEURL }}</p>
+    <div class="frame-profile-picture">
+        <img src="http://localhost/widy/project/dummy_project_3/app/core/profile-picture/{{ profile_teacher[0]['profile_pic'] }}" alt="">
     </div>
+    <div class="container-profile-teacher">
+        <h3 id="profile-teacher-name">{{ profile_teacher[0]['name'] }}</h3>
+        <p id="profile-teacher-expert"><small>{{ profile_teacher[0]['expert'] }}</small></p>
+        <div class="profile-teacher-info">
+            <span>Username</span>
+            <p id="profile-teacher-username">{{ profile_teacher[0]['username'] }}</p>
+            <hr>
+            <span>Email</span>
+            <p id="profile-teacher-email">{{ profile_teacher[0]['email'] }}</p>
+            <hr>
+            <span>Registration Date</span>
+            <p id="profile-teacher-reg-date">{{ profile_teacher[0]['reg_date'] }}</p>
+            <hr>
+        </div>
+        
+        {# <p>{{ BASEURL }}</p> #}
+    </div>
+    <button id="change-password">Change password</button>
+    <button id="edit-profile-pic">Edit profile picture</button>
+
 </main>
