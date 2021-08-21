@@ -258,4 +258,20 @@ class Model
 
         return $listLevenshteinDistances;
     }
+
+    public function isOldPasswordInvalid(string $oldPassword, string $userName): bool
+    {
+        $query = "SELECT password FROM teacher WHERE username = :username";
+        $data = R::getAll($query, [':username' => strtolower($userName)]);
+
+        // cek username ada di db atau tidak
+        if (empty($data)) return true;
+        // cek password sama atau tidak
+        return password_verify($oldPassword, $data[0]["password"]) ? false : true;
+    }
+
+    public function isPasswordsSame(string $oldPassword, string $newPassword): bool
+    {
+        return ($oldPassword === $newPassword) ? true : false;
+    }
 }
