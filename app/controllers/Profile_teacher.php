@@ -17,6 +17,7 @@ class Profile_teacher extends Controller
 
 
         $data['style'] = BASEURL . '/css/profile-teacher-style.css';
+        $data['script'] = BASEURL . '/js/script-profile-teacher.js';
         $twig = $this->view();
         echo $twig->render(
             '/templates/header.html.twig',
@@ -34,11 +35,21 @@ class Profile_teacher extends Controller
             '/profile-teacher/index.html.twig',
             [
                 'profile_teacher' => $data['profile-teacher'],
+                'flash' => Flasher::flash() ?? '',
                 'BASEURL' => BASEURL
 
             ]
         );
 
-        echo $twig->render('/templates/footer.html.twig', ['BASEURL' => BASEURL]);
+        echo $twig->render('/templates/footer.html.twig', ['script' => $data['script'], 'BASEURL' => BASEURL]);
+    }
+
+    public function changePassword()
+    {
+        if (!$this->model('Verify_model')->isLoginAsTeacher()) return $this->model('Verify_model')->goHome();
+        $result = $this->model('Profile_teacher_model')->changePassword($_POST);
+        Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+        header('Location: ' . BASEURL . '/Profile_teacher/viewProfile/' . $_SESSION["username_teacher"]);
+        exit;
     }
 }
