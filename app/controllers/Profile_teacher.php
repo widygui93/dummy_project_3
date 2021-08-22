@@ -32,7 +32,7 @@ class Profile_teacher extends Controller
         );
 
         echo $twig->render(
-            '/profile-teacher/index.html.twig',
+            '/profile/teacher.html.twig',
             [
                 'profile_teacher' => $data['profile-teacher'],
                 'flash' => Flasher::flash() ?? '',
