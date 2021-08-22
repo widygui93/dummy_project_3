@@ -81,14 +81,14 @@ class Profile_teacher_model extends Model
             $newPassword = $this->purify($data['new-password']);
 
             // enkripsi password
-            $newPass = password_hash($newPassword, PASSWORD_DEFAULT);
+            $newEncryptedPass = password_hash($newPassword, PASSWORD_DEFAULT);
 
             $query = "SELECT id FROM teacher WHERE username = :username";
             $teacher = R::getAll($query, [':username' => strtolower($_SESSION["username_teacher"])]);
             $teacherID = $teacher[0]['id'];
 
             $updatedTeacher = R::load('teacher', $teacherID);
-            $updatedTeacher->password = $this->purify($newPass);
+            $updatedTeacher->password = $this->purify($newEncryptedPass);
 
             try {
                 if (R::store($updatedTeacher)) {
