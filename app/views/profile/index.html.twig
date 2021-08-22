@@ -1,0 +1,84 @@
+<main class="profile-teacher">
+    {{ flash }}
+    <h3>Profile Teacher</h3>
+    <div class="frame-profile-picture">
+        <img src="http://localhost/widy/project/dummy_project_3/app/core/profile-picture/teacher/{{ profile_teacher[0]['profile_pic'] }}" alt="">
+    </div>
+    <div class="container-profile-teacher">
+        <h3 id="profile-teacher-name">{{ profile_teacher[0]['name'] }}</h3>
+        <p id="profile-teacher-expert"><small>{{ profile_teacher[0]['expert'] }}</small></p>
+        <div class="profile-teacher-info">
+            <span>Username</span>
+            <p id="profile-teacher-username">{{ profile_teacher[0]['username'] }}</p>
+            <hr>
+            <span>Email</span>
+            <p id="profile-teacher-email">{{ profile_teacher[0]['email'] }}</p>
+            <hr>
+            <span>Registration Date</span>
+            <p id="profile-teacher-reg-date">{{ profile_teacher[0]['reg_date'] }}</p>
+            <hr>
+        </div>
+        
+        {# <p>{{ BASEURL }}</p> #}
+    </div>
+    <button id="change-password">Change password</button>
+    <button id="edit-profile-pic">Edit profile picture</button>
+
+    <div class="modalChangePassword">
+        <div class="modal-content">
+            <span class="close-change-password">&times;</span>
+            <h3>Change Password</h3>
+            <div class="form-change-password">
+                <form action="{{ BASEURL }}/Profile_teacher/changePassword" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="old-password" 
+                            id="old-password" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="Current Password" 
+                            required
+                        >
+                        <small>Length: 8 - 12 characters.</small>
+                        <small>Allow letter, number, @, -, _</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="new-password" 
+                            id="new-password" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="New Password" 
+                            required
+                        >
+                        <small>Length: 8 - 12 characters.</small>
+                        <small>Allow letter, number, @, -, _</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="password-confirm" 
+                            id="password-confirm" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="Confirm Password" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit-change-password" class="btn btn-outline-dark">Submit</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+</main>
