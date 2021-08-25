@@ -52,4 +52,13 @@ class Profile_teacher extends Controller
         header('Location: ' . BASEURL . '/Profile_teacher/viewProfile/' . $_SESSION["username_teacher"]);
         exit;
     }
+
+    public function editProfilePic()
+    {
+        if (!$this->model('Verify_model')->isLoginAsTeacher()) return $this->model('Verify_model')->goHome();
+        $result = $this->model('Profile_teacher_model')->editProfilePic($_POST);
+        Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+        header('Location: ' . BASEURL . '/Profile_teacher/viewProfile/' . $_SESSION["username_teacher"]);
+        exit;
+    }
 }
