@@ -99,33 +99,36 @@ class Dashboard_teacher_model extends Model
             $data['prize'] = $this->purify($data['prize']);
             $data['desc'] = $this->purify($data['desc']);
 
-            $imgCover = $this->upload("../app/core/videos/cover-img/", $_FILES['img-cover']['tmp_name'], $_FILES['img-cover']['name']);
-            if (!$imgCover) {
+            try {
+                $imgCover = $this->upload("../app/core/videos/cover-img/", $_FILES['img-cover']['tmp_name'], $_FILES['img-cover']['name']);
+            } catch (Exception $e) {
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
-                    'text' => 'Failed to upload image cover'
+                    'text' => $e->getMessage()
                 ];
             }
 
             $subtitle = null;
             if ($_FILES['subtitle']['error'] !== 4) {
-                $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
-                if (!$subtitle) {
+                try {
+                    $subtitle = $this->upload("../app/core/videos/subtitles/", $_FILES['subtitle']['tmp_name'], $_FILES['subtitle']['name']);
+                } catch (Exception $e) {
                     return [
                         'icon' => 'error',
                         'title' => 'Failed',
-                        'text' => 'Failed to upload subtitle'
+                        'text' => $e->getMessage()
                     ];
                 }
             }
 
-            $video = $this->upload("../app/core/videos/", $_FILES['video']['tmp_name'], $_FILES['video']['name']);
-            if (!$video) {
+            try {
+                $video = $this->upload("../app/core/videos/", $_FILES['video']['tmp_name'], $_FILES['video']['name']);
+            } catch (Exception $e) {
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
-                    'text' => 'Failed to upload video'
+                    'text' => $e->getMessage()
                 ];
             }
 
@@ -152,18 +155,6 @@ class Dashboard_teacher_model extends Model
     }
 
 
-    private function isViolateMaxSize(int $fileSize, int $maxSize): bool
-    {
-        return $fileSize > $maxSize ? true : false;
-    }
-
-    private function isViolateFileExtention(string $namaFile, array $validExtention): bool
-    {
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        return in_array($ekstensiGambar, $validExtention) ? false : true;
-    }
-
     private function getVideoDuration($vidTmpName)
     {
         $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
@@ -178,19 +169,6 @@ class Dashboard_teacher_model extends Model
         return $video_duration;
     }
 
-    private function upload($folder, $tmpName, $namaFile)
-    {
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        // generate nama gambar baru
-        $namaFileBaru = $this->createRandomString();
-        $namaFileBaru .= '.';
-        $namaFileBaru .= $ekstensiGambar;
-
-        move_uploaded_file($tmpName, $folder . $namaFileBaru);
-
-        return $namaFileBaru;
-    }
 
     public function getTutorialsBy(string $username): array
     {
