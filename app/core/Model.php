@@ -274,4 +274,32 @@ class Model
     {
         return ($oldPassword === $newPassword) ? true : false;
     }
+
+    public function isViolateMaxSize(int $fileSize, int $maxSize): bool
+    {
+        return $fileSize > $maxSize ? true : false;
+    }
+
+    public function isViolateFileExtention(string $namaFile, array $validExtention): bool
+    {
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        return in_array($ekstensiGambar, $validExtention) ? false : true;
+    }
+
+    public function upload($folder, $tmpName, $namaFile)
+    {
+        $ekstensiGambar = explode('.', $namaFile);
+        $ekstensiGambar = strtolower(end($ekstensiGambar));
+        // generate nama gambar baru
+        $namaFileBaru = $this->createRandomString();
+        $namaFileBaru .= '.';
+        $namaFileBaru .= $ekstensiGambar;
+
+        if (!move_uploaded_file($tmpName, $folder . $namaFileBaru)) {
+            throw new Exception("Upload image failed");
+        }
+
+        return $namaFileBaru;
+    }
 }
