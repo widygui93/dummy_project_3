@@ -102,7 +102,7 @@ class Profile_teacher_model extends Model
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
-                    'text' => $e->getMessage()
+                    'text' => 'Change password failed'
                 ];
             }
         }
@@ -137,7 +137,15 @@ class Profile_teacher_model extends Model
                 'text' => 'You upload incorrect image extention'
             ];
         } else {
-            $profilePic = $this->upload("../app/core/profile-picture/teacher/", $_FILES['profile-pic']['tmp_name'], $_FILES['profile-pic']['name']);
+            try {
+                $profilePic = $this->upload("../app/core/profile-picture/teacher/", $_FILES['profile-pic']['tmp_name'], $_FILES['profile-pic']['name']);
+            } catch (Exception $e) {
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => $e->getMessage()
+                ];
+            }
 
             $teacherID = $this->getTeacherID();
 
@@ -158,45 +166,9 @@ class Profile_teacher_model extends Model
                 return [
                     'icon' => 'error',
                     'title' => 'Failed',
-                    'text' => $e->getMessage()
+                    'text' => 'Edit profile picture failed'
                 ];
             }
-        }
-    }
-
-    private function isViolateMaxSize(int $fileSize, int $maxSize): bool
-    {
-        return $fileSize > $maxSize ? true : false;
-    }
-
-    private function isViolateFileExtention(string $namaFile, array $validExtention): bool
-    {
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        return in_array($ekstensiGambar, $validExtention) ? false : true;
-    }
-
-    private function upload($folder, $tmpName, $namaFile)
-    {
-        $ekstensiGambar = explode('.', $namaFile);
-        $ekstensiGambar = strtolower(end($ekstensiGambar));
-        // generate nama gambar baru
-        $namaFileBaru = $this->createRandomString();
-        $namaFileBaru .= '.';
-        $namaFileBaru .= $ekstensiGambar;
-
-        try {
-            if (move_uploaded_file($tmpName, $folder . $namaFileBaru)) {
-                return $namaFileBaru;
-            } else {
-                throw new Exception();
-            }
-        } catch (Exception $e) {
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Edit profile picture failed'
-            ];
         }
     }
 
