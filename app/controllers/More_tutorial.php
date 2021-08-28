@@ -10,7 +10,8 @@ class More_tutorial extends Controller
 
         $url = $_SERVER["HTTP_REFERER"];
         $urlComponent = explode("/", $url);
-        $currentController = end($urlComponent) == "" ? "Latest_tutorial" : end($urlComponent);
+        $indexPublic = array_search('public', $urlComponent);
+        $currentController = $urlComponent[(int)$indexPublic + 1] == "" ? "Latest_tutorial" :  $urlComponent[(int)$indexPublic + 1];
 
         $twig = $this->view();
 
@@ -38,6 +39,11 @@ class More_tutorial extends Controller
             echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
         } elseif ($currentController == "Most_liked_tutorial") {
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForMostLiked($startIndexOfMoreTutorials);
+
+            echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
+        } elseif ($currentController == "Tutorial_from_teacher") {
+            $usernameTeacher = $urlComponent[(int)$indexPublic + 3];
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForTutorialFrom($startIndexOfMoreTutorials, $usernameTeacher);
 
             echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
         } elseif ($currentController == "Dashboard_student") {
