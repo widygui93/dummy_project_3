@@ -47,11 +47,13 @@ class Detail_tutorial_model extends Model
                 $tagTemplates = "<div class='tags-container'><p class='label-tags'>Tags:</p>" . $tagsList . "</div>";
             }
 
+            $byTemplate = BASEURL . "/Tutorial_from_teacher/viewTutorial/" . $detailTutorial[0]['created_by'];
+
             return <<< RESULT_TEMPLATE
-            <img src='../app/core/videos/cover-img/{$detailTutorial[0]['img_cover']}' class='img-cover'>
+            <img src='http://localhost/widy/project/dummy_project_3/app/core/videos/cover-img/{$detailTutorial[0]['img_cover']}' class='img-cover'>
             <h3 class='title'>{$detailTutorial[0]['title']}</h3>
             <div class='createdby-container'>
-                <span class="label-by">By <a href='#' class='created-by'>{$detailTutorial[0]['created_by']}</a></span>
+                <span class="label-by">By <a href='{$byTemplate}' class='created-by'>{$detailTutorial[0]['created_by']}</a></span>
             </div>
             <div class='prize-container'>
                 <img src='http://localhost/widy/project/dummy_project_3/public/svg/green_dollar_icon.svg' class='dollar-logo' alt='cost'>
