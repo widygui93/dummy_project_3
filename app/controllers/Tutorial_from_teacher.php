@@ -37,18 +37,16 @@ class Tutorial_from_teacher extends Controller
 
         if (isset($_SESSION['login_teacher'])) {
 
-            echo $twig->render(
-                '/tutorial/bases/tutorial-complete.html.twig',
-                [
-                    'tutorials' => $data['tutorials'],
-                    'total_tutorials' => $data['total-tutorials'],
-                    'BASEURL' => BASEURL
-                ]
-            );
-        } elseif (isset($_SESSION['login_student'])) {
-
-            // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
-            echo "ini view student";
+            echo empty($data['tutorials'])
+                ? $twig->render('/tutorial/no-tutorial.html.twig') :
+                $twig->render(
+                    '/tutorial/bases/tutorial-complete.html.twig',
+                    [
+                        'tutorials' => $data['tutorials'],
+                        'total_tutorials' => $data['total-tutorials'],
+                        'BASEURL' => BASEURL
+                    ]
+                );
         } else {
             // nanti di sini muncul view kumpulan tutorial yg ada tombol purchase aja
             // klu tombol purchase di klik nanti minta login dulu sebagai student
