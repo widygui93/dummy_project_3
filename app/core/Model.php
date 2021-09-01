@@ -75,13 +75,9 @@ class Model
         return preg_match('/^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$/', $id) === 1 ? false : true;
     }
 
-    public function isIneligibleTutorial(string $id): bool
+    public function isIDRevoked(string $id): bool
     {
-        if (!isset($_SESSION["login_teacher"]) && !isset($_SESSION["login_student"])) {
-            return false;
-        }
-        $tutorials = R::find('tutorial', ' id = :id and created_by = :created_by ', [':id' => $id, ':created_by' => $_SESSION["username_teacher"]]);
-        return empty($tutorials) ? true : false;
+        return R::count('tutorial', " id = :id AND is_revoke = 'N'", [':id' => $id]) > 0 ? false : true;
     }
 
 
