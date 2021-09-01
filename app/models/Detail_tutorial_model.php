@@ -18,10 +18,10 @@ class Detail_tutorial_model extends Model
             return <<< RESULT_TEMPLATE
 			<p>Tutorial is not available</p>
 			RESULT_TEMPLATE;
-        } elseif ($this->isIneligibleTutorial($id)) {
+        } elseif ($this->isIDRevoked($id)) {
             return <<< RESULT_TEMPLATE
-			<p>Tutorial is not authorized to access</p>
-			RESULT_TEMPLATE;
+            <p>Tutorial has been revoked</p> 
+            RESULT_TEMPLATE;
         } else {
             $detailTutorial = $this->getDetail($id);
             $totalPurchased = $this->getTotalPurchased($id);
@@ -91,19 +91,19 @@ class Detail_tutorial_model extends Model
                     video_duration,
                     subtitle,
                     description 
-            FROM tutorial WHERE id = :id
+            FROM tutorial WHERE id = :id AND is_revoke = 'N'
         ";
         return R::getAll($query, [':id' => $id]);
     }
 
     private function getTotalPurchased(string $id): int
     {
-        return R::count('purchased_tutorial', ' tutorial_id = :id ', [':id' => $id]);
+        return R::count('purchased_tutorial', " tutorial_id = :id AND is_revoke = 'N'", [':id' => $id]);
     }
 
     private function getTotalLiked(string $id): int
     {
-        return R::count('liked_tutorial', ' tutorial_id = :id ', [':id' => $id]);
+        return R::count('liked_tutorial', " tutorial_id = :id AND is_revoke = 'N'", [':id' => $id]);
     }
 
     private function getTags(string $tutorialDate, int $totalPurchased, int $totalLiked): array
