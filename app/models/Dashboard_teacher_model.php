@@ -239,12 +239,6 @@ class Dashboard_teacher_model extends Model
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif ($this->isIneligibleTutorial($id)) {
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Tutorial is not authorized to access'
-            ];
         } elseif ($this->isAlreadyRevoke($id)) {
             return [
                 'icon' => 'error',
@@ -277,12 +271,6 @@ class Dashboard_teacher_model extends Model
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
-            ];
-        } elseif ($this->isIneligibleTutorial($id)) {
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Tutorial is not authorized to access'
             ];
         } elseif ($this->isAlreadyRestore($id)) {
             return [
@@ -329,12 +317,6 @@ class Dashboard_teacher_model extends Model
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
             ];
-        } elseif ($this->isIneligibleTutorial($id)) {
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Tutorial is not authorized to access'
-            ];
         } else {
 
             $query = "
@@ -366,12 +348,6 @@ class Dashboard_teacher_model extends Model
                 'icon' => 'error',
                 'title' => 'Failed',
                 'text' => 'Tutorial is not available'
-            ];
-        } elseif ($this->isIneligibleTutorial($id)) {
-            return [
-                'icon' => 'error',
-                'title' => 'Failed',
-                'text' => 'Tutorial is not authorized to access'
             ];
         } elseif (!$this->doesMandatoryDataFilled(array(
             "prize" => $prize,
