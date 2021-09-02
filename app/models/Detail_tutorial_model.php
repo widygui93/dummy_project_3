@@ -98,12 +98,12 @@ class Detail_tutorial_model extends Model
 
     private function getTotalPurchased(string $id): int
     {
-        return R::count('purchased_tutorial', " tutorial_id = :id AND is_revoke = 'N'", [':id' => $id]);
+        return R::count('purchased_tutorial', ' tutorial_id = :id', [':id' => $id]);
     }
 
     private function getTotalLiked(string $id): int
     {
-        return R::count('liked_tutorial', " tutorial_id = :id AND is_revoke = 'N'", [':id' => $id]);
+        return R::count('liked_tutorial', ' tutorial_id = :id', [':id' => $id]);
     }
 
     private function getTags(string $tutorialDate, int $totalPurchased, int $totalLiked): array
