@@ -255,9 +255,9 @@ class Model
         return $listLevenshteinDistances;
     }
 
-    public function isOldPasswordInvalid(string $oldPassword, string $userName): bool
+    public function isOldPasswordInvalid(string $oldPassword, string $userName, string $tableName): bool
     {
-        $query = "SELECT password FROM teacher WHERE username = :username";
+        $query = "SELECT password FROM $tableName WHERE username = :username";
         $data = R::getAll($query, [':username' => strtolower($userName)]);
 
         // cek username ada di db atau tidak
