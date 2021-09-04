@@ -17,7 +17,7 @@ class Profile_teacher extends Controller
 
 
         $data['style'] = BASEURL . '/css/profile-teacher-style.css';
-        $data['script'] = BASEURL . '/js/script-profile-teacher.js';
+        $data['script'] = BASEURL . '/js/script-profile.js';
         $twig = $this->view();
         echo $twig->render(
             '/templates/header.html.twig',

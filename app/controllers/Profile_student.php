@@ -17,8 +17,7 @@ class Profile_student extends Controller
 
 
         $data['style'] = BASEURL . '/css/profile-student-style.css';
-        // hapus salah satu script profile karena isi ny sama aja antara student dan teacher
-        $data['script'] = BASEURL . '/js/script-profile-student.js';
+        $data['script'] = BASEURL . '/js/script-profile.js';
         $twig = $this->view();
         echo $twig->render(
             '/templates/header.html.twig',
