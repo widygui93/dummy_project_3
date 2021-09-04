@@ -1,0 +1,225 @@
+@import "variables";
+@import "mixins";
+
+.profile-student {
+  padding-top: 8em;
+  h3 {
+    text-align: center;
+  }
+  .frame-profile-picture {
+    position: relative;
+    padding-top: 10px;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    img {
+      height: 100px;
+      width: 100px;
+      border: 1px solid white;
+      border-radius: 50px;
+      background-color: #999999;
+      position: absolute;
+      box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2),
+        0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    }
+  }
+  .container-profile-student {
+    margin: 0 15px 15px;
+    padding-top: 50px;
+    padding-bottom: 10px;
+    border-radius: 6px;
+    background-color: darken(white, 3%);
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    h3#profile-student-name {
+      margin-top: 7px;
+    }
+    .profile-student-info {
+      line-height: 1.8;
+      padding: 10px 20px;
+      span {
+        font-weight: bold;
+        color: $dark-primary-col;
+      }
+      hr {
+        opacity: 0.3;
+        margin-bottom: 15px;
+      }
+      hr:last-child {
+        display: none;
+      }
+    }
+  }
+  button#change-password,
+  button#edit-profile-pic {
+    background-color: $light-primary-col;
+    color: white;
+    padding: 12px 20px;
+    margin: 0 15px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover {
+      background-color: $dark-primary-col;
+    }
+  }
+
+  .modalChangePassword {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    .modal-content {
+      background-color: $light-grey;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      border-radius: 5px;
+      width: 80%;
+      opacity: 0;
+      position: relative;
+      .close-change-password {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        &:hover {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      h3 {
+        text-align: center;
+      }
+      .form-change-password {
+        padding: 1em;
+        .form-group {
+          border-left: 3px solid $dark-primary-col;
+          margin: 1em 0;
+          padding: 0.5em;
+          input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            &:focus {
+              background-color: $light-grey;
+              outline: none;
+            }
+          }
+          button[type="submit"] {
+            background-color: $light-primary-col;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+              background-color: $dark-primary-col;
+            }
+          }
+        }
+        .form-group:last-child {
+          border: 0;
+        }
+      }
+    }
+    .shown-modal-content {
+      @include shown-detail-content;
+    }
+  }
+
+  .modalEditProfilePic {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0); /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4); /* Black w/ opacity */
+    .modal-content {
+      background-color: $light-grey;
+      margin: auto;
+      padding: 20px;
+      border: 1px solid #888;
+      border-radius: 5px;
+      width: 80%;
+      opacity: 0;
+      position: relative;
+      .close-edit-profile-pic {
+        color: #aaaaaa;
+        float: right;
+        font-size: 28px;
+        font-weight: bold;
+        &:hover {
+          color: #000;
+          text-decoration: none;
+          cursor: pointer;
+        }
+      }
+      h3 {
+        text-align: center;
+      }
+      .form-edit-profile-pic {
+        padding: 1em;
+        .form-group {
+          border-left: 3px solid $dark-primary-col;
+          margin: 1em 0;
+          padding: 0.5em;
+          input {
+            width: 100%;
+            padding: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            margin-top: 6px;
+            margin-bottom: 16px;
+            resize: vertical;
+            &:focus {
+              background-color: $light-grey;
+              outline: none;
+            }
+          }
+          button[type="submit"] {
+            background-color: $light-primary-col;
+            color: white;
+            padding: 12px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            &:hover {
+              background-color: $dark-primary-col;
+            }
+          }
+        }
+        .form-group:last-child {
+          border: 0;
+        }
+      }
+    }
+    .shown-modal-content {
+      @include shown-detail-content;
+    }
+  }
+}
+
+@media screen and (min-width: 748px) {
+  .profile-student {
+    padding-top: 10em;
+  }
+}
