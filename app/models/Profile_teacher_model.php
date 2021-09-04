@@ -59,7 +59,7 @@ class Profile_teacher_model extends Model
                 'title' => 'Failed',
                 'text' => 'New Password Allow letter, number, @, -, _ Length: 8 - 12 digit'
             ];
-        } elseif ($this->isOldPasswordInvalid($data['old-password'], $_SESSION["username_teacher"])) {
+        } elseif ($this->isOldPasswordInvalid($data['old-password'], $_SESSION["username_teacher"], "teacher")) {
             return [
                 'icon' => 'error',
                 'title' => 'Failed',
