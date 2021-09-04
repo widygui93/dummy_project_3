@@ -1,0 +1,98 @@
+<main class="profile-student">
+    {{ flash }}
+    <h3>Profile Student</h3>
+    <div class="frame-profile-picture">
+        <img src="http://localhost/widy/project/dummy_project_3/app/core/profile-picture/student/{{ profile_student[0]['profile_pic'] }}" alt="">
+    </div>
+    <div class="container-profile-student">
+        <h3 id="profile-student-name">{{ profile_student[0]['name'] }}</h3>
+        <div class="profile-student-info">
+            <span>Username</span>
+            <p id="profile-student-username">{{ profile_student[0]['username'] }}</p>
+            <hr>
+            <span>Email</span>
+            <p id="profile-student-email">{{ profile_student[0]['email'] }}</p>
+            <hr>
+            <span>Registration Date</span>
+            <p id="profile-student-reg-date">{{ profile_student[0]['reg_date'] }}</p>
+            <hr>
+        </div>
+    </div>
+    <button id="change-password">Change password</button>
+    <button id="edit-profile-pic">Edit profile picture</button>
+
+    <div class="modalChangePassword">
+        <div class="modal-content">
+            <span class="close-change-password">&times;</span>
+            <h3>Change Password</h3>
+            <div class="form-change-password">
+                <form action="{{ BASEURL }}/Profile_student/changePassword" method="post" autocomplete="off">
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="old-password" 
+                            id="old-password" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="Current Password" 
+                            required
+                        >
+                        <small>Length: 8 - 12 characters.</small>
+                        <small>Allow letter, number, @, -, _</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="new-password" 
+                            id="new-password" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="New Password" 
+                            required
+                        >
+                        <small>Length: 8 - 12 characters.</small>
+                        <small>Allow letter, number, @, -, _</small>
+                    </div>
+                    <div class="form-group">
+                        <input 
+                            type="password" 
+                            name="password-confirm" 
+                            id="password-confirm" 
+                            minlength="8" 
+                            maxlength="12" 
+                            pattern="^[\w@-]{8,12}$"
+                            class="form-control" 
+                            placeholder="Confirm Password" 
+                            required
+                        >
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit-change-password" class="btn btn-outline-dark">Submit</button>
+                    </div>
+                  </form>
+            </div>
+        </div>
+    </div>
+
+    <div class="modalEditProfilePic">
+        <div class="modal-content">
+            <span class="close-edit-profile-pic">&times;</span>
+            <h3>Edit Profile Picture</h3>
+            <div class="form-edit-profile-pic">
+                <form action="{{ BASEURL }}/Profile_student/editProfilePic" method="post" enctype="multipart/form-data" autocomplete="off">
+					<div class="form-group">
+					  	<input type="file" id="profilePicture" name="profile-pic" required>
+                    </div>
+                    <div class="form-group">
+                        <button type="submit" name="submit-edit-profilePic" class="btn btn-outline-dark">Submit</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+</main>
