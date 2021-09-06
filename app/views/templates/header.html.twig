@@ -71,15 +71,17 @@
 					</ul>
 				</div>
 				{% if login_teacher or login_student %}
-					<div class="notif-coin">
+					<div class="notif-cart">
 						<div class="notif">
 							<img src="{{ BASEURL }}/svg/notification-bell.svg" alt="notif">
 							<a href="">999</a>
 						</div>
-						<div class="coin">
-							<img src="{{ BASEURL }}/svg/coin.svg" alt="coin">
-							<span>600K</span>
-						</div>
+						{% if login_student %}
+							<div class="cart">
+								<img src="{{ BASEURL }}/svg/shopping-cart.svg" alt="cart">
+								<a href="">123</a>
+							</div>
+						{% endif %}
 					</div>
 				{% endif %}
     		</div>
