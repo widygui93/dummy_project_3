@@ -13,6 +13,12 @@ class Home extends Controller
 		$data['tutorials'] = $this->model('Home_model')->getTutorials();
 		$data['total-tutorials'] = $this->model('Home_model')->getTotalTutorials();
 
+		$data['total-carts'] = 0;
+		if (isset($_SESSION['login_student'])) {
+
+			$data['total-carts'] = $this->model('cart_model')->getTotalTutorialsInCart();
+		}
+
 		$twig = $this->view();
 		echo $twig->render(
 			'/templates/header.html.twig',
@@ -23,7 +29,8 @@ class Home extends Controller
 				'login_teacher' => $_SESSION['login_teacher'] ?? false,
 				'login_student' => $_SESSION['login_student'] ?? false,
 				'username_teacher' => $_SESSION['username_teacher'] ?? '',
-				'username_student' => $_SESSION['username_student'] ?? ''
+				'username_student' => $_SESSION['username_student'] ?? '',
+				'total_carts' => $data['total-carts']
 			]
 		);
 		echo $twig->render(
