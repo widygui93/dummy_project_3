@@ -16,7 +16,7 @@ class Home extends Controller
 		$data['total-carts'] = 0;
 		if (isset($_SESSION['login_student'])) {
 
-			$data['total-carts'] = $this->model('cart_model')->getTotalTutorialsInCart();
+			$data['total-carts'] = $this->model('Cart_model')->getTotalTutorialsInCart();
 		}
 
 		$twig = $this->view();

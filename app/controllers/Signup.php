@@ -61,7 +61,7 @@ class Signup extends Controller
 		if ($this->model('Verify_model')->isUserLogin()) return $this->model('Verify_model')->goHome();
 		$result = $this->model('Signup_model')->signupStudent($_POST);
 		Flasher::setFlash($result['icon'], $result['title'], $result['text']);
-		header('Location: ' . BASEURL . '/signup/student');
+		header('Location: ' . BASEURL . '/Signup/student');
 		exit;
 	}
 	public function teacher()
@@ -99,7 +99,7 @@ class Signup extends Controller
 		if ($this->model('Verify_model')->isUserLogin()) return $this->model('Verify_model')->goHome();
 		$result = $this->model('Signup_model')->signupTeacher($_POST);
 		Flasher::setFlash($result['icon'], $result['title'], $result['text']);
-		header('Location: ' . BASEURL . '/signup/teacher');
+		header('Location: ' . BASEURL . '/Signup/teacher');
 		exit;
 	}
 }

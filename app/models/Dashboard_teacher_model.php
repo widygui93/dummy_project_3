@@ -92,7 +92,17 @@ class Dashboard_teacher_model extends Model
         } else {
             $createdDate = $this->getDate();
             $createdBy = $_SESSION["username_teacher"];
-            $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
+
+            try {
+                $videoDuration = $this->getVideoDuration($_FILES['video']['tmp_name']);
+            } catch (Exception $e){
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => $e->getMessage()
+                ];
+
+            }
 
             $data['title'] = $this->purify($data['title']);
             $data['level'] = $this->purify($data['level']);
@@ -157,16 +167,36 @@ class Dashboard_teacher_model extends Model
 
     private function getVideoDuration($vidTmpName)
     {
-        $ffmpeg = 'ffmpeg -i ' . $vidTmpName . ' -vstats 2>&1';
-        $output = shell_exec($ffmpeg);
-        $regex_duration = "/Duration: ([0-9]{1,2}):([0-9]{1,2}):([0-9]{1,2}).([0-9]{1,2})/";
-        if (preg_match($regex_duration, $output, $regs)) {
-            $hours = $regs[1] ? $regs[1] : null;
-            $mins = $regs[2] ? $regs[2] : null;
-            $secs = $regs[3] ? $regs[3] : null;
+
+        $getID3 = new getID3;
+        $file = $getID3->analyze($vidTmpName);
+        $videoInSeconds = intval($file['playtime_seconds']);
+        $hours = 0;
+        $minutes = 0;
+
+        if($videoInSeconds > 86400) throw new Exception("Video Duration can not exceed 24 hours");
+
+        if($videoInSeconds <= 0) throw new Exception("Video Duration must exceed 0 seconds");
+
+        if($videoInSeconds >= 60){
+            $videosInMinutes = $videoInSeconds / 60;
+            if($videosInMinutes >= 60){
+                $hours = intval($videosInMinutes / 60);
+                $minutes = intval((($videosInMinutes / 60) - $hours) * 60);
+                $seconds = intval((((($videosInMinutes / 60) - $hours) * 60) - $minutes) * 60);
+
+
+            }else {
+                $minutes = intval($videoInSeconds / 60);
+                $seconds = (($videoInSeconds / 60) - $minutes )* 60;    
+
+            }
+
+        } else{
+            $seconds = $videoInSeconds;
         }
-        $video_duration = $hours . ':' . $mins . ':' . $secs;
-        return $video_duration;
+
+        return $hours . ':' . $minutes . ':' . $seconds;
     }
 
 

@@ -65,7 +65,7 @@ class Login_model extends Model {
     }
     private function setFlash($result, $method){
         Flasher::setFlash($result['icon'], $result['title'], $result['text']);
-        header('Location: ' . BASEURL . '/login/' . $method . '');
+        header('Location: ' . BASEURL . '/Login/' . $method . '');
 		exit;
     }
     private function setSession($username, $user){

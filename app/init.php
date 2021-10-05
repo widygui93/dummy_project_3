@@ -7,5 +7,6 @@ require_once 'core/Controller.php';
 require_once 'core/Database.php';
 require_once 'core/Flasher.php';
 require_once 'core/Model.php';
+require_once 'core/getID3-master/getid3/getid3.php';
 
 require_once 'config/config.php';

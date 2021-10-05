@@ -8,7 +8,6 @@ class Signup_model extends Model {
 
     public function signupStudent($data){
         $reg_date = $this->getDate();
-        $coin = INITIAL_STUDENT_COIN;
         $profile_pic = DEFAULT_PROFILE_PIC;
         if( $this->isDataEmpty($data) ){
             return [
@@ -87,24 +86,33 @@ class Signup_model extends Model {
             $student->username = strtolower(stripslashes($data['username']));
             $student->email = strtolower(stripslashes($data['email']));
             $student->reg_date = $reg_date;
-            $student->coin = $coin;
             $student->password = $password;
             $student->profile_pic = $profile_pic;
             $student->phone_no = stripslashes($data['phone']);
-            R::store($student);
 
-            return [
-                'icon' => 'success',
-                'title' => 'Success',
-                'text' => 'Register successfully'
-            ];
+            try {
+                if (R::store($student)) {
+                    return [
+                        'icon' => 'success',
+                        'title' => 'Success',
+                        'text' => 'Register successfully'
+                    ];
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception $e) {
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Register failed'
+                ];
+            }
 
         }
         
     }
     public function signupTeacher($data){
         $reg_date = $this->getDate();
-        $coin = INITIAL_TEACHER_COIN;
         $profile_pic = DEFAULT_PROFILE_PIC;
         if( $this->isDataEmpty($data) ){
             return [
@@ -183,17 +191,27 @@ class Signup_model extends Model {
             $teacher->username = strtolower(stripslashes($data['username']));
             $teacher->email = strtolower(stripslashes($data['email']));
             $teacher->reg_date = $reg_date;
-            $teacher->coin = $coin;
             $teacher->password = $password;
             $teacher->profile_pic = $profile_pic;
             $teacher->expert = strtolower(stripslashes($data['expert']));
-            R::store($teacher);
 
-            return [
-                'icon' => 'success',
-                'title' => 'Success',
-                'text' => 'Register successfully'
-            ];
+            try {
+                if (R::store($teacher)) {
+                    return [
+                        'icon' => 'success',
+                        'title' => 'Success',
+                        'text' => 'Register successfully'
+                    ];
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception $e) {
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Register failed'
+                ];
+            }
 
         }
         
