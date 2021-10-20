@@ -79,11 +79,66 @@ class Cart_model extends Model
 
     public function getTotalTutorialsInCart(): int
     {
-        return R::count('cart', ' username_student = :username', [':username' => $_SESSION["username_student"]]);
+        return R::count(
+            'cart', ' username_student = :username AND is_checkout = :isCheckout AND is_cancel = :isCancel',
+            [
+                ':username' => $_SESSION["username_student"],
+                ':isCheckout' => 'N',
+                ':isCancel' => 'N'
+            ]
+        );
     }
 
     public function getCartDataBy()
     {
-        $_SESSION["username_student"];
+
+        $numOfTutorials = $this->getTotalTutorialsInCart();
+        if ($numOfTutorials > 0) {
+            $query = "
+                SELECT 
+                    COUNT(id_like_tutorial) AS total_like,
+                    title,
+                    id,
+                    img_cover,
+                    created_by,
+                    prize,
+                    created_date,
+                    tutorial_date
+                FROM (
+                    SELECT tutorial.title,
+                            tutorial.id,
+                            tutorial.img_cover,
+                            tutorial.created_by,
+                            to_char(tutorial.prize, '999,999,999') AS prize,
+                            to_char(tutorial.created_date, 'Month DD,YYYY') AS created_date,
+                            tutorial.created_date AS tutorial_date,
+                            liked_tutorial.id as id_like_tutorial
+                    FROM tutorial
+                    FULL OUTER JOIN liked_tutorial ON tutorial.id=liked_tutorial.tutorial_id
+                    FULL OUTER JOIN cart ON tutorial.id::text = cart.id_tutorial::text
+                    WHERE tutorial.is_revoke = 'N'
+                    AND cart.username_student = :username AND cart.is_checkout = 'N'
+                    AND cart.is_cancel = 'N'
+                ) AS tbl_tutorial
+                GROUP BY title,
+                id,
+                img_cover,
+                created_by,
+                prize,
+                created_date,
+                tutorial_date
+                ORDER BY tutorial_date DESC
+                LIMIT " . TUTORIALS_PER_PAGE . "
+            ";
+
+            $dataCart = R::getAll($query, [':username' =>  $_SESSION["username_student"]]);
+
+            $dataCart = $this->shortenTitle($dataCart);
+
+            return $dataCart;
+        } else {
+            $dataCart = array();
+            return $dataCart;
+        }
     }
 }
