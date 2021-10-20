@@ -71,15 +71,19 @@
         }
         .purchase-wrapper,
         .play-wrapper,
-        .update-revoke-wrapper {
+        .update-revoke-wrapper,
+        .checkout-cancel-wrapper {
           .purchase-button,
           .play-button,
           .update-button,
           .revoke-button,
-          .restore-button {
+          .restore-button,
+          .checkout-button,
+          .cancel-button {
             background-color: $light-primary-col;
             border-radius: 5px;
             line-height: 2.7;
+            text-align: center;
             a {
               text-decoration: none;
               color: black;
