@@ -15,7 +15,6 @@ $(function () {
       axios.interceptors.request.use(
         (config) => {
           // perform a task before the request is sent
-          $(".load-more").text("Wait");
           $(".load-more").attr("disabled", "true");
           $(".load-more").css("cursor", "wait");
           return config;
