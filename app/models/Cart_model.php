@@ -74,7 +74,11 @@ class Cart_model extends Model
     private function hasTutorialAdded(string $idTutorial): bool
     {
 
-        return R::count('cart', ' id_tutorial = :id AND username_student = :username', [':id' => $idTutorial, ':username' => $_SESSION["username_student"]]) > 0  ? true : false;
+        return R::count(
+            'cart', 
+            ' id_tutorial = :id AND username_student = :username AND is_checkout = :isCheckout AND is_cancel = :isCancel', 
+            [':id' => $idTutorial, ':username' => $_SESSION["username_student"], ':isCheckout' => 'N',':isCancel' => 'N']
+        ) > 0  ? true : false;
     }
 
     public function getTotalTutorialsInCart(): int
