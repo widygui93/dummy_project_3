@@ -14,6 +14,11 @@ class Tutorial_from_teacher extends Controller
         $data['tutorials'] = $this->model('Tutorial_from_teacher_model')->getTutorialsBy($username_teacher);
         $data['total-tutorials'] = $this->model('Tutorial_from_teacher_model')->getTotalTutorialsBy($username_teacher);
 
+        $data['total-carts'] = 0;
+		if (isset($_SESSION['login_student'])) {
+
+			$data['total-carts'] = $this->model('Cart_model')->getTotalTutorialsInCart();
+		}
 
         $twig = $this->view();
 
@@ -26,7 +31,8 @@ class Tutorial_from_teacher extends Controller
                 'login_teacher' => $_SESSION['login_teacher'] ?? false,
                 'login_student' => $_SESSION['login_student'] ?? false,
                 'username_teacher' => $_SESSION['username_teacher'] ?? '',
-                'username_student' => $_SESSION['username_student'] ?? ''
+                'username_student' => $_SESSION['username_student'] ?? '',
+                'total_carts' => $data['total-carts']
             ]
         );
 

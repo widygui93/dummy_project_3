@@ -11,6 +11,11 @@ class Best_seller_tutorial extends Controller
         $data['tutorials'] = $this->model('Best_seller_tutorial_model')->getBestSellerTutorials();
         $data['total-tutorials'] = $this->model('Home_model')->getTotalTutorials();
 
+        $data['total-carts'] = 0;
+		if (isset($_SESSION['login_student'])) {
+
+			$data['total-carts'] = $this->model('Cart_model')->getTotalTutorialsInCart();
+		}
 
         $twig = $this->view();
 
@@ -23,7 +28,8 @@ class Best_seller_tutorial extends Controller
                 'login_teacher' => $_SESSION['login_teacher'] ?? false,
                 'login_student' => $_SESSION['login_student'] ?? false,
                 'username_teacher' => $_SESSION['username_teacher'] ?? '',
-                'username_student' => $_SESSION['username_student'] ?? ''
+                'username_student' => $_SESSION['username_student'] ?? '',
+                'total_carts' => $data['total-carts']
             ]
         );
 

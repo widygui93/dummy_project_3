@@ -46,7 +46,8 @@ class Cart extends Controller
                 'login_teacher' => $_SESSION['login_teacher'] ?? false,
                 'login_student' => $_SESSION['login_student'] ?? false,
                 'username_teacher' => $_SESSION['username_teacher'] ?? '',
-                'username_student' => $_SESSION['username_student'] ?? ''
+                'username_student' => $_SESSION['username_student'] ?? '',
+                'total_carts' => $data['total-cart']
             ]
         );
 

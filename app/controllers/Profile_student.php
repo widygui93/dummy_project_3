@@ -18,6 +18,12 @@ class Profile_student extends Controller
 
         $data['style'] = BASEURL . '/css/profile-student-style.css';
         $data['script'] = BASEURL . '/js/script-profile.js';
+
+        $data['total-carts'] = 0;
+		if (isset($_SESSION['login_student'])) {
+
+			$data['total-carts'] = $this->model('Cart_model')->getTotalTutorialsInCart();
+		}
         $twig = $this->view();
         echo $twig->render(
             '/templates/header.html.twig',
@@ -27,7 +33,8 @@ class Profile_student extends Controller
                 'login_teacher' => $_SESSION['login_teacher'] ?? false,
                 'login_student' => $_SESSION['login_student'] ?? false,
                 'username_teacher' => $_SESSION['username_teacher'] ?? '',
-                'username_student' => $_SESSION['username_student'] ?? ''
+                'username_student' => $_SESSION['username_student'] ?? '',
+                'total_carts' => $data['total-carts']
             ]
         );
 
