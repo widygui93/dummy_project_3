@@ -46,6 +46,11 @@ class More_tutorial extends Controller
             $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForTutorialFrom($startIndexOfMoreTutorials, $usernameTeacher);
 
             echo $twig->render($this->getAppropriateView(), ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
+        } elseif ($currentController == "Cart"){
+            $moreTutorials = $this->model('More_tutorial_model')->getMoreTutorialsForCart($startIndexOfMoreTutorials);
+
+            echo $twig->render("/tutorial/student/cart/more.html.twig", ['tutorials' => $moreTutorials, 'BASEURL' => BASEURL]);
+
         } elseif ($currentController == "Dashboard_student") {
             // di sini nanti student punya tombol play di dashboard student
 
