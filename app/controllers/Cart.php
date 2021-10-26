@@ -77,4 +77,22 @@ class Cart extends Controller
             ]
         );
     }
+
+    public function cancel(string $idTutorial = "")
+    {
+
+        if (!$this->model('Verify_model')->isUserLogin()) {
+
+            header('Location: ' . BASEURL);
+            exit;
+        }
+
+        if (!$this->model('Verify_model')->isLoginAsStudent()) return $this->model('Verify_model')->goHome();
+
+        $result = $this->model('Cart_model')->cancelTutorialInCart($idTutorial);
+        Flasher::setFlash($result['icon'], $result['title'], $result['text']);
+        header('Location: ' . BASEURL);
+        exit;
+
+    }
 }
