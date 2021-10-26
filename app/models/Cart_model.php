@@ -145,4 +145,61 @@ class Cart_model extends Model
             return $dataCart;
         }
     }
+
+    public function cancelTutorialInCart(string $idTutorial)
+    {
+        if (empty($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'ID is mandatory'
+            ];
+        } elseif ($this->isIDNotUUID($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'ID is invalid data type'
+            ];
+        } elseif ($this->isIdNotAvailable($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not available'
+            ];
+        } elseif ($this->isIDRevoked($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial has been revoked'
+            ];
+        } else {
+
+            $id = R::getAll(
+                "SELECT ID FROM cart WHERE username_student = :usernameStudent AND id_tutorial = :idTutorial AND is_cancel = :isCancel",
+                [ ':usernameStudent' =>  $_SESSION["username_student"], ':idTutorial' => $idTutorial, ':isCancel' => 'N' ]
+            );
+
+            $cancelTutorial = R::load('cart', $id[0]["id"]);
+            $cancelTutorial->is_cancel = 'Y'; 
+
+            try {
+                if (R::store($cancelTutorial)) {
+                    return [
+                        'icon' => 'success',
+                        'title' => 'Success',
+                        'text' => 'Cancel tutorial successfully'
+                    ];
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception $e) {
+                return [
+                    'icon' => 'error',
+                    'title' => 'Failed',
+                    'text' => 'Cancel tutorial failed'
+                ];
+            }
+        }
+
+    }
 }
