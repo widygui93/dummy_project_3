@@ -5,7 +5,7 @@ class Cart extends Controller
     {
         if (!$this->model('Verify_model')->isUserLogin()) {
 
-            header('Location: ' . BASEURL);
+            header('Location: http://localhost/widy/project/dummy_project_3/public/Login/student');
             exit;
         }
 
