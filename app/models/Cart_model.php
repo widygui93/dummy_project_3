@@ -172,6 +172,19 @@ class Cart_model extends Model
                 'title' => 'Failed',
                 'text' => 'Tutorial has been revoked'
             ];
+        } elseif ($this->isIDNotExistInCart($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial is not exist in cart'
+            ];
+        } elseif ($this->hasTutorialCanceled($idTutorial)) {
+            return [
+                'icon' => 'error',
+                'title' => 'Failed',
+                'text' => 'Tutorial has been canceled'
+            ];
+
         } else {
 
             $id = R::getAll(
@@ -200,6 +213,26 @@ class Cart_model extends Model
                 ];
             }
         }
+
+    }
+
+    private function isIDNotExistInCart(string $idTutorial): bool
+    {
+        return R::count(
+            'cart', 
+            ' id_tutorial = :id AND username_student = :username', 
+            [':id' => $idTutorial, ':username' => $_SESSION["username_student"]]
+        ) === 0  ? true : false;
+
+    }
+
+    private function hasTutorialCanceled(string $idTutorial): bool
+    {
+        return R::count(
+            'cart', 
+            ' username_student = :username AND id_tutorial = :id AND is_cancel = :isCancel', 
+            [':username' => $_SESSION["username_student"], ':id' => $idTutorial, ':isCancel' => 'N']
+        ) === 0  ? true : false;
 
     }
 }
